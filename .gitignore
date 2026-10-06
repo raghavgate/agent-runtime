@@ -1,0 +1,29 @@
+# Python caches and build outputs
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Local environments and credentials
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+credentials.json
+
+# Local editor and macOS files
+.DS_Store
+.idea/
+.vscode/
