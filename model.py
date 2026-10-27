@@ -1,5 +1,5 @@
 class FakeModel:
-    def generate(self, user_message, tool_result =None):
+    def generate(self, user_message, tool_result =None, tools = None):
         if tool_result is None:
             return({
                 "type" : "tool_call",
@@ -19,13 +19,14 @@ class FakeModel:
                 })
                 
 class ErrorModel:
-    def generate(self, user_message, tool_result=None):
+    def generate(self, user_message, tool_result=None, tools =None):
         return {"type": "error"}
         
 class LoopModel:
-    def generate(self, user_message, tool_result = None):
+    def generate(self, user_message, tool_result = None, tools =None):
       return ({
       "type" : "tool_call",
       "tool_name" : "get_open_tickets_tool",
       "arguments" : {"customer_id" : 17}
       })
+      

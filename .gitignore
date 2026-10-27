@@ -27,3 +27,7 @@ credentials.json
 .DS_Store
 .idea/
 .vscode/
+
+# Local run/evaluation records may contain business data
+.runs/
+.evaluations/

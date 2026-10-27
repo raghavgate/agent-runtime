@@ -1,0 +1,10 @@
+{
+  "integrations": [
+    {"kind": "crm_export", "path": "data/crm.json"},
+    {"kind": "support_export", "path": "data/support.json"}
+  ],
+  "max_tool_calls": 10,
+  "require_sources": true,
+  "trace_dir": ".runs",
+  "evaluation_dir": ".evaluations"
+}

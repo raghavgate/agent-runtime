@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agent Runtime · Workspace</title><link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script></head>
+<body>
+<header><a class="brand" href="/">◈ <strong>Agent Runtime</strong></a><span class="pill" id="mode">Connecting…</span></header>
+<main>
+  <section class="intro"><span class="eyebrow">LOCAL WORKSPACE / READ ONLY</span><h1>From question to evidence.</h1><p>Run tasks across CRM and support data. Inspect every tool call and check the results.</p></section>
+  <div class="layout">
+    <section class="panel work">
+      <div class="section-title"><h2>New task</h2><span class="subtle">CRM + Support exports</span></div>
+      <form id="task-form"><label for="message">What would you like to find out?</label><textarea id="message" rows="3" required maxlength="8000">Prepare an account brief for Acme</textarea><div class="form-footer"><span id="mode-help" class="subtle">Loading configuration…</span><button id="run-button" type="submit">Run task ↗</button></div></form>
+      <div class="examples"><button type="button" data-prompt="Find open tickets for Globex">Globex tickets</button><button type="button" data-prompt="Find open tickets for Initech">No-ticket case</button><button type="button" data-prompt="Find open tickets for Northstar">Ambiguous account</button></div>
+      <div id="notice" role="status" aria-live="polite"></div>
+      <section id="result" hidden><div class="section-title"><h2>Answer</h2><span id="run-status" class="pill"></span></div><p id="answer"></p><div id="metrics" class="metrics"></div><h3>Retrieved evidence</h3><div id="sources"></div><h3>Execution trace</h3><div id="events"></div></section>
+    </section>
+    <aside>
+      <section class="panel"><div class="section-title"><h2>Evaluation</h2><span class="pill">10 cases</span></div><p class="subtle">Check tool use, expected facts, retrieved tickets and citations against fixed fixtures.</p><button id="evaluate" class="secondary">Run evaluation suite</button><div id="eval-results" aria-live="polite"></div></section>
+      <section class="panel"><div class="section-title"><h2>Recent runs</h2><button id="refresh" class="text-button">Refresh</button></div><div id="history"><p class="subtle">No runs yet.</p></div></section>
+      <details class="panel"><summary>Registered tools</summary><div id="tools"></div></details>
+    </aside>
+  </div>
+  <footer>Demo fixtures are synthetic. Run records stay on this machine. Citation checks confirm source membership, not complete factual accuracy.</footer>
+</main>
+</body></html>

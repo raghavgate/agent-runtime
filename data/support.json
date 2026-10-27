@@ -1,0 +1,9 @@
+{
+  "organizations": ["org-acme", "org-globex", "org-initech", "org-northstar-labs", "org-northstar-retail"],
+  "tickets": [
+    {"ticket_id": 171, "organization_id": "org-acme", "status": "OPEN", "priority": "HIGH", "subject": "Account sync delays"},
+    {"ticket_id": 134, "organization_id": "org-acme", "status": "OPEN", "priority": "CRITICAL", "subject": "Billing export blocked"},
+    {"ticket_id": 234, "organization_id": "org-globex", "status": "OPEN", "priority": "LOW", "subject": "Dashboard layout question"},
+    {"ticket_id": 652, "organization_id": "org-acme", "status": "CLOSED", "priority": "MEDIUM", "subject": "Reset a user password"}
+  ]
+}

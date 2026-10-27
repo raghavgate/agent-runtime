@@ -1,0 +1,9 @@
+{
+  "accounts": [
+    {"customer_id": 17, "company_name": "Acme", "owner": "Maya Chen", "renewal_date": "2026-11-15", "annual_value": 48000, "support_customer_id": "org-acme"},
+    {"customer_id": 23, "company_name": "Globex", "owner": "Sam Rivera", "renewal_date": "2026-12-01", "annual_value": 24000, "support_customer_id": "org-globex"},
+    {"customer_id": 42, "company_name": "Initech", "owner": "Maya Chen", "renewal_date": "2026-11-22", "annual_value": 12000, "support_customer_id": "org-initech"},
+    {"customer_id": 51, "company_name": "Northstar Labs", "owner": "Sam Rivera", "renewal_date": "2026-11-30", "annual_value": 36000, "support_customer_id": "org-northstar-labs"},
+    {"customer_id": 52, "company_name": "Northstar Retail", "owner": "Maya Chen", "renewal_date": "2026-12-15", "annual_value": 18000, "support_customer_id": "org-northstar-retail"}
+  ]
+}
