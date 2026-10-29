@@ -1,0 +1,29 @@
+{
+  "name": "Synthetic CRM sandbox",
+  "data_origin": "synthetic",
+  "as_of": "2026-10-28",
+  "currency": "USD",
+  "version": 1,
+  "counts": {
+    "accounts": 24,
+    "contacts": 69,
+    "deals": 48,
+    "support_organizations": 23,
+    "tickets": 88
+  },
+  "files_sha256": {
+    "crm.json": "d969fda9301164b87b410fbb4f7ab1e27889a2400b4822799a866d90813cf070",
+    "support.json": "81ae70b471c3d5fdc5f513d74146009367ae31af118adb4ea94721c00c985ec7",
+    "accounts.csv": "ee9cc0beb90f5756ff3629b82f80efb166eb63381ff7c355d71272572db7f94d"
+  },
+  "edge_cases": [
+    "Two Northstar accounts require clarification",
+    "Bluewater has a support organization but no tickets",
+    "Orchard has no contacts",
+    "Meridian has no support mapping and a primary contact without email",
+    "Juniper has contacts but no designated primary",
+    "Cobalt has only closed deals and closed tickets",
+    "Closed critical and pending tickets must not be counted as OPEN"
+  ],
+  "notice": "All organizations, people and records are fictional examples. Email addresses use the reserved .example domain. This snapshot is not evidence of performance on real CRM data."
+}

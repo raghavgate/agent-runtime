@@ -1,0 +1,1349 @@
+{
+  "accounts": [
+    {
+      "customer_id": "acct-001",
+      "company_name": "Cedar & Finch",
+      "owner": "Maya Chen",
+      "renewal_date": "2026-11-05",
+      "annual_value": 72000,
+      "support_customer_id": "org-1001"
+    },
+    {
+      "customer_id": "acct-002",
+      "company_name": "Northstar Labs",
+      "owner": "Sam Rivera",
+      "renewal_date": "2026-11-20",
+      "annual_value": 36000,
+      "support_customer_id": "org-1002"
+    },
+    {
+      "customer_id": "acct-003",
+      "company_name": "Northstar Retail",
+      "owner": "Priya Shah",
+      "renewal_date": "2026-12-18",
+      "annual_value": 28000,
+      "support_customer_id": "org-1003"
+    },
+    {
+      "customer_id": "acct-004",
+      "company_name": "Bluewater Systems",
+      "owner": "Maya Chen",
+      "renewal_date": "2026-11-10",
+      "annual_value": 24000,
+      "support_customer_id": "org-1004"
+    },
+    {
+      "customer_id": "acct-005",
+      "company_name": "Orchard Supply",
+      "owner": "Sam Rivera",
+      "renewal_date": "2027-01-12",
+      "annual_value": 12000,
+      "support_customer_id": "org-1005"
+    },
+    {
+      "customer_id": "acct-006",
+      "company_name": "Meridian Health",
+      "owner": "Priya Shah",
+      "renewal_date": "2026-11-12",
+      "annual_value": 54000,
+      "support_customer_id": ""
+    },
+    {
+      "customer_id": "acct-007",
+      "company_name": "Cobalt Works",
+      "owner": "Maya Chen",
+      "renewal_date": "2026-12-01",
+      "annual_value": 18000,
+      "support_customer_id": "org-1007"
+    },
+    {
+      "customer_id": "acct-008",
+      "company_name": "Juniper Logistics",
+      "owner": "Sam Rivera",
+      "renewal_date": "2026-11-25",
+      "annual_value": 84000,
+      "support_customer_id": "org-1008"
+    },
+    {
+      "customer_id": "acct-009",
+      "company_name": "Harborview Media",
+      "owner": "Priya Shah",
+      "renewal_date": "2027-02-10",
+      "annual_value": 39000,
+      "support_customer_id": "org-1009"
+    },
+    {
+      "customer_id": "acct-010",
+      "company_name": "Atlas Fabrication",
+      "owner": "Maya Chen",
+      "renewal_date": "2027-03-11",
+      "annual_value": 42000,
+      "support_customer_id": "org-1010"
+    },
+    {
+      "customer_id": "acct-011",
+      "company_name": "Willow Analytics",
+      "owner": "Sam Rivera",
+      "renewal_date": "2027-04-12",
+      "annual_value": 45000,
+      "support_customer_id": "org-1011"
+    },
+    {
+      "customer_id": "acct-012",
+      "company_name": "Pinecrest Foods",
+      "owner": "Priya Shah",
+      "renewal_date": "2027-05-13",
+      "annual_value": 48000,
+      "support_customer_id": "org-1012"
+    },
+    {
+      "customer_id": "acct-013",
+      "company_name": "Beacon Learning",
+      "owner": "Maya Chen",
+      "renewal_date": "2027-06-14",
+      "annual_value": 51000,
+      "support_customer_id": "org-1013"
+    },
+    {
+      "customer_id": "acct-014",
+      "company_name": "Silverline Energy",
+      "owner": "Sam Rivera",
+      "renewal_date": "2027-07-15",
+      "annual_value": 54000,
+      "support_customer_id": "org-1014"
+    },
+    {
+      "customer_id": "acct-015",
+      "company_name": "Maple Street Retail",
+      "owner": "Priya Shah",
+      "renewal_date": "2027-08-16",
+      "annual_value": 57000,
+      "support_customer_id": "org-1015"
+    },
+    {
+      "customer_id": "acct-016",
+      "company_name": "Stonebridge Legal",
+      "owner": "Maya Chen",
+      "renewal_date": "2027-01-17",
+      "annual_value": 60000,
+      "support_customer_id": "org-1016"
+    },
+    {
+      "customer_id": "acct-017",
+      "company_name": "Summit Field Services",
+      "owner": "Sam Rivera",
+      "renewal_date": "2027-02-18",
+      "annual_value": 63000,
+      "support_customer_id": "org-1017"
+    },
+    {
+      "customer_id": "acct-018",
+      "company_name": "Crescent Travel",
+      "owner": "Priya Shah",
+      "renewal_date": "2027-03-19",
+      "annual_value": 66000,
+      "support_customer_id": "org-1018"
+    },
+    {
+      "customer_id": "acct-019",
+      "company_name": "Rivermark Software",
+      "owner": "Maya Chen",
+      "renewal_date": "2027-04-20",
+      "annual_value": 69000,
+      "support_customer_id": "org-1019"
+    },
+    {
+      "customer_id": "acct-020",
+      "company_name": "Oakwell Packaging",
+      "owner": "Sam Rivera",
+      "renewal_date": "2027-05-01",
+      "annual_value": 72000,
+      "support_customer_id": "org-1020"
+    },
+    {
+      "customer_id": "acct-021",
+      "company_name": "Eastgate Design",
+      "owner": "Priya Shah",
+      "renewal_date": "2027-06-02",
+      "annual_value": 75000,
+      "support_customer_id": "org-1021"
+    },
+    {
+      "customer_id": "acct-022",
+      "company_name": "Lakeside Equipment",
+      "owner": "Maya Chen",
+      "renewal_date": "2027-07-03",
+      "annual_value": 78000,
+      "support_customer_id": "org-1022"
+    },
+    {
+      "customer_id": "acct-023",
+      "company_name": "Copperleaf Research",
+      "owner": "Sam Rivera",
+      "renewal_date": "2027-08-04",
+      "annual_value": 81000,
+      "support_customer_id": "org-1023"
+    },
+    {
+      "customer_id": "acct-024",
+      "company_name": "Amberwell Services",
+      "owner": "Priya Shah",
+      "renewal_date": "2027-01-05",
+      "annual_value": 84000,
+      "support_customer_id": "org-1024"
+    }
+  ],
+  "contacts": [
+    {
+      "contact_id": "contact-001-1",
+      "customer_id": "acct-001",
+      "full_name": "Avery Chen",
+      "role": "Operations Director",
+      "email": "avery.chen@cedar-finch.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-001-2",
+      "customer_id": "acct-001",
+      "full_name": "Jordan Patel",
+      "role": "Finance Lead",
+      "email": "jordan.patel@cedar-finch.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-001-3",
+      "customer_id": "acct-001",
+      "full_name": "Morgan Brooks",
+      "role": "IT Manager",
+      "email": "morgan.brooks@cedar-finch.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-002-1",
+      "customer_id": "acct-002",
+      "full_name": "Jordan Patel",
+      "role": "Operations Director",
+      "email": "jordan.patel@northstar-labs.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-002-2",
+      "customer_id": "acct-002",
+      "full_name": "Morgan Brooks",
+      "role": "Finance Lead",
+      "email": "morgan.brooks@northstar-labs.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-002-3",
+      "customer_id": "acct-002",
+      "full_name": "Riley Santos",
+      "role": "IT Manager",
+      "email": "riley.santos@northstar-labs.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-003-1",
+      "customer_id": "acct-003",
+      "full_name": "Morgan Brooks",
+      "role": "Operations Director",
+      "email": "morgan.brooks@northstar-retail.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-003-2",
+      "customer_id": "acct-003",
+      "full_name": "Riley Santos",
+      "role": "Finance Lead",
+      "email": "riley.santos@northstar-retail.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-003-3",
+      "customer_id": "acct-003",
+      "full_name": "Quinn Taylor",
+      "role": "IT Manager",
+      "email": "quinn.taylor@northstar-retail.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-004-1",
+      "customer_id": "acct-004",
+      "full_name": "Riley Santos",
+      "role": "Operations Director",
+      "email": "riley.santos@bluewater-systems.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-004-2",
+      "customer_id": "acct-004",
+      "full_name": "Quinn Taylor",
+      "role": "Finance Lead",
+      "email": "quinn.taylor@bluewater-systems.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-004-3",
+      "customer_id": "acct-004",
+      "full_name": "Casey Reed",
+      "role": "IT Manager",
+      "email": "casey.reed@bluewater-systems.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-006-1",
+      "customer_id": "acct-006",
+      "full_name": "Casey Reed",
+      "role": "Operations Director",
+      "email": null,
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-006-2",
+      "customer_id": "acct-006",
+      "full_name": "Avery Chen",
+      "role": "Finance Lead",
+      "email": "avery.chen@meridian-health.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-006-3",
+      "customer_id": "acct-006",
+      "full_name": "Jordan Patel",
+      "role": "IT Manager",
+      "email": "jordan.patel@meridian-health.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-007-1",
+      "customer_id": "acct-007",
+      "full_name": "Avery Chen",
+      "role": "Operations Director",
+      "email": "avery.chen@cobalt-works.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-007-2",
+      "customer_id": "acct-007",
+      "full_name": "Jordan Patel",
+      "role": "Finance Lead",
+      "email": "jordan.patel@cobalt-works.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-007-3",
+      "customer_id": "acct-007",
+      "full_name": "Morgan Brooks",
+      "role": "IT Manager",
+      "email": "morgan.brooks@cobalt-works.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-008-1",
+      "customer_id": "acct-008",
+      "full_name": "Jordan Patel",
+      "role": "Operations Director",
+      "email": "jordan.patel@juniper-logistics.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-008-2",
+      "customer_id": "acct-008",
+      "full_name": "Morgan Brooks",
+      "role": "Finance Lead",
+      "email": "morgan.brooks@juniper-logistics.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-008-3",
+      "customer_id": "acct-008",
+      "full_name": "Riley Santos",
+      "role": "IT Manager",
+      "email": "riley.santos@juniper-logistics.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-009-1",
+      "customer_id": "acct-009",
+      "full_name": "Morgan Brooks",
+      "role": "Operations Director",
+      "email": "morgan.brooks@harborview-media.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-009-2",
+      "customer_id": "acct-009",
+      "full_name": "Riley Santos",
+      "role": "Finance Lead",
+      "email": "riley.santos@harborview-media.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-009-3",
+      "customer_id": "acct-009",
+      "full_name": "Quinn Taylor",
+      "role": "IT Manager",
+      "email": "quinn.taylor@harborview-media.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-010-1",
+      "customer_id": "acct-010",
+      "full_name": "Riley Santos",
+      "role": "Operations Director",
+      "email": "riley.santos@atlas-fabrication.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-010-2",
+      "customer_id": "acct-010",
+      "full_name": "Quinn Taylor",
+      "role": "Finance Lead",
+      "email": "quinn.taylor@atlas-fabrication.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-010-3",
+      "customer_id": "acct-010",
+      "full_name": "Casey Reed",
+      "role": "IT Manager",
+      "email": "casey.reed@atlas-fabrication.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-011-1",
+      "customer_id": "acct-011",
+      "full_name": "Quinn Taylor",
+      "role": "Operations Director",
+      "email": "quinn.taylor@willow-analytics.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-011-2",
+      "customer_id": "acct-011",
+      "full_name": "Casey Reed",
+      "role": "Finance Lead",
+      "email": "casey.reed@willow-analytics.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-011-3",
+      "customer_id": "acct-011",
+      "full_name": "Avery Chen",
+      "role": "IT Manager",
+      "email": "avery.chen@willow-analytics.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-012-1",
+      "customer_id": "acct-012",
+      "full_name": "Casey Reed",
+      "role": "Operations Director",
+      "email": "casey.reed@pinecrest-foods.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-012-2",
+      "customer_id": "acct-012",
+      "full_name": "Avery Chen",
+      "role": "Finance Lead",
+      "email": "avery.chen@pinecrest-foods.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-012-3",
+      "customer_id": "acct-012",
+      "full_name": "Jordan Patel",
+      "role": "IT Manager",
+      "email": "jordan.patel@pinecrest-foods.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-013-1",
+      "customer_id": "acct-013",
+      "full_name": "Avery Chen",
+      "role": "Operations Director",
+      "email": "avery.chen@beacon-learning.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-013-2",
+      "customer_id": "acct-013",
+      "full_name": "Jordan Patel",
+      "role": "Finance Lead",
+      "email": "jordan.patel@beacon-learning.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-013-3",
+      "customer_id": "acct-013",
+      "full_name": "Morgan Brooks",
+      "role": "IT Manager",
+      "email": "morgan.brooks@beacon-learning.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-014-1",
+      "customer_id": "acct-014",
+      "full_name": "Jordan Patel",
+      "role": "Operations Director",
+      "email": "jordan.patel@silverline-energy.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-014-2",
+      "customer_id": "acct-014",
+      "full_name": "Morgan Brooks",
+      "role": "Finance Lead",
+      "email": "morgan.brooks@silverline-energy.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-014-3",
+      "customer_id": "acct-014",
+      "full_name": "Riley Santos",
+      "role": "IT Manager",
+      "email": "riley.santos@silverline-energy.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-015-1",
+      "customer_id": "acct-015",
+      "full_name": "Morgan Brooks",
+      "role": "Operations Director",
+      "email": "morgan.brooks@maple-street-retail.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-015-2",
+      "customer_id": "acct-015",
+      "full_name": "Riley Santos",
+      "role": "Finance Lead",
+      "email": "riley.santos@maple-street-retail.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-015-3",
+      "customer_id": "acct-015",
+      "full_name": "Quinn Taylor",
+      "role": "IT Manager",
+      "email": "quinn.taylor@maple-street-retail.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-016-1",
+      "customer_id": "acct-016",
+      "full_name": "Riley Santos",
+      "role": "Operations Director",
+      "email": "riley.santos@stonebridge-legal.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-016-2",
+      "customer_id": "acct-016",
+      "full_name": "Quinn Taylor",
+      "role": "Finance Lead",
+      "email": "quinn.taylor@stonebridge-legal.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-016-3",
+      "customer_id": "acct-016",
+      "full_name": "Casey Reed",
+      "role": "IT Manager",
+      "email": "casey.reed@stonebridge-legal.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-017-1",
+      "customer_id": "acct-017",
+      "full_name": "Quinn Taylor",
+      "role": "Operations Director",
+      "email": "quinn.taylor@summit-field-services.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-017-2",
+      "customer_id": "acct-017",
+      "full_name": "Casey Reed",
+      "role": "Finance Lead",
+      "email": "casey.reed@summit-field-services.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-017-3",
+      "customer_id": "acct-017",
+      "full_name": "Avery Chen",
+      "role": "IT Manager",
+      "email": "avery.chen@summit-field-services.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-018-1",
+      "customer_id": "acct-018",
+      "full_name": "Casey Reed",
+      "role": "Operations Director",
+      "email": "casey.reed@crescent-travel.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-018-2",
+      "customer_id": "acct-018",
+      "full_name": "Avery Chen",
+      "role": "Finance Lead",
+      "email": "avery.chen@crescent-travel.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-018-3",
+      "customer_id": "acct-018",
+      "full_name": "Jordan Patel",
+      "role": "IT Manager",
+      "email": "jordan.patel@crescent-travel.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-019-1",
+      "customer_id": "acct-019",
+      "full_name": "Avery Chen",
+      "role": "Operations Director",
+      "email": "avery.chen@rivermark-software.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-019-2",
+      "customer_id": "acct-019",
+      "full_name": "Jordan Patel",
+      "role": "Finance Lead",
+      "email": "jordan.patel@rivermark-software.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-019-3",
+      "customer_id": "acct-019",
+      "full_name": "Morgan Brooks",
+      "role": "IT Manager",
+      "email": "morgan.brooks@rivermark-software.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-020-1",
+      "customer_id": "acct-020",
+      "full_name": "Jordan Patel",
+      "role": "Operations Director",
+      "email": "jordan.patel@oakwell-packaging.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-020-2",
+      "customer_id": "acct-020",
+      "full_name": "Morgan Brooks",
+      "role": "Finance Lead",
+      "email": "morgan.brooks@oakwell-packaging.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-020-3",
+      "customer_id": "acct-020",
+      "full_name": "Riley Santos",
+      "role": "IT Manager",
+      "email": "riley.santos@oakwell-packaging.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-021-1",
+      "customer_id": "acct-021",
+      "full_name": "Morgan Brooks",
+      "role": "Operations Director",
+      "email": "morgan.brooks@eastgate-design.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-021-2",
+      "customer_id": "acct-021",
+      "full_name": "Riley Santos",
+      "role": "Finance Lead",
+      "email": "riley.santos@eastgate-design.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-021-3",
+      "customer_id": "acct-021",
+      "full_name": "Quinn Taylor",
+      "role": "IT Manager",
+      "email": "quinn.taylor@eastgate-design.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-022-1",
+      "customer_id": "acct-022",
+      "full_name": "Riley Santos",
+      "role": "Operations Director",
+      "email": "riley.santos@lakeside-equipment.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-022-2",
+      "customer_id": "acct-022",
+      "full_name": "Quinn Taylor",
+      "role": "Finance Lead",
+      "email": "quinn.taylor@lakeside-equipment.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-022-3",
+      "customer_id": "acct-022",
+      "full_name": "Casey Reed",
+      "role": "IT Manager",
+      "email": "casey.reed@lakeside-equipment.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-023-1",
+      "customer_id": "acct-023",
+      "full_name": "Quinn Taylor",
+      "role": "Operations Director",
+      "email": "quinn.taylor@copperleaf-research.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-023-2",
+      "customer_id": "acct-023",
+      "full_name": "Casey Reed",
+      "role": "Finance Lead",
+      "email": "casey.reed@copperleaf-research.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-023-3",
+      "customer_id": "acct-023",
+      "full_name": "Avery Chen",
+      "role": "IT Manager",
+      "email": "avery.chen@copperleaf-research.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    },
+    {
+      "contact_id": "contact-024-1",
+      "customer_id": "acct-024",
+      "full_name": "Casey Reed",
+      "role": "Operations Director",
+      "email": "casey.reed@amberwell-services.example",
+      "is_primary": true,
+      "last_contacted_date": "2026-10-23"
+    },
+    {
+      "contact_id": "contact-024-2",
+      "customer_id": "acct-024",
+      "full_name": "Avery Chen",
+      "role": "Finance Lead",
+      "email": "avery.chen@amberwell-services.example",
+      "is_primary": false,
+      "last_contacted_date": "2026-10-22"
+    },
+    {
+      "contact_id": "contact-024-3",
+      "customer_id": "acct-024",
+      "full_name": "Jordan Patel",
+      "role": "IT Manager",
+      "email": "jordan.patel@amberwell-services.example",
+      "is_primary": false,
+      "last_contacted_date": null
+    }
+  ],
+  "deals": [
+    {
+      "deal_id": "deal-001-1",
+      "customer_id": "acct-001",
+      "name": "Cedar & Finch Renewal",
+      "amount": 72000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2026-11-05",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-001-2",
+      "customer_id": "acct-001",
+      "name": "Cedar & Finch Expansion",
+      "amount": 18000,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-002-1",
+      "customer_id": "acct-002",
+      "name": "Northstar Labs Renewal",
+      "amount": 36000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2026-11-20",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-002-2",
+      "customer_id": "acct-002",
+      "name": "Northstar Labs Expansion",
+      "amount": 9000,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-003-1",
+      "customer_id": "acct-003",
+      "name": "Northstar Retail Renewal",
+      "amount": 28000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2026-12-18",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-003-2",
+      "customer_id": "acct-003",
+      "name": "Northstar Retail Expansion",
+      "amount": 7000,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-004-1",
+      "customer_id": "acct-004",
+      "name": "Bluewater Systems Renewal",
+      "amount": 24000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2026-11-10",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-004-2",
+      "customer_id": "acct-004",
+      "name": "Bluewater Systems Expansion",
+      "amount": 6000,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-005-1",
+      "customer_id": "acct-005",
+      "name": "Orchard Supply Renewal",
+      "amount": 12000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-01-12",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-005-2",
+      "customer_id": "acct-005",
+      "name": "Orchard Supply Expansion",
+      "amount": 3000,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-006-1",
+      "customer_id": "acct-006",
+      "name": "Meridian Health Renewal",
+      "amount": 54000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2026-11-12",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-006-2",
+      "customer_id": "acct-006",
+      "name": "Meridian Health Expansion",
+      "amount": 13500,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-007-1",
+      "customer_id": "acct-007",
+      "name": "Cobalt Works Renewal",
+      "amount": 18000,
+      "currency": "USD",
+      "stage": "CLOSED_WON",
+      "expected_close_date": "2026-12-01",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-007-2",
+      "customer_id": "acct-007",
+      "name": "Cobalt Works Expansion",
+      "amount": 4500,
+      "currency": "USD",
+      "stage": "CLOSED_LOST",
+      "expected_close_date": "2026-12-15",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-008-1",
+      "customer_id": "acct-008",
+      "name": "Juniper Logistics Renewal",
+      "amount": 84000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2026-11-25",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-008-2",
+      "customer_id": "acct-008",
+      "name": "Juniper Logistics Expansion",
+      "amount": 21000,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-009-1",
+      "customer_id": "acct-009",
+      "name": "Harborview Media Renewal",
+      "amount": 39000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-02-10",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-009-2",
+      "customer_id": "acct-009",
+      "name": "Harborview Media Expansion",
+      "amount": 9750,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-010-1",
+      "customer_id": "acct-010",
+      "name": "Atlas Fabrication Renewal",
+      "amount": 42000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-03-11",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-010-2",
+      "customer_id": "acct-010",
+      "name": "Atlas Fabrication Expansion",
+      "amount": 10500,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-011-1",
+      "customer_id": "acct-011",
+      "name": "Willow Analytics Renewal",
+      "amount": 45000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-04-12",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-011-2",
+      "customer_id": "acct-011",
+      "name": "Willow Analytics Expansion",
+      "amount": 11250,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-012-1",
+      "customer_id": "acct-012",
+      "name": "Pinecrest Foods Renewal",
+      "amount": 48000,
+      "currency": "USD",
+      "stage": "CLOSED_WON",
+      "expected_close_date": "2027-05-13",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-012-2",
+      "customer_id": "acct-012",
+      "name": "Pinecrest Foods Expansion",
+      "amount": 12000,
+      "currency": "USD",
+      "stage": "QUALIFICATION",
+      "expected_close_date": "2026-12-15",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-013-1",
+      "customer_id": "acct-013",
+      "name": "Beacon Learning Renewal",
+      "amount": 51000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-06-14",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-013-2",
+      "customer_id": "acct-013",
+      "name": "Beacon Learning Expansion",
+      "amount": 12750,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-014-1",
+      "customer_id": "acct-014",
+      "name": "Silverline Energy Renewal",
+      "amount": 54000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-07-15",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-014-2",
+      "customer_id": "acct-014",
+      "name": "Silverline Energy Expansion",
+      "amount": 13500,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-015-1",
+      "customer_id": "acct-015",
+      "name": "Maple Street Retail Renewal",
+      "amount": 57000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-08-16",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-015-2",
+      "customer_id": "acct-015",
+      "name": "Maple Street Retail Expansion",
+      "amount": 14250,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-016-1",
+      "customer_id": "acct-016",
+      "name": "Stonebridge Legal Renewal",
+      "amount": 60000,
+      "currency": "USD",
+      "stage": "CLOSED_WON",
+      "expected_close_date": "2027-01-17",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-016-2",
+      "customer_id": "acct-016",
+      "name": "Stonebridge Legal Expansion",
+      "amount": 15000,
+      "currency": "USD",
+      "stage": "QUALIFICATION",
+      "expected_close_date": "2026-12-15",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-017-1",
+      "customer_id": "acct-017",
+      "name": "Summit Field Services Renewal",
+      "amount": 63000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-02-18",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-017-2",
+      "customer_id": "acct-017",
+      "name": "Summit Field Services Expansion",
+      "amount": 15750,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-018-1",
+      "customer_id": "acct-018",
+      "name": "Crescent Travel Renewal",
+      "amount": 66000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-03-19",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-018-2",
+      "customer_id": "acct-018",
+      "name": "Crescent Travel Expansion",
+      "amount": 16500,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-019-1",
+      "customer_id": "acct-019",
+      "name": "Rivermark Software Renewal",
+      "amount": 69000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-04-20",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-019-2",
+      "customer_id": "acct-019",
+      "name": "Rivermark Software Expansion",
+      "amount": 17250,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-020-1",
+      "customer_id": "acct-020",
+      "name": "Oakwell Packaging Renewal",
+      "amount": 72000,
+      "currency": "USD",
+      "stage": "CLOSED_WON",
+      "expected_close_date": "2027-05-01",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-020-2",
+      "customer_id": "acct-020",
+      "name": "Oakwell Packaging Expansion",
+      "amount": 18000,
+      "currency": "USD",
+      "stage": "QUALIFICATION",
+      "expected_close_date": "2026-12-15",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-021-1",
+      "customer_id": "acct-021",
+      "name": "Eastgate Design Renewal",
+      "amount": 75000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-06-02",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-021-2",
+      "customer_id": "acct-021",
+      "name": "Eastgate Design Expansion",
+      "amount": 18750,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-022-1",
+      "customer_id": "acct-022",
+      "name": "Lakeside Equipment Renewal",
+      "amount": 78000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-07-03",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-022-2",
+      "customer_id": "acct-022",
+      "name": "Lakeside Equipment Expansion",
+      "amount": 19500,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Maya Chen",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-023-1",
+      "customer_id": "acct-023",
+      "name": "Copperleaf Research Renewal",
+      "amount": 81000,
+      "currency": "USD",
+      "stage": "NEGOTIATION",
+      "expected_close_date": "2027-08-04",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-023-2",
+      "customer_id": "acct-023",
+      "name": "Copperleaf Research Expansion",
+      "amount": 20250,
+      "currency": "USD",
+      "stage": "PROPOSAL",
+      "expected_close_date": "2026-12-15",
+      "owner": "Sam Rivera",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-024-1",
+      "customer_id": "acct-024",
+      "name": "Amberwell Services Renewal",
+      "amount": 84000,
+      "currency": "USD",
+      "stage": "CLOSED_WON",
+      "expected_close_date": "2027-01-05",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    },
+    {
+      "deal_id": "deal-024-2",
+      "customer_id": "acct-024",
+      "name": "Amberwell Services Expansion",
+      "amount": 21000,
+      "currency": "USD",
+      "stage": "QUALIFICATION",
+      "expected_close_date": "2026-12-15",
+      "owner": "Priya Shah",
+      "updated_at": "2026-10-20"
+    }
+  ]
+}

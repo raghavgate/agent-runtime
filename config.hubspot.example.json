@@ -1,0 +1,49 @@
+{
+  "integrations": [
+    {
+      "kind": "hubspot_crm",
+      "service_key_env": "HUBSPOT_SERVICE_KEY",
+      "api_version": "2026-09",
+      "timeout_seconds": 15,
+      "max_records": 500,
+      "properties": {
+        "renewal_date": null,
+        "annual_value": null,
+        "support_customer_id": null,
+        "contact_primary": null
+      }
+    }
+  ],
+  "max_tool_calls": 10,
+  "require_sources": true,
+  "trace_dir": ".runs/hubspot",
+  "evaluation_dir": ".evaluations/hubspot",
+  "conversation_dir": ".conversations/hubspot",
+  "conversation_max_turns": 24,
+  "conversation_max_history_bytes": 120000,
+  "max_output_tokens": 1200,
+  "workspace_name": "HubSpot CRM",
+  "data_origin": "hubspot_live",
+  "demo_evaluation_supported": false,
+  "workflow_instructions": "This workspace reads live HubSpot CRM data. Resolve a company name before using its HubSpot record ID. Reuse complete fields already returned by tools. State unavailable fields plainly and never infer a primary contact, currency, renewal date, annual value, support mapping, owner, or missing record. OPEN deals are filtered using HubSpot's hs_is_closed property. Treat recommended actions as recommendations rather than CRM facts. Keep internal IDs out of normal prose and cite the HubSpot records used.",
+  "suggested_questions": [
+    "Find the HubSpot company named Acme",
+    "Who are the contacts associated with Acme?",
+    "What open deals are associated with Acme?"
+  ],
+  "workflow_prompts": [
+    {
+      "label": "Prepare a CRM meeting brief",
+      "message": "Prepare a meeting brief for Acme using its HubSpot company details, associated contacts, and open deals. Clearly identify fields that are unavailable and cite the records used."
+    }
+  ],
+  "pricing": {
+    "gpt-5.4-mini": {
+      "input_usd_per_million": 0.75,
+      "output_usd_per_million": 4.5,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+      "checked_at": "2026-10-28",
+      "basis": "standard uncached input/output; estimate, not invoice"
+    }
+  }
+}

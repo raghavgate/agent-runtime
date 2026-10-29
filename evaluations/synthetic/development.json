@@ -1,0 +1,132 @@
+[
+  {
+    "id": "synthetic-account-brief",
+    "message": "Prepare an account brief for Cedar & Finch, including owner, renewal date, annual value, and all OPEN support tickets with priorities.",
+    "required_calls": [{"tool_name": "crm_search_accounts", "arguments": {"company_name": "Cedar & Finch"}}, {"tool_name": "support_get_open_tickets", "arguments": {"organization_id": "org-1001"}}],
+    "ticket_ids": [10011, 10012],
+    "required_citations": ["crm:accounts/acct-001", "support:tickets/10011", "support:tickets/10012"],
+    "answer_patterns": ["Maya Chen", "2026-11-05|November 5|5 November", "72,?000|72k", "CRITICAL", "HIGH"],
+    "forbidden_patterns": ["\\b10013\\b", "\\b10014\\b"]
+  },
+  {
+    "id": "synthetic-meeting-preparation",
+    "message": "Prepare a meeting brief for Cedar & Finch. Include an executive account snapshot, the designated primary contact and their latest contact date, every OPEN deal with the total pipeline value, every OPEN support issue with priority, and evidence-backed talking points. Use the available systems and clearly identify missing information.",
+    "required_calls": [
+      {"tool_name": "crm_search_accounts", "arguments": {"company_name": "Cedar & Finch"}},
+      {"tool_name": "crm_get_contacts", "arguments": {"customer_id": "acct-001"}},
+      {"tool_name": "crm_get_deals", "arguments": {"customer_id": "acct-001", "stage": "OPEN"}},
+      {"tool_name": "support_get_open_tickets", "arguments": {"organization_id": "org-1001"}}
+    ],
+    "expected_records": [
+      {"tool_name": "crm_get_contacts", "id_field": "contact_id", "ids": ["contact-001-1", "contact-001-2", "contact-001-3"]},
+      {"tool_name": "crm_get_deals", "id_field": "deal_id", "ids": ["deal-001-1", "deal-001-2"]}
+    ],
+    "ticket_ids": [10011, 10012],
+    "required_citations": ["crm:accounts/acct-001", "crm:contacts/contact-001-1", "crm:deals/deal-001-1", "crm:deals/deal-001-2", "support:tickets/10011", "support:tickets/10012"],
+    "answer_patterns": ["Maya Chen", "2026-11-05|November 5|5 November", "72,?000|72k", "Avery Chen", "Operations Director", "2026-10-23|October 23|23 October", "90,?000|90k", "NEGOTIATION", "PROPOSAL", "CRITICAL", "HIGH", "talking point|discuss|ask about|address"],
+    "forbidden_patterns": ["\\b10013\\b", "\\b10014\\b", "CLOSED_WON", "CLOSED_LOST"]
+  },
+  {
+    "id": "synthetic-unknown-account",
+    "message": "Find OPEN support tickets for Orion Mechanics.",
+    "required_calls": [{"tool_name": "crm_search_accounts", "arguments": {"company_name": "Orion Mechanics"}}],
+    "forbidden_tools": ["support_get_open_tickets", "crm_get_contacts", "crm_get_deals"],
+    "ticket_ids": [], "required_citations": [],
+    "answer_patterns": ["not found|could not find|couldn't find|no .*account|no .*match|no .*customer"],
+    "forbidden_patterns": ["\\b10011\\b", "\\b10021\\b"]
+  },
+  {
+    "id": "synthetic-ambiguous-name",
+    "message": "Find OPEN support tickets for Northstar.",
+    "required_calls": [{"tool_name": "crm_search_accounts", "arguments": {"company_name": "Northstar"}}],
+    "forbidden_tools": ["support_get_open_tickets", "crm_get_contacts", "crm_get_deals"],
+    "ticket_ids": [], "required_citations": ["crm:accounts/acct-002", "crm:accounts/acct-003"],
+    "answer_patterns": ["Northstar Labs", "Northstar Retail", "which|clarif"]
+  },
+  {
+    "id": "synthetic-primary-contact",
+    "message": "Who is the designated primary contact for Cedar & Finch, and what is their email address?",
+    "required_calls": [{"tool_name": "crm_get_contacts", "arguments": {"customer_id": "acct-001"}}],
+    "expected_records": [{"tool_name": "crm_get_contacts", "id_field": "contact_id", "ids": ["contact-001-1", "contact-001-2", "contact-001-3"]}],
+    "required_citations": ["crm:contacts/contact-001-1"],
+    "answer_patterns": ["Avery Chen", "avery\\.chen@cedar-finch\\.example"]
+  },
+  {
+    "id": "synthetic-open-pipeline",
+    "message": "List the OPEN deals for Cedar & Finch with amounts and stages, and calculate their total pipeline value in USD. Exclude closed won and closed lost deals.",
+    "required_calls": [{"tool_name": "crm_get_deals", "arguments": {"customer_id": "acct-001", "stage": "OPEN"}}],
+    "expected_records": [{"tool_name": "crm_get_deals", "id_field": "deal_id", "ids": ["deal-001-1", "deal-001-2"]}],
+    "required_citations": ["crm:deals/deal-001-1", "crm:deals/deal-001-2"],
+    "answer_patterns": ["90,?000|90k", "NEGOTIATION", "PROPOSAL"]
+  },
+  {
+    "id": "synthetic-no-contacts",
+    "message": "Who are the contacts for Orchard Supply? If none are present, say so without inventing a person.",
+    "required_calls": [{"tool_name": "crm_get_contacts", "arguments": {"customer_id": "acct-005"}}],
+    "expected_records": [{"tool_name": "crm_get_contacts", "id_field": "contact_id", "ids": []}],
+    "required_citations": ["crm:contact-search/acct-005"],
+    "answer_patterns": ["no .*contact|0 .*contact|couldn't find .*contact|none"],
+    "forbidden_patterns": ["Avery Chen", "Jordan Patel"]
+  },
+  {
+    "id": "synthetic-missing-email",
+    "message": "Find the primary contact and email address for Meridian Health. If the email is missing, report it as unavailable.",
+    "required_calls": [{"tool_name": "crm_get_contacts", "arguments": {"customer_id": "acct-006"}}],
+    "expected_records": [{"tool_name": "crm_get_contacts", "id_field": "contact_id", "ids": ["contact-006-1", "contact-006-2", "contact-006-3"]}],
+    "required_citations": ["crm:contacts/contact-006-1"],
+    "answer_patterns": ["Casey Reed", "unavailable|missing|not .*record|not .*provided|not .*available|no email"],
+    "forbidden_patterns": ["casey\\.reed@"]
+  },
+  {
+    "id": "synthetic-no-primary-designation",
+    "message": "Who is the designated primary contact for Juniper Logistics? Do not choose someone based only on their role.",
+    "required_calls": [{"tool_name": "crm_get_contacts", "arguments": {"customer_id": "acct-008"}}],
+    "expected_records": [{"tool_name": "crm_get_contacts", "id_field": "contact_id", "ids": ["contact-008-1", "contact-008-2", "contact-008-3"]}],
+    "required_citations": ["crm:contact-search/acct-008"],
+    "answer_patterns": ["no .*primary|none .*primary|not .*designat|not .*mark|isn't .*designat|couldn't .*primary"]
+  },
+  {
+    "id": "synthetic-missing-support-mapping",
+    "message": "Prepare an account brief for Meridian Health, including whether support tickets could be checked.",
+    "required_calls": [{"tool_name": "crm_search_accounts", "arguments": {"company_name": "Meridian Health"}}],
+    "forbidden_tools": ["support_get_open_tickets"], "ticket_ids": [],
+    "required_citations": ["crm:accounts/acct-006"],
+    "answer_patterns": ["Priya Shah", "54,?000|54k", "cannot|can't|could not|couldn't|unavailable|missing|not .*check|no .*mapping"]
+  },
+  {
+    "id": "synthetic-closed-deals-excluded",
+    "message": "What is the total OPEN pipeline for Cobalt Works? Exclude CLOSED_WON and CLOSED_LOST deals.",
+    "required_calls": [{"tool_name": "crm_get_deals", "arguments": {"customer_id": "acct-007", "stage": "OPEN"}}],
+    "expected_records": [{"tool_name": "crm_get_deals", "id_field": "deal_id", "ids": []}],
+    "required_citations": ["crm:deal-search/acct-007_OPEN"],
+    "answer_patterns": ["no open|0\\b|zero|no .*active"]
+  },
+  {
+    "id": "synthetic-inclusive-renewal-window",
+    "message": "List all accounts with renewal dates from 2026-11-05 through 2026-11-12 inclusive. Include the date for each account.",
+    "required_calls": [{"tool_name": "crm_list_renewals", "arguments": {"start_date": "2026-11-05", "end_date": "2026-11-12"}}],
+    "expected_records": [{"tool_name": "crm_list_renewals", "id_field": "customer_id", "ids": ["acct-001", "acct-004", "acct-006"]}],
+    "required_citations": ["crm:accounts/acct-001", "crm:accounts/acct-004", "crm:accounts/acct-006"],
+    "answer_patterns": ["Cedar & Finch", "Bluewater Systems", "Meridian Health"]
+  },
+  {
+    "id": "synthetic-critical-renewal-review",
+    "message": "Build a prioritized renewal-attention brief for every account renewing from 2026-11-05 through 2026-11-12 inclusive. For each account include owner, renewal date, annual value, designated primary-contact availability, total OPEN pipeline and deal stages, and OPEN support status. Rank attention using explicit evidence only, distinguish unavailable data from confirmed empty results, and label next actions as recommendations.",
+    "required_calls": [
+      {"tool_name": "crm_list_renewals", "arguments": {"start_date": "2026-11-05", "end_date": "2026-11-12"}},
+      {"tool_name": "crm_get_contacts_batch", "arguments": {"customer_ids": ["acct-001", "acct-004", "acct-006"]}},
+      {"tool_name": "crm_get_deals_batch", "arguments": {"customer_ids": ["acct-001", "acct-004", "acct-006"], "stage": "OPEN"}},
+      {"tool_name": "support_get_open_tickets_batch", "arguments": {"organization_ids": ["org-1001", "org-1004"]}}
+    ],
+    "forbidden_tools": ["crm_get_contacts", "crm_get_deals", "support_get_open_tickets"],
+    "expected_records": [
+      {"tool_name": "crm_list_renewals", "id_field": "customer_id", "ids": ["acct-001", "acct-004", "acct-006"]},
+      {"tool_name": "crm_get_contacts_batch", "id_field": "contact_id", "ids": ["contact-001-1", "contact-001-2", "contact-001-3", "contact-004-1", "contact-004-2", "contact-004-3", "contact-006-1", "contact-006-2", "contact-006-3"]},
+      {"tool_name": "crm_get_deals_batch", "id_field": "deal_id", "ids": ["deal-001-1", "deal-001-2", "deal-004-1", "deal-004-2", "deal-006-1", "deal-006-2"]}
+    ],
+    "ticket_ids": [10011, 10012],
+    "required_citations": ["crm:accounts/acct-001", "crm:accounts/acct-004", "crm:accounts/acct-006", "crm:contacts/contact-001-1", "crm:contacts/contact-004-1", "crm:contacts/contact-006-1", "crm:deals/deal-001-1", "crm:deals/deal-001-2", "crm:deals/deal-004-1", "crm:deals/deal-004-2", "crm:deals/deal-006-1", "crm:deals/deal-006-2", "support:tickets/10011", "support:tickets/10012", "support:organizations/org-1004"],
+    "answer_patterns": ["Cedar & Finch", "Bluewater Systems", "Meridian Health", "Maya Chen", "Priya Shah", "Avery Chen", "Riley Santos", "Casey Reed", "90,?000|90k", "30,?000|30k", "67,?500|67\\.?5k", "NEGOTIATION", "PROPOSAL", "CRITICAL", "HIGH", "no open|0 open|zero open|no .*ticket", "cannot|can't|could not|couldn't|unavailable|missing|not .*check", "recommend"],
+    "forbidden_patterns": ["\\b10013\\b", "\\b10014\\b", "CLOSED_WON", "CLOSED_LOST", "risk score"]
+  }
+]

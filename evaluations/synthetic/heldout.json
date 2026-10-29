@@ -1,0 +1,53 @@
+[
+  {
+    "id": "heldout-primary-contact",
+    "message": "Give me the primary contact's name and email for Northstar Retail.",
+    "required_calls": [{"tool_name": "crm_get_contacts", "arguments": {"customer_id": "acct-003"}}],
+    "expected_records": [{"tool_name": "crm_get_contacts", "id_field": "contact_id", "ids": ["contact-003-1", "contact-003-2", "contact-003-3"]}],
+    "required_citations": ["crm:contacts/contact-003-1"],
+    "answer_patterns": ["Morgan Brooks", "morgan\\.brooks@northstar-retail\\.example"]
+  },
+  {
+    "id": "heldout-open-pipeline",
+    "message": "Calculate Juniper Logistics' OPEN deal value and list the deals supporting the total.",
+    "required_calls": [{"tool_name": "crm_get_deals", "arguments": {"customer_id": "acct-008", "stage": "OPEN"}}],
+    "expected_records": [{"tool_name": "crm_get_deals", "id_field": "deal_id", "ids": ["deal-008-1", "deal-008-2"]}],
+    "required_citations": ["crm:deals/deal-008-1", "crm:deals/deal-008-2"],
+    "answer_patterns": ["105,?000|105k"]
+  },
+  {
+    "id": "heldout-closed-tickets-excluded",
+    "message": "List all OPEN support tickets for Cobalt Works, or state that there are none.",
+    "required_calls": [{"tool_name": "support_get_open_tickets", "arguments": {"organization_id": "org-1007"}}],
+    "ticket_ids": [], "required_citations": ["support:organizations/org-1007"],
+    "answer_patterns": ["no open|0 .*open|zero .*open|no .*ticket"],
+    "forbidden_patterns": ["\\b10071\\b", "\\b10072\\b", "\\b10073\\b", "\\b10074\\b"]
+  },
+  {
+    "id": "heldout-open-status-only",
+    "message": "Find OPEN support tickets and their priorities for Northstar Labs. Exclude pending and closed tickets.",
+    "required_calls": [{"tool_name": "support_get_open_tickets", "arguments": {"organization_id": "org-1002"}}],
+    "ticket_ids": [10021, 10022],
+    "required_citations": ["support:tickets/10021", "support:tickets/10022"],
+    "answer_patterns": ["LOW", "MEDIUM"],
+    "forbidden_patterns": ["\\b10023\\b", "\\b10024\\b"]
+  },
+  {
+    "id": "heldout-exact-account-across-systems",
+    "message": "Find the primary contact and summarize OPEN support tickets for Northstar Labs specifically.",
+    "required_calls": [{"tool_name": "crm_search_accounts", "arguments": {"company_name": "Northstar Labs"}}, {"tool_name": "crm_get_contacts", "arguments": {"customer_id": "acct-002"}}, {"tool_name": "support_get_open_tickets", "arguments": {"organization_id": "org-1002"}}],
+    "expected_records": [{"tool_name": "crm_get_contacts", "id_field": "contact_id", "ids": ["contact-002-1", "contact-002-2", "contact-002-3"]}],
+    "ticket_ids": [10021, 10022],
+    "required_citations": ["crm:contacts/contact-002-1", "support:tickets/10021", "support:tickets/10022"],
+    "answer_patterns": ["Jordan Patel"],
+    "forbidden_patterns": ["\\b10031\\b", "\\b10032\\b"]
+  },
+  {
+    "id": "heldout-compare-pipelines",
+    "message": "Compare the total OPEN pipeline in USD for Cedar & Finch and Cobalt Works, excluding closed deals for both.",
+    "required_calls": [{"tool_name": "crm_get_deals", "arguments": {"customer_id": "acct-001", "stage": "OPEN"}}, {"tool_name": "crm_get_deals", "arguments": {"customer_id": "acct-007", "stage": "OPEN"}}],
+    "expected_records": [{"tool_name": "crm_get_deals", "id_field": "deal_id", "ids": ["deal-001-1", "deal-001-2"]}],
+    "required_citations": ["crm:deals/deal-001-1", "crm:deals/deal-001-2", "crm:deal-search/acct-007_OPEN"],
+    "answer_patterns": ["Cedar & Finch", "Cobalt Works", "90,?000|90k", "no open|zero|\\b0\\b"]
+  }
+]

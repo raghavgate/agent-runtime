@@ -1,0 +1,58 @@
+{
+  "integrations": [
+    {
+      "kind": "crm_export",
+      "path": "data/synthetic/crm.json"
+    },
+    {
+      "kind": "support_export",
+      "path": "data/synthetic/support.json"
+    }
+  ],
+  "max_tool_calls": 10,
+  "require_sources": true,
+  "trace_dir": ".runs/synthetic",
+  "evaluation_dir": ".evaluations/synthetic",
+  "max_output_tokens": 1200,
+  "pricing": {
+    "gpt-5.4-mini": {
+      "input_usd_per_million": 0.75,
+      "output_usd_per_million": 4.5,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+      "checked_at": "2026-10-28",
+      "basis": "standard uncached input/output; estimate, not invoice"
+    },
+    "gpt-5.4-mini-2026-03-17": {
+      "input_usd_per_million": 0.75,
+      "output_usd_per_million": 4.5,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+      "checked_at": "2026-10-28",
+      "basis": "standard uncached input/output; estimate, not invoice"
+    }
+  },
+  "workflow_instructions": "This is a fictional CRM/support snapshot as of 2026-10-28. Do not imply it is real customer data. For an account brief, include owner, renewal date, annual value and OPEN support tickets with priorities. For meeting preparation, retrieve the account, contacts, OPEN deals, and OPEN support tickets; present an executive snapshot, designated primary attendee, commercial position, support concerns, and evidence-backed talking points. For a multi-account renewal review, use batch tools after listing renewals. For every returned account include owner, renewal date, annual value, designated primary-contact availability, OPEN deal total and stages, and OPEN support status. Prioritize attention using only explicit evidence, explain the evidence, and label suggested next actions as recommendations rather than facts or automated risk scores. Cite each account section and state missing information instead of filling gaps. Reuse full account fields returned by search. Resolve company names before using IDs; ask when multiple accounts match. An empty support_customer_id means support cannot be checked, not zero tickets. A designated primary contact must have is_primary=true. Null email means unavailable; do not infer an address from other contacts. OPEN deals exclude CLOSED_WON and CLOSED_LOST; sum the returned USD amounts. Renewal intervals are inclusive and use explicit calendar dates. Never label an account healthy or risky without the requested evidence; distinguish unavailable support from an empty result. Keep internal IDs and mapping fields out of normal answers and cite retrieved records.",
+  "workspace_name": "Synthetic CRM sandbox",
+  "data_origin": "synthetic",
+  "as_of": "2026-10-28",
+  "evaluation_cases": "evaluations/synthetic/development.json",
+  "evaluation_heldout_cases": "evaluations/synthetic/heldout.json",
+  "demo_evaluation_supported": false,
+  "suggested_questions": [
+    "Prepare an account brief for Cedar & Finch",
+    "Who is the primary contact for Cedar & Finch?",
+    "What is the OPEN pipeline for Cedar & Finch?"
+  ],
+  "conversation_dir": ".conversations/synthetic",
+  "conversation_max_turns": 24,
+  "conversation_max_history_bytes": 120000,
+  "workflow_prompts": [
+    {
+      "label": "Prepare a customer meeting",
+      "message": "Prepare a meeting brief for Cedar & Finch. Include an executive account snapshot, the designated primary contact and their latest contact date, every OPEN deal with the total pipeline value, every OPEN support issue with priority, and evidence-backed talking points. Use the available systems and clearly identify missing information."
+    },
+    {
+      "label": "Prioritize upcoming renewals",
+      "message": "Build a prioritized renewal-attention brief for every account renewing from 2026-11-05 through 2026-11-12 inclusive. For each account include owner, renewal date, annual value, designated primary-contact availability, total OPEN pipeline and deal stages, and OPEN support status. Rank attention using explicit evidence only, distinguish unavailable data from confirmed empty results, and label next actions as recommendations."
+    }
+  ]
+}

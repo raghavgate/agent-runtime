@@ -29,6 +29,27 @@ class SupportIntegration:
         sources.extend(source("support", "tickets", row["ticket_id"], row["subject"]) for row in matches)
         return result(matches, sources)
 
+    def get_open_tickets_batch(self, organization_ids):
+        if not 1 <= len(organization_ids) <= 50:
+            raise ToolCallError("Batch reads require between 1 and 50 support organization IDs")
+        if len(set(organization_ids)) != len(organization_ids):
+            raise ToolCallError("Batch support organization IDs must be unique")
+        rows, sources = [], []
+        for organization_id in organization_ids:
+            response = self.get_open_tickets(organization_id)
+            rows.extend(response["data"])
+            sources.extend(response["sources"])
+        return result(rows, sources)
+
     def tools(self):
-        return [Tool("support_get_open_tickets", "Get OPEN tickets using an organization_id from a CRM account's support_customer_id.",
-                     {"organization_id": "string"}, envelope_schema([TICKET_SCHEMA]), self.get_open_tickets)]
+        return [
+            Tool("support_get_open_tickets", "Get OPEN tickets using an organization_id from a CRM account's support_customer_id.",
+                 {"organization_id": "string"}, envelope_schema([TICKET_SCHEMA]), self.get_open_tickets),
+            Tool("support_get_open_tickets_batch", "Get OPEN tickets for multiple known support organizations in one read. Use CRM support_customer_id mappings and omit accounts whose mapping is empty.",
+                 {"type": "object", "properties": {"organization_ids": {"type": "array", "items": {"type": "string", "minLength": 1}}},
+                  "required": ["organization_ids"], "additionalProperties": False},
+                 envelope_schema([TICKET_SCHEMA]), self.get_open_tickets_batch),
+        ]
+
+    def summary(self):
+        return {"support_organizations": len(self.organizations), "tickets": len(self.tickets)}

@@ -1,10 +1,43 @@
 {
   "integrations": [
-    {"kind": "crm_export", "path": "data/crm.json"},
-    {"kind": "support_export", "path": "data/support.json"}
+    {
+      "kind": "crm_export",
+      "path": "data/crm.json"
+    },
+    {
+      "kind": "support_export",
+      "path": "data/support.json"
+    }
   ],
   "max_tool_calls": 10,
   "require_sources": true,
   "trace_dir": ".runs",
-  "evaluation_dir": ".evaluations"
+  "evaluation_dir": ".evaluations",
+  "max_output_tokens": 1200,
+  "pricing": {
+    "gpt-5.4-mini": {
+      "input_usd_per_million": 0.75,
+      "output_usd_per_million": 4.5,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+      "checked_at": "2026-10-28",
+      "basis": "standard uncached input/output; estimate, not invoice"
+    },
+    "gpt-5.4-mini-2026-03-17": {
+      "input_usd_per_million": 0.75,
+      "output_usd_per_million": 4.5,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+      "checked_at": "2026-10-28",
+      "basis": "standard uncached input/output; estimate, not invoice"
+    }
+  },
+  "workflow_instructions": "For an account brief, include the company, account owner, renewal date, annual value, and open support tickets with priorities. When a support mapping and support tool are available, retrieve those tickets before giving the final brief; do not merely offer to check them later. Reuse account fields already returned by search. If support access or a mapping is unavailable, explicitly state that ticket information could not be checked. Ask for clarification when multiple accounts match.",
+  "conversation_dir": ".conversations",
+  "conversation_max_turns": 24,
+  "conversation_max_history_bytes": 120000,
+  "workflow_prompts": [
+    {
+      "label": "Meeting preparation",
+      "message": "Prepare a meeting brief for Acme using account details and open support tickets. Explain what other information is unavailable."
+    }
+  ]
 }

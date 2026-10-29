@@ -31,3 +31,11 @@ credentials.json
 # Local run/evaluation records may contain business data
 .runs/
 .evaluations/
+
+# Imported business exports and per-workspace configuration
+local_data/
+config.local.json
+config.*.local.json
+
+# Local conversations include business context and provider transcripts
+.conversations/

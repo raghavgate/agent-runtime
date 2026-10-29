@@ -1,0 +1,8 @@
+{
+  "customer_id": "Account ID",
+  "company_name": "Company",
+  "owner": "Account Owner",
+  "renewal_date": "Renewal Date",
+  "annual_value": "Annual Value",
+  "support_customer_id": "Support Organization ID"
+}

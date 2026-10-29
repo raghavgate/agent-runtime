@@ -60,9 +60,13 @@ class TraceStore:
             return []
         paths = sorted(self.directory.glob("*.json"), key=lambda p: p.stat().st_mtime, reverse=True)
         runs = []
-        for path in paths[:limit]:
+        for path in paths:
             record = json.loads(path.read_text(encoding="utf-8"))
+            if record.get("metadata", {}).get("purpose") in ("evaluation", "conversation"):
+                continue
             runs.append({key: record[key] for key in (
                 "run_id", "user_message", "status", "provider", "model", "duration_ms", "started_at"
             )})
+            if len(runs) >= limit:
+                break
         return runs

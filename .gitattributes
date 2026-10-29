@@ -1,0 +1,5 @@
+# CSV imports use CRLF. Preserve their bytes and recognize that line ending.
+*.csv -text whitespace=cr-at-eol
+
+# Keep the public upstream corpus byte-for-byte, including source whitespace.
+data/maven/source/*.csv -text -whitespace

@@ -1,0 +1,410 @@
+[
+  {
+    "id": "maven-acme-open",
+    "message": "How many OPEN deals does Acme Corporation have? Report the count, stages, and whether recorded amounts are available. Do not list every deal or estimate missing amounts.",
+    "required_calls": [
+      {
+        "tool_name": "crm_search_accounts",
+        "arguments": {
+          "company_name": "Acme Corporation"
+        }
+      },
+      {
+        "tool_name": "crm_get_deals",
+        "arguments": {
+          "stage": "OPEN"
+        }
+      }
+    ],
+    "expected_records": [
+      {
+        "tool_name": "crm_get_deals",
+        "id_field": "name",
+        "ids": [
+          "Maven S3W6Q07M - GTX Plus Pro",
+          "Maven 7TI1WTV9 - GTXPro",
+          "Maven B3A6VXVQ - GTX Basic",
+          "Maven SP9W5IND - MG Special",
+          "Maven EMH2I8XE - MG Advanced",
+          "Maven LDQITW5C - MG Advanced",
+          "Maven MG1YUTUE - MG Special",
+          "Maven 0N11U6L3 - GTX Plus Basic",
+          "Maven VAM56BG4 - GTX Plus Basic",
+          "Maven MI3MV7PU - MG Advanced"
+        ]
+      }
+    ],
+    "answer_patterns": [
+      "\\b10\\b",
+      "unavailable|missing|not .*record|not .*provided"
+    ],
+    "forbidden_tools": [
+      "crm_get_deals_batch"
+    ]
+  },
+  {
+    "id": "maven-unknown-company",
+    "message": "Find the company Definitely Absent Maven Fixture 987654.",
+    "required_calls": [
+      {
+        "tool_name": "crm_search_accounts",
+        "arguments": {
+          "company_name": "Definitely Absent Maven Fixture 987654"
+        }
+      }
+    ],
+    "expected_records": [
+      {
+        "tool_name": "crm_search_accounts",
+        "id_field": "company_name",
+        "ids": []
+      }
+    ],
+    "forbidden_tools": [
+      "crm_get_deals",
+      "crm_get_contacts"
+    ],
+    "answer_patterns": [
+      "no .*match|could not find|couldn't find|not found|no .*company"
+    ]
+  },
+  {
+    "id": "maven-no-customer-contacts",
+    "message": "Who are the contacts for Acme Corporation? If none are recorded, say so without inventing anyone.",
+    "required_calls": [
+      {
+        "tool_name": "crm_get_contacts",
+        "arguments": {}
+      }
+    ],
+    "expected_records": [
+      {
+        "tool_name": "crm_get_contacts",
+        "id_field": "contact_id",
+        "ids": []
+      }
+    ],
+    "answer_patterns": [
+      "no .*contact|not .*contact|couldn't find .*contact|none"
+    ],
+    "forbidden_patterns": [
+      "Moses Frase",
+      "Darcel Schlecht"
+    ]
+  },
+  {
+    "id": "maven-pagination-200-deals",
+    "message": "How many ALL deals does Hottechi have? Report the count, stages, and whether recorded amounts are available. Do not list every deal or estimate missing amounts.",
+    "required_calls": [
+      {
+        "tool_name": "crm_search_accounts",
+        "arguments": {
+          "company_name": "Hottechi"
+        }
+      },
+      {
+        "tool_name": "crm_get_deals",
+        "arguments": {
+          "stage": "ALL"
+        }
+      }
+    ],
+    "expected_records": [
+      {
+        "tool_name": "crm_get_deals",
+        "id_field": "name",
+        "ids": [
+          "Maven 40DPY158 - MG Special",
+          "Maven J53D8EOL - GTX Plus Basic",
+          "Maven 127ZPLXQ - GTXPro",
+          "Maven PC1NUL8Q - MG Special",
+          "Maven SV4SOO2K - GTX Plus Basic",
+          "Maven 8C2WG2FB - MG Advanced",
+          "Maven YBJ72HKE - GTX Plus Basic",
+          "Maven 6389JY2H - MG Special",
+          "Maven NOVPMLOV - GTX Plus Basic",
+          "Maven 6DCKCXDC - GTXPro",
+          "Maven Y6HNPIIT - GTXPro",
+          "Maven VAH6Y3F6 - GTX Plus Basic",
+          "Maven 1PN7TVPX - MG Special",
+          "Maven PV1DISEC - GTX Plus Pro",
+          "Maven WFY0S4WW - GTX Plus Basic",
+          "Maven YOQCQ4UO - GTX Basic",
+          "Maven XYBPUC2H - GTX Basic",
+          "Maven KQPY8LLI - MG Advanced",
+          "Maven D54HETSI - GTXPro",
+          "Maven TTJXSO57 - GTXPro",
+          "Maven RSEDY99J - GTX Plus Basic",
+          "Maven 1JC9DMNJ - MG Special",
+          "Maven 6HRIX06M - MG Advanced",
+          "Maven DGIYD342 - GTX Plus Pro",
+          "Maven I1IAVDQM - MG Advanced",
+          "Maven DB3N4CHN - MG Special",
+          "Maven 6CKB8I8U - GTX Plus Basic",
+          "Maven RZI9HX5X - GTX Plus Basic",
+          "Maven N90VSHI2 - GTXPro",
+          "Maven UALNIVAY - GTX Plus Pro",
+          "Maven SDXZB8MC - MG Special",
+          "Maven K73K8IQ3 - GTX Basic",
+          "Maven 4SK6YLB0 - GTX Plus Basic",
+          "Maven JMTO8BPQ - GTXPro",
+          "Maven RX3F3VIU - MG Special",
+          "Maven UWPUJESS - MG Special",
+          "Maven Z769EPTS - GTX Basic",
+          "Maven 6FT804V9 - GTX Basic",
+          "Maven QPH1YUAN - GTX Basic",
+          "Maven CCVCBR83 - GTX Basic",
+          "Maven 8IJOC37Z - GTX Basic",
+          "Maven 8FXUNDUS - MG Advanced",
+          "Maven GMNQUFQZ - GTX Basic",
+          "Maven YWF7W7H8 - GTX Plus Pro",
+          "Maven 9LZICBEV - MG Advanced",
+          "Maven 6YEF304L - GTX Basic",
+          "Maven ZZJ4I52J - GTX Basic",
+          "Maven 26XU4887 - GTX Basic",
+          "Maven AW3L4BTT - GTX Plus Basic",
+          "Maven QWLH0WD8 - GTX Plus Basic",
+          "Maven 50B2JN7F - MG Special",
+          "Maven SFI9TVH3 - MG Advanced",
+          "Maven R0XAJA2I - GTX Plus Basic",
+          "Maven 75S7S74S - GTX Basic",
+          "Maven ZVWUL0LL - GTX Basic",
+          "Maven AUDYTWRK - GTX Plus Basic",
+          "Maven 7H9J8W50 - GTX Plus Pro",
+          "Maven TRR34NSR - GTX Basic",
+          "Maven 6PMHI9G4 - GTX Basic",
+          "Maven YIZ1VQ3U - MG Advanced",
+          "Maven RTZFPWVN - GTX Plus Pro",
+          "Maven ANXSK3QV - MG Special",
+          "Maven P7LVKDC9 - GTX Plus Basic",
+          "Maven 6CKXLPAR - MG Special",
+          "Maven S2MSQIXP - GTX Basic",
+          "Maven 7AOZ2F9R - GTX Basic",
+          "Maven 9FWCMMM3 - MG Advanced",
+          "Maven 7KU6B599 - GTX Basic",
+          "Maven JHVY8I1M - GTX Plus Basic",
+          "Maven 3KSHTB4P - GTX Basic",
+          "Maven ZIFDD41D - GTX Basic",
+          "Maven DNUTJO70 - GTX Basic",
+          "Maven IEZCZAKT - GTX Basic",
+          "Maven OH7VVUY0 - GTXPro",
+          "Maven XPCDFUDY - GTX Basic",
+          "Maven 03CWYGC9 - GTX Plus Basic",
+          "Maven CZF82O5B - MG Advanced",
+          "Maven LAOGNZOU - GTX Plus Basic",
+          "Maven WUXGF870 - GTX Plus Pro",
+          "Maven EXMA7FRC - GTX Plus Basic",
+          "Maven XD6R8R5B - MG Advanced",
+          "Maven 8GYJOE85 - GTX Basic",
+          "Maven KJP1JFKX - GTX Basic",
+          "Maven NISR8D1V - GTX Basic",
+          "Maven GIVVPRQQ - GTXPro",
+          "Maven LFPY1Z14 - GTXPro",
+          "Maven 99L2TNR5 - MG Advanced",
+          "Maven ZT2NKCV5 - MG Special",
+          "Maven PLYYX5CD - GTX Plus Pro",
+          "Maven W8E76HJG - GTX Basic",
+          "Maven 1WZ5N86Q - GTX Plus Pro",
+          "Maven ST8ZOXKI - MG Special",
+          "Maven IJ7B896N - MG Advanced",
+          "Maven GIJ14130 - GTX Basic",
+          "Maven SMU4542Q - GTX Plus Basic",
+          "Maven QMJHLT1V - MG Special",
+          "Maven 7UI7YX03 - GTXPro",
+          "Maven BNYWSG6W - MG Advanced",
+          "Maven 3DYZN86H - MG Advanced",
+          "Maven 6UZVABQR - GTX Basic",
+          "Maven 7SPRU76Q - GTXPro",
+          "Maven KTSB1KYT - GTX Basic",
+          "Maven C4CQ8FZL - MG Special",
+          "Maven VWSFZUNS - GTX Plus Pro",
+          "Maven SYJKN818 - GTXPro",
+          "Maven 3AIA6RL3 - GTX Plus Basic",
+          "Maven RJH0CL3Z - MG Special",
+          "Maven WCEPUBH5 - MG Advanced",
+          "Maven HKH717ED - GTX Basic",
+          "Maven QXT65QTI - GTX Basic",
+          "Maven LQXWWZGN - GTX Basic",
+          "Maven Z005FB1N - MG Advanced",
+          "Maven H2HNTSIP - MG Advanced",
+          "Maven QE6A49LE - MG Special",
+          "Maven J3N73B00 - GTXPro",
+          "Maven JAMW5SWB - GTXPro",
+          "Maven KM0RKC4Q - GTX Basic",
+          "Maven BSVZWUXR - MG Special",
+          "Maven 48J7F1A2 - MG Advanced",
+          "Maven VBRZZAP8 - GTX Basic",
+          "Maven P93UCMW8 - MG Advanced",
+          "Maven 7XSAHM67 - GTX Basic",
+          "Maven 06KTPHYC - MG Advanced",
+          "Maven TZRNKT72 - GTX Plus Pro",
+          "Maven EUBMHJGQ - MG Special",
+          "Maven L65X2CDL - GTXPro",
+          "Maven 1TJ6WP5R - MG Special",
+          "Maven X19CKKZ1 - MG Special",
+          "Maven GZ6SFRAT - MG Special",
+          "Maven 4SJGBWQL - GTX Plus Basic",
+          "Maven RDFUGEA2 - GTX Basic",
+          "Maven 7SO4NKFP - GTX Plus Basic",
+          "Maven EY73E4ZB - MG Advanced",
+          "Maven FLH1KDV2 - GTX Basic",
+          "Maven SX73M3HS - GTX Basic",
+          "Maven 6UQTAD4C - GTX Basic",
+          "Maven XE0H6MOP - GTX Basic",
+          "Maven X2GXIKND - GTX Plus Pro",
+          "Maven 5A4Q7X1W - GTX Basic",
+          "Maven 0SSUR0IY - GTX Basic",
+          "Maven ON2ZRW1X - GTXPro",
+          "Maven Z6AO7S3R - MG Advanced",
+          "Maven H56FMPGG - GTX Basic",
+          "Maven 5CIT07UC - GTX Basic",
+          "Maven DC2NI04U - MG Advanced",
+          "Maven TDHFX8SC - MG Special",
+          "Maven A86ZEF94 - MG Special",
+          "Maven SZPU1DSR - GTX Plus Basic",
+          "Maven YGUOEIEG - GTX Plus Basic",
+          "Maven DXY9EZ55 - GTX Basic",
+          "Maven PRY70ISY - GTX Basic",
+          "Maven HQKUH8XA - GTX Basic",
+          "Maven 2751GWVC - GTX Basic",
+          "Maven 941SDVVZ - GTXPro",
+          "Maven O04P1WN6 - GTXPro",
+          "Maven 8SE1W979 - GTX Basic",
+          "Maven 1ZCAL93A - GTX Plus Pro",
+          "Maven BRGJCWO1 - MG Special",
+          "Maven 5DL7R4C3 - GTXPro",
+          "Maven ZNE0DAIF - GTX Plus Basic",
+          "Maven D6X5T9D4 - MG Special",
+          "Maven AS3IYIRO - GTX Basic",
+          "Maven 2CN1G52G - MG Advanced",
+          "Maven LB5622YN - MG Special",
+          "Maven KRUY5G5I - MG Advanced",
+          "Maven I4T9W7NQ - GTX Basic",
+          "Maven O7B3XCKF - GTX Basic",
+          "Maven OOFWSKFF - GTX Basic",
+          "Maven R2PBFVU7 - GTXPro",
+          "Maven JAG873Y3 - MG Special",
+          "Maven M57LZE5F - MG Advanced",
+          "Maven A71ENBVA - GTX Basic",
+          "Maven 7J1UD7ZW - GTX Basic",
+          "Maven CD5B8P8U - MG Advanced",
+          "Maven FQPECFYO - GTXPro",
+          "Maven ORYORRQV - GTX Basic",
+          "Maven 8U3LICIW - GTX Basic",
+          "Maven MJRDXH1B - GTX Plus Basic",
+          "Maven B05SO4C6 - GTX Plus Basic",
+          "Maven WI0LMD20 - MG Special",
+          "Maven WPSHVGDZ - MG Advanced",
+          "Maven PN0IWJ0N - GTX Plus Basic",
+          "Maven O1DTVNH2 - MG Special",
+          "Maven ENL7MDL2 - GTX Plus Basic",
+          "Maven 6Z6SRB1Y - GTX Plus Pro",
+          "Maven E4BPOOL6 - MG Advanced",
+          "Maven 85U38YFD - GTX Basic",
+          "Maven 7GWM1WT0 - GTX Basic",
+          "Maven 99HAV7SY - GTX Plus Pro",
+          "Maven SWYO7V7O - GTXPro",
+          "Maven I33TECO1 - GTXPro",
+          "Maven FX1RWO67 - MG Advanced",
+          "Maven JCJ5PJDH - MG Special",
+          "Maven XZ9YR78K - GTX Plus Basic",
+          "Maven 1RIO9PCD - GTX Basic",
+          "Maven AUJE7IZR - GTX Plus Basic",
+          "Maven MPMG4JTY - MG Special",
+          "Maven 6WCNNK5J - GTXPro",
+          "Maven RJ21Q4HO - GTX Basic",
+          "Maven RKP2DVSU - MG Special"
+        ]
+      }
+    ],
+    "answer_patterns": [
+      "\\b200\\b"
+    ],
+    "forbidden_tools": [
+      "crm_get_deals_batch"
+    ]
+  },
+  {
+    "id": "maven-small-company",
+    "message": "How many ALL deals does Iselectrics have? Report the count, stages, and whether recorded amounts are available. Do not list every deal or estimate missing amounts.",
+    "required_calls": [
+      {
+        "tool_name": "crm_search_accounts",
+        "arguments": {
+          "company_name": "Iselectrics"
+        }
+      },
+      {
+        "tool_name": "crm_get_deals",
+        "arguments": {
+          "stage": "ALL"
+        }
+      }
+    ],
+    "expected_records": [
+      {
+        "tool_name": "crm_get_deals",
+        "id_field": "name",
+        "ids": [
+          "Maven 5E14LG51 - GTX Plus Basic",
+          "Maven UQQE9ILV - GTXPro",
+          "Maven ZYRF768H - MG Special",
+          "Maven GEBVQH17 - GTX Plus Pro",
+          "Maven TBDUMBLA - MG Advanced",
+          "Maven Z30RS0CL - GTX Basic",
+          "Maven MXTAIS4Q - MG Advanced",
+          "Maven GK1NH8G7 - GTX Basic",
+          "Maven TJ03NDNX - MG Advanced",
+          "Maven YLK0MRJ3 - GTX Basic",
+          "Maven R15SXOZA - GTX Plus Basic",
+          "Maven K9MMOXUC - GTX Plus Pro",
+          "Maven ZLN48IIP - GTX Basic",
+          "Maven 8H95X3AP - GTX Plus Pro",
+          "Maven UPZRAO84 - GTXPro",
+          "Maven Z2M1XXEK - GTX Plus Pro",
+          "Maven DPT11UGS - GTX Plus Basic",
+          "Maven 3C9CWV6J - MG Advanced",
+          "Maven LB8UE159 - GTX Plus Pro",
+          "Maven UWVT8M2Y - GTX Basic",
+          "Maven AQ3HBL9S - GTXPro",
+          "Maven Z9W748SJ - MG Special",
+          "Maven BLY5FD3N - GTX Plus Pro",
+          "Maven RKT3WVBC - GTX Basic",
+          "Maven FG29YOWT - MG Advanced",
+          "Maven TFQR150O - GTXPro",
+          "Maven VLVP8FPJ - MG Advanced",
+          "Maven G2EECJNG - GTX Plus Basic",
+          "Maven W0LFL18P - GTX Plus Basic",
+          "Maven TFS537LA - GTX Plus Pro",
+          "Maven 3KVS08NL - MG Special",
+          "Maven JND57DH5 - MG Special",
+          "Maven 5Q2BP80H - GTX Basic",
+          "Maven JCIKEHD8 - GTX Plus Basic",
+          "Maven E617EXPD - MG Advanced",
+          "Maven RYNZ2WOK - MG Advanced",
+          "Maven G7NU2YCG - MG Special",
+          "Maven H29A7E6X - GTX Plus Basic",
+          "Maven OM8LELJW - GTX Basic",
+          "Maven QEZ2X87C - MG Special",
+          "Maven PERK5YXJ - GTX Plus Basic",
+          "Maven 7VHJG9J1 - GTX Plus Basic",
+          "Maven 7GDRCAJR - GTX Basic",
+          "Maven I25J5M7W - MG Advanced",
+          "Maven 84SZ58S9 - GTX Plus Basic",
+          "Maven C5Z2806X - GTXPro",
+          "Maven 4P0SDD91 - GTXPro",
+          "Maven MA56XGWR - GTX Basic",
+          "Maven S1U1RD6K - GTXPro",
+          "Maven TLJWMKEO - GTX Plus Basic",
+          "Maven AP74NF6M - MG Advanced"
+        ]
+      }
+    ],
+    "answer_patterns": [
+      "\\b51\\b"
+    ],
+    "forbidden_tools": [
+      "crm_get_deals_batch"
+    ]
+  }
+]

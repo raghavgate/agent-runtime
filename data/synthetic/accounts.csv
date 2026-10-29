@@ -1,0 +1,25 @@
+customer_id,company_name,owner,renewal_date,annual_value,support_customer_id
+acct-001,Cedar & Finch,Maya Chen,2026-11-05,72000,org-1001
+acct-002,Northstar Labs,Sam Rivera,2026-11-20,36000,org-1002
+acct-003,Northstar Retail,Priya Shah,2026-12-18,28000,org-1003
+acct-004,Bluewater Systems,Maya Chen,2026-11-10,24000,org-1004
+acct-005,Orchard Supply,Sam Rivera,2027-01-12,12000,org-1005
+acct-006,Meridian Health,Priya Shah,2026-11-12,54000,
+acct-007,Cobalt Works,Maya Chen,2026-12-01,18000,org-1007
+acct-008,Juniper Logistics,Sam Rivera,2026-11-25,84000,org-1008
+acct-009,Harborview Media,Priya Shah,2027-02-10,39000,org-1009
+acct-010,Atlas Fabrication,Maya Chen,2027-03-11,42000,org-1010
+acct-011,Willow Analytics,Sam Rivera,2027-04-12,45000,org-1011
+acct-012,Pinecrest Foods,Priya Shah,2027-05-13,48000,org-1012
+acct-013,Beacon Learning,Maya Chen,2027-06-14,51000,org-1013
+acct-014,Silverline Energy,Sam Rivera,2027-07-15,54000,org-1014
+acct-015,Maple Street Retail,Priya Shah,2027-08-16,57000,org-1015
+acct-016,Stonebridge Legal,Maya Chen,2027-01-17,60000,org-1016
+acct-017,Summit Field Services,Sam Rivera,2027-02-18,63000,org-1017
+acct-018,Crescent Travel,Priya Shah,2027-03-19,66000,org-1018
+acct-019,Rivermark Software,Maya Chen,2027-04-20,69000,org-1019
+acct-020,Oakwell Packaging,Sam Rivera,2027-05-01,72000,org-1020
+acct-021,Eastgate Design,Priya Shah,2027-06-02,75000,org-1021
+acct-022,Lakeside Equipment,Maya Chen,2027-07-03,78000,org-1022
+acct-023,Copperleaf Research,Sam Rivera,2027-08-04,81000,org-1023
+acct-024,Amberwell Services,Priya Shah,2027-01-05,84000,org-1024

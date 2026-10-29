@@ -1,24 +1,62 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agent Runtime · Workspace</title><link rel="stylesheet" href="/style.css"><script defer src="/app.js"></script></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Runtime · Workspace</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/app.js"></script>
+</head>
 <body>
-<header><a class="brand" href="/">◈ <strong>Agent Runtime</strong></a><span class="pill" id="mode">Connecting…</span></header>
-<main>
-  <section class="intro"><span class="eyebrow">LOCAL WORKSPACE / READ ONLY</span><h1>From question to evidence.</h1><p>Run tasks across CRM and support data. Inspect every tool call and check the results.</p></section>
-  <div class="layout">
-    <section class="panel work">
-      <div class="section-title"><h2>New task</h2><span class="subtle">CRM + Support exports</span></div>
-      <form id="task-form"><label for="message">What would you like to find out?</label><textarea id="message" rows="3" required maxlength="8000">Prepare an account brief for Acme</textarea><div class="form-footer"><span id="mode-help" class="subtle">Loading configuration…</span><button id="run-button" type="submit">Run task ↗</button></div></form>
-      <div class="examples"><button type="button" data-prompt="Find open tickets for Globex">Globex tickets</button><button type="button" data-prompt="Find open tickets for Initech">No-ticket case</button><button type="button" data-prompt="Find open tickets for Northstar">Ambiguous account</button></div>
+  <header class="app-header">
+    <a class="brand" href="/" aria-label="Agent Runtime home"><span class="brand-mark" aria-hidden="true">◈</span> Agent Runtime</a>
+    <span class="mode-badge" id="mode">Loading workspace</span>
+  </header>
+  <main>
+    <nav class="view-nav" aria-label="Workspace views">
+      <button class="nav-button" data-view="workspace" aria-current="page">Workspace</button>
+      <button class="nav-button" data-view="quality">Quality checks</button>
+      <button class="nav-button" data-view="history">History</button>
+    </nav>
+
+    <section id="view-workspace" class="view">
+      <div class="intro" id="workspace-intro"><p class="eyebrow" id="workspace-label">YOUR CONNECTED WORKSPACE</p><h1>Ask your business data.</h1><p>Start a conversation, clarify an account, and follow up on what you find.</p><p id="dataset-summary" class="dataset-summary" hidden></p></div>
+      <div class="conversation-toolbar"><span id="conversation-caption">New conversation</span><button id="new-conversation" class="secondary-button">New conversation +</button></div>
+      <section id="chat-thread" hidden aria-label="Conversation"><div class="chat-heading"><h2 id="conversation-title">Conversation</h2><span id="conversation-cost"></span></div><div id="chat-messages" aria-live="polite" aria-relevant="additions"></div></section>
+      <section id="result" class="answer-card" hidden aria-label="Saved single answer">
+        <div class="answer-heading"><span class="answer-mark" aria-hidden="true">◈</span><h2>Saved answer</h2><span id="answer-cost" class="answer-cost"></span><span id="run-status" class="answer-status"></span></div>
+        <div id="answer" class="answer-body"></div>
+        <details id="source-disclosure" class="source-disclosure"><summary id="source-summary">Sources</summary><div id="sources" class="source-list"></div></details>
+      </section>
+      <section class="composer" aria-label="Ask a question">
+        <form id="task-form">
+          <label class="sr-only" for="message">What would you like to know?</label>
+          <textarea id="message" rows="2" required maxlength="8000" placeholder="What would you like to know?">Prepare an account brief for Acme</textarea>
+          <div class="composer-footer"><span class="connection-label"><span class="connection-dot" aria-hidden="true"></span><span id="connections">CRM &amp; Support</span></span><button id="run-button" class="primary" type="submit">Ask workspace <span aria-hidden="true">↗</span></button></div>
+        </form>
+      </section>
+      <div class="examples" id="examples" aria-label="Suggested questions"><span>Try asking</span><button data-prompt="Find open tickets for Globex">Open tickets for Globex</button><button data-prompt="Prepare an account brief for Acme">An account brief for Acme</button><button data-prompt="Find open tickets for Northstar">Find a customer</button></div>
+      <div id="workflow-shortcuts" class="examples" aria-label="Workflow starters"></div>
       <div id="notice" role="status" aria-live="polite"></div>
-      <section id="result" hidden><div class="section-title"><h2>Answer</h2><span id="run-status" class="pill"></span></div><p id="answer"></p><div id="metrics" class="metrics"></div><h3>Retrieved evidence</h3><div id="sources"></div><h3>Execution trace</h3><div id="events"></div></section>
     </section>
-    <aside>
-      <section class="panel"><div class="section-title"><h2>Evaluation</h2><span class="pill">10 cases</span></div><p class="subtle">Check tool use, expected facts, retrieved tickets and citations against fixed fixtures.</p><button id="evaluate" class="secondary">Run evaluation suite</button><div id="eval-results" aria-live="polite"></div></section>
-      <section class="panel"><div class="section-title"><h2>Recent runs</h2><button id="refresh" class="text-button">Refresh</button></div><div id="history"><p class="subtle">No runs yet.</p></div></section>
-      <details class="panel"><summary>Registered tools</summary><div id="tools"></div></details>
-    </aside>
-  </div>
-  <footer>Demo fixtures are synthetic. Run records stay on this machine. Citation checks confirm source membership, not complete factual accuracy.</footer>
-</main>
-</body></html>
+
+    <section id="view-quality" class="view" hidden>
+      <div class="intro"><p class="eyebrow">WORKSPACE QUALITY</p><h1>Check the answers.</h1><p>Review how the workspace handles everyday questions, missing information, and ambiguous accounts.</p></div>
+      <section class="quality-card">
+        <div class="quality-heading"><div><h2>Workflow checks</h2><p id="quality-description">A short check of account briefs, unknown customers, and ambiguous names.</p></div><button id="evaluate" class="primary" disabled>Run quick check</button></div>
+        <div class="evaluation-controls"><label for="evaluation-profile">Coverage</label><select id="evaluation-profile"><option value="quick">Quick · 3 scenarios</option><option value="full">Full · 10 scenarios</option></select><label for="evaluation-split" id="split-label" hidden>Cases</label><select id="evaluation-split" hidden><option value="development">Development</option><option value="heldout">Held-out</option></select><span>Estimated spend guard: $0.05</span></div>
+        <div id="eval-results" aria-live="polite"><p class="empty-state">Run a quick check or open a saved report below.</p></div>
+      </section>
+      <section class="history-card saved-reports"><div class="section-heading"><h2>Saved evaluations</h2><button id="refresh-evaluations" class="quiet-button">Refresh</button></div><div id="evaluation-history"><p class="empty-state">No reports loaded.</p></div></section>
+    </section>
+
+    <section id="view-history" class="view" hidden>
+      <div class="intro"><p class="eyebrow">PREVIOUS QUESTIONS</p><h1>Pick up where you left off.</h1><p>Revisit an answer and the information behind it.</p></div>
+      <section class="history-card"><div class="section-heading"><h2>Conversations</h2><button id="refresh" class="quiet-button">Refresh</button></div><div id="conversation-history"><p class="empty-state">Your conversations will appear here.</p></div></section>
+      <details class="legacy-history"><summary>Earlier single questions</summary><div id="history"></div></details>
+    </section>
+
+    <footer><span id="mode-help">Sample workspace</span><details class="developer-disclosure"><summary>Developer details</summary><p>Select View technical details under an answer to inspect its execution.</p><div id="metrics" class="technical-metrics"></div><div id="events"></div><details><summary>Available tools</summary><div id="tools"></div></details></details></footer>
+  </main>
+</body>
+</html>

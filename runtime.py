@@ -17,7 +17,7 @@ class ToolExecutionError(ValueError):
 
 class Runtime:
     def __init__(self, registry, max_tool_calls=10, trace_store=None, require_sources=False,
-                 input_rate=None, output_rate=None, metadata=None):
+                 input_rate=None, output_rate=None, metadata=None, max_total_tokens=None):
         if isinstance(max_tool_calls, bool) or not isinstance(max_tool_calls, int) or max_tool_calls < 0:
             raise ValueError("max_tool_calls must be a nonnegative integer")
         self.registry = registry
@@ -27,6 +27,9 @@ class Runtime:
         self.input_rate = input_rate
         self.output_rate = output_rate
         self.metadata = metadata or {}
+        if max_total_tokens is not None and (isinstance(max_total_tokens, bool) or not isinstance(max_total_tokens, int) or max_total_tokens < 1):
+            raise ValueError("max_total_tokens must be a positive integer")
+        self.max_total_tokens = max_total_tokens
 
     def execute(self, tool_name, arguments):
         try:
@@ -41,7 +44,7 @@ class Runtime:
         """Compatibility entry point: return just the final answer."""
         return self.run_record(model, user_message).answer
 
-    def run_record(self, model, user_message):
+    def run_record(self, model, user_message, model_state=None, prior_sources=None):
         record = RunRecord(user_message, getattr(model, "provider", "test"),
                            getattr(model, "model_name", type(model).__name__))
         record.metadata = dict(self.metadata)
@@ -49,13 +52,22 @@ class Runtime:
         try:
             if not isinstance(user_message, str) or not user_message.strip():
                 raise ValueError("User message must be a nonempty string")
-            reset = getattr(model, "reset", None)
-            if reset:
-                reset()
+            if model_state is not None:
+                start_turn = getattr(model, "start_turn", None)
+                if not start_turn:
+                    raise ValueError("This model adapter does not support conversations")
+                start_turn(user_message, model_state)
+            else:
+                reset = getattr(model, "reset", None)
+                if reset:
+                    reset()
             tool_result = None
-            sources = {}
+            sources = {source["id"]: source for source in (prior_sources or [])}
+            record.sources = list(sources.values())
+            retrieved_this_turn = False
             tools = self.registry.list_tools()
-            record.event("run_started", max_tool_calls=self.max_tool_calls, tools=tools)
+            record.event("run_started", max_tool_calls=self.max_tool_calls,
+                         max_total_tokens=self.max_total_tokens, tools=tools)
             while True:
                 model_started = monotonic()
                 try:
@@ -79,7 +91,7 @@ class Runtime:
                     citations = set(re.findall(r"\[([a-zA-Z][\w-]*:[^\]\s]+)\]", content))
                     if citations - sources.keys():
                         raise ValueError("Answer cites sources that were not retrieved")
-                    if self.require_sources and sources and not citations:
+                    if self.require_sources and retrieved_this_turn and not citations:
                         raise ValueError("Answer must cite at least one retrieved source")
                     record.answer = content
                     record.sources = list(sources.values())
@@ -87,6 +99,8 @@ class Runtime:
                     return record
                 if response_type != "tool_call":
                     raise ValueError(f"Unexpected model response type: {response_type}")
+                if self.max_total_tokens is not None and sum(record.usage.values()) >= self.max_total_tokens:
+                    raise ValueError("Run token threshold reached; no further requests were made")
                 if record.tool_calls >= self.max_tool_calls:
                     raise ValueError(f"Model tool call limit: {record.tool_calls} tool calls reached")
                 name = response.get("tool_name")
@@ -105,6 +119,7 @@ class Runtime:
                 except Exception as error:
                     raise ToolExecutionError(f"Tool {name} failed ({type(error).__name__})") from error
                 if isinstance(tool_result, dict):
+                    retrieved_this_turn = retrieved_this_turn or bool(tool_result.get("sources"))
                     for source in tool_result.get("sources", []):
                         if not isinstance(source, dict) or not isinstance(source.get("id"), str):
                             raise ValueError("Tool returned an invalid source reference")

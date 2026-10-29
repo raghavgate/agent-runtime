@@ -1,0 +1,34 @@
+{
+  "source": "https://mavenanalytics.io/data-playground/crm-sales-opportunities",
+  "download_mirror": "https://github.com/ChitikaneniVarsha/Maven-Sales-Challenge",
+  "license_as_listed_by_publisher": "Public Domain",
+  "fictional": true,
+  "companies": 85,
+  "deals": 8800,
+  "contacts": 0,
+  "unassociated_deals": 1425,
+  "source_stage_counts": {
+    "Won": 4238,
+    "Engaging": 1589,
+    "Lost": 2473,
+    "Prospecting": 500
+  },
+  "stage_mapping": {
+    "Prospecting": "Appointment scheduled",
+    "Engaging": "Qualified to buy",
+    "Won": "Closed won",
+    "Lost": "Closed lost"
+  },
+  "limitations": [
+    "No source customer contacts, renewals, or support tickets.",
+    "Source sales-agent names retained in description; no HubSpot users created.",
+    "Open deal values and close dates remain unavailable.",
+    "Fixture domains use reserved example.com solely as company identifiers.",
+    "Use the custom source close-date property to avoid HubSpot's automatic date defaults."
+  ],
+  "files_sha256": {
+    "accounts.csv": "e5242324768a563fc632cddfed49a29acbbf2892b8a3c6453cc9650de9ae0358",
+    "sales_pipeline.csv": "825ce8f6c32d4009548b468df3173d55a46fd73f2531f532c5459371dc52adf2",
+    "data_dictionary.csv": "22b34e498d07e3d7f322afdbf81d70a5dc0a389792944e50ca2af86a3597f0af"
+  }
+}

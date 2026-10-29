@@ -3,8 +3,10 @@ import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
-from evaluations.runner import evaluate
+from evaluations.runner import evaluate, load_cases, workspace_cases_path
 from runtime import RunError
+from evaluations.store import ReportStore
+from conversations import ConversationBusy, ConversationMismatch
 
 WEB_ROOT = Path(__file__).with_name("web")
 
@@ -46,15 +48,47 @@ def make_handler(app, port, provider="demo", model_name=None):
                     name, kind = assets[path]
                     self.send_content(200, (WEB_ROOT / name).read_bytes(), kind + "; charset=utf-8")
                 elif path == "/api/status":
+                    splits = ["development"] + (["heldout"] if app.config.get("evaluation_heldout_cases") else [])
+                    counts = {split: {profile: len(load_cases(workspace_cases_path(app, split=split), profile))
+                                      for profile in ("quick", "full")} for split in splits}
+                    ready = app.dataset_hash == app.sample_dataset_hash() or bool(app.config.get("evaluation_cases"))
+                    block_reason = None
+                    if provider == "demo" and app.config.get("demo_evaluation_supported") is False:
+                        ready = False
+                        block_reason = "These contact and deal checks need a connected language model. This preview makes no API calls."
                     self.send_json(200, {"provider": provider, "model": model_name,
                                          "dataset_hash": app.dataset_hash,
+                                         "evaluation_profiles": ["quick", "full"],
+                                         "pricing": app.rates(model_name),
+                                         "sample_data": app.dataset_hash == app.sample_dataset_hash(),
+                                         "evaluations_ready": ready, "evaluation_block_reason": block_reason,
+                                         "evaluation_splits": splits, "evaluation_case_counts": counts,
+                                         "workspace_name": app.config.get("workspace_name", "Sample workspace"),
+                                         "conversations": True, "config_hash": app.config_hash,
+                                         "workflow_prompts": app.config.get("workflow_prompts", []),
+                                         "data_origin": app.config.get("data_origin", "sample"),
+                                         "as_of": app.config.get("as_of"), "dataset_counts": app.dataset_counts,
+                                         "suggested_questions": app.config.get("suggested_questions"),
+                                         "connections": [{"crm_export": "CRM", "support_export": "Support",
+                                                          "hubspot_crm": "HubSpot CRM"}[entry["kind"]]
+                                                         for entry in app.config["integrations"]],
                                          "tools": app.registry.list_tools()})
+                elif path == "/api/evaluations":
+                    self.send_json(200, ReportStore(app.evaluation_dir).list_reports())
+                elif path.startswith("/api/evaluations/"):
+                    self.send_json(200, ReportStore(app.evaluation_dir).get(path.rsplit("/", 1)[1]))
                 elif path == "/api/runs":
                     self.send_json(200, app.traces.list_runs())
+                elif path == "/api/conversations":
+                    self.send_json(200, app.list_conversations(provider, model_name))
+                elif path.startswith("/api/conversations/") and len(path.strip('/').split('/')) == 3:
+                    self.send_json(200, app.conversation_detail(path.rsplit('/', 1)[1], provider, model_name))
                 elif path.startswith("/api/runs/"):
                     self.send_json(200, app.traces.get(path.rsplit("/", 1)[1]))
                 else:
                     self.send_json(404, {"error": "Not found"})
+            except ConversationMismatch as error:
+                self.send_json(409, {"error": str(error)})
             except (FileNotFoundError, ValueError):
                 self.send_json(404, {"error": "Run not found"})
 
@@ -83,12 +117,31 @@ def make_handler(app, port, provider="demo", model_name=None):
                         raise ValueError("Enter a task between 1 and 8000 characters")
                     record = app.run(message, provider, model_name)
                     self.send_json(200, record.to_dict())
+                elif path == "/api/conversations":
+                    self.send_json(201, app.create_conversation(provider, model_name))
+                elif path.startswith("/api/conversations/") and path.endswith("/messages") and len(path.strip('/').split('/')) == 4:
+                    conversation_id = path.strip('/').split('/')[2]
+                    try:
+                        record = app.send_message(conversation_id, payload.get('message'), provider, model_name,
+                                                  request_id=payload.get('request_id'))
+                    except RunError as error:
+                        self.send_json(422, {"error": str(error), "run": error.record.to_dict(),
+                                             "conversation": app.conversation_detail(conversation_id, provider, model_name)})
+                    else:
+                        self.send_json(200, {"run": record.to_dict(),
+                                             "conversation": app.conversation_detail(conversation_id, provider, model_name)})
                 elif path == "/api/evaluate":
-                    self.send_json(200, evaluate(app, provider, model_name))
+                    profile = payload.get("profile", "quick" if provider == "openai" else "full")
+                    self.send_json(200, evaluate(app, provider, model_name, profile=profile,
+                                                 split=payload.get("split", "development")))
                 else:
                     self.send_json(404, {"error": "Not found"})
             except RunError as error:
                 self.send_json(422, {"error": str(error), "run": error.record.to_dict()})
+            except (ConversationBusy, ConversationMismatch) as error:
+                self.send_json(409, {"error": str(error)})
+            except FileNotFoundError:
+                self.send_json(404, {"error": "Conversation not found"})
             except (ValueError, UnicodeDecodeError) as error:
                 self.send_json(400, {"error": str(error)})
             except Exception:
