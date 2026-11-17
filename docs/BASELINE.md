@@ -36,6 +36,8 @@ The first post-optimization live quick check passed two of three cases (estimate
 
 The workspace configuration now explicitly defines an account brief as including open tickets when support access and a mapping exist. This clarification is appended at the application boundary, leaving the runtime generic. Its live effect has not yet been verified.
 
+**Harness fix (2026-11-16).** The runtime now enforces this, rather than relying on instructions alone. A completion check rejects an account brief for a single mapped account if it skips the ticket lookup, and asks the model once to finish it. If the brief is still incomplete, the run fails instead of returning a partial brief. Identical repeated tool calls in a turn reuse the earlier result. `tests/test_completion_checks.py` reproduces the recorded failure and its correction offline. The live effect still needs a quick live eval.
+
 ## Pricing reference
 
 Rates checked October 28, 2026: $0.75 per million input tokens and $4.50 per million output tokens. See the [official model page](https://developers.openai.com/api/docs/models/gpt-5.4-mini). They are model-scoped, editable estimates in `config.json`, not a billing statement.

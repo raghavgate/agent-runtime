@@ -131,6 +131,8 @@ For other datasets, provide your own evaluation cases; the bundled gold expectat
 - Source IDs cited in the final answer must have been retrieved. When source requirements are enabled and evidence was retrieved, at least one source must be cited.
 - Citation membership is **not factual verification**. The runtime does not prove that every sentence follows from its cited record. See evaluation limits below.
 - `read_only` is a trusted integration declaration, not a sandbox for arbitrary Python callables. Only register reviewed integrations.
+- **Completion checks.** A final answer is not accepted just because it is well cited. `completion_checks` in `config.json` declares steps a task must include. Each check has a message pattern, an optional condition (for example, exactly one distinct `support_customer_id` was retrieved), and the tools that must have been called. If a check fails, the runtime rejects the answer and sends the model one correction (`max_completion_retries`, default 1). If the step is still missing, the run fails (`completion_check_mode: "fail"`). Set the mode to `"warn"` to accept the answer and flag it instead. The bundled check requires an account brief for a single mapped account to fetch its open tickets. That is the live failure recorded in `docs/BASELINE.md`. Checks are skipped when the required tool is not configured. Ambiguous matches never trigger them.
+- **Repeated calls.** An identical tool call within one turn reuses the earlier result and tells the model so. The source system is not queried again, but the call still counts against the budget. A third identical call stops the run as a loop.
 
 ## Evaluation and validation are different
 
