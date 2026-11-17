@@ -110,7 +110,7 @@ def save_report(app, cases, results, provider, model_name, profile, rates=None, 
     total = len(results)
     report = {
         "evaluation_id": uuid4().hex, "created_at": utc_now(), "provider": provider, "model": model_name,
-        "kind": "live_model" if provider == "openai" else "deterministic_demo", "profile": profile, "split": split,
+        "kind": "live_model" if provider != "demo" else "deterministic_demo", "profile": profile, "split": split,
         **metadata, "suite_hash": hashlib.sha256(json.dumps(cases, sort_keys=True).encode()).hexdigest(),
         "grader_hash": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "limits": limits or {}, "pricing": rates, "stopped_reason": stopped_reason,
@@ -169,8 +169,8 @@ def evaluate(app, provider="demo", model_name=None, cases_path=None, repeat=1, p
     close = getattr(model, "close", None)
     if close:
         close()
-    rates = app.rates(resolved_model) if provider == "openai" else None
-    if provider == "openai" and not rates:
+    rates = app.rates(resolved_model) if provider != "demo" else None
+    if provider != "demo" and not rates:
         raise ValueError("Configure model-specific pricing before a paid evaluation so the spend guard can operate")
     results, stopped_reason = [], None
     for iteration in range(repeat):
@@ -183,7 +183,7 @@ def evaluate(app, provider="demo", model_name=None, cases_path=None, repeat=1, p
             except RunError as error:
                 record = error.record
             results.append(result_row(record, case, iteration + 1, rates))
-            if provider == "openai" and not record.usage_available and record.status == "failed":
+            if provider != "demo" and not record.usage_available and record.status == "failed":
                 stopped_reason = "Provider failed without usage information; stopped instead of repeating requests."
                 break
         if stopped_reason:
@@ -213,7 +213,7 @@ def evaluate_saved(app, manifest_path, profile="quick", cases_path=None, split="
             record.metadata.get("config_hash"), record.metadata.get("code_hash")) != identity for record in records):
         raise ValueError("Replay runs must share provider, model, dataset, configuration and code version")
     metadata = {key: first.metadata[key] for key in ("dataset_hash", "config_hash", "code_hash")}
-    rates = app.rates(first.model) if first.provider == "openai" else None
+    rates = app.rates(first.model) if first.provider != "demo" else None
     results = [result_row(record, case, 1, rates) for record, case in zip(records, cases)]
     deployed_limits = [event["max_tool_calls"] for record in records for event in record.events if event["type"] == "run_started"]
     report = save_report(app, cases, results, first.provider, first.model, profile, rates,

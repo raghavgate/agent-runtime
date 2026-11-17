@@ -131,7 +131,7 @@ def make_handler(app, port, provider="demo", model_name=None):
                         self.send_json(200, {"run": record.to_dict(),
                                              "conversation": app.conversation_detail(conversation_id, provider, model_name)})
                 elif path == "/api/evaluate":
-                    profile = payload.get("profile", "quick" if provider == "openai" else "full")
+                    profile = payload.get("profile", "quick" if provider != "demo" else "full")
                     self.send_json(200, evaluate(app, provider, model_name, profile=profile,
                                                  split=payload.get("split", "development")))
                 else:
