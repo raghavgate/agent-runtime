@@ -2,16 +2,15 @@
 
 A local, read-only prototype of a system-agnostic Python agent harness. A shared runtime coordinates models and tools; integrations provide system-specific data. Workflows include account research, renewal review, and customer-meeting preparation across CRM and support records.
 
-**Implemented:** OpenAI Responses adapter, deterministic offline demo, two JSON-export integrations, a live read-only HubSpot CRM connector, input/output validation, execution limits, source references, saved run traces, repeatable workflow evaluations, CLI, and a local browser workspace.
+**Implemented:** interchangeable OpenAI (Responses API) and Anthropic (Messages API) model adapters, deterministic offline demo, two JSON-export integrations, a live read-only HubSpot CRM connector, input/output validation, execution limits, source references, saved run traces, repeatable workflow evaluations, CLI, and a local browser workspace.
 
-**Prototype boundaries:** bundled data is synthetic. HubSpot can be connected explicitly with a scoped Service Key; other bundled integrations still read local exports. There is no hosted deployment, end-user authentication, multi-user isolation, background scheduling, webhook ingestion, or record mutation. The browser starts in demo mode unless you explicitly choose OpenAI.
+**Prototype boundaries:** bundled data is synthetic. HubSpot can be connected explicitly with a scoped Service Key; other bundled integrations still read local exports. There is no hosted deployment, end-user authentication, multi-user isolation, background scheduling, webhook ingestion, or record mutation. The browser starts in demo mode unless you explicitly choose a live provider.
 
 ## Start here
 
 Python 3.9+:
 
 ```sh
-cd ~/Desktop/agent-runtime
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python main.py serve
@@ -60,6 +59,18 @@ The adapter uses sequential function calls, carries all response items (includin
 
 Reference: [official OpenAI function-calling documentation](https://developers.openai.com/api/docs/guides/function-calling).
 
+**Anthropic.** The same runtime, tools, limits and evaluations run on Claude through `anthropic_model.py` (Messages API, one tool call per response, thinking blocks preserved across turns):
+
+```sh
+export ANTHROPIC_API_KEY=...        # never entered through the browser
+export ANTHROPIC_MODEL="your-model-id"
+.venv/bin/python main.py run "Prepare an account brief for Acme" --provider anthropic
+.venv/bin/python main.py serve --provider anthropic
+.venv/bin/python main.py eval --provider anthropic --repeat 3
+```
+
+Paid evaluations need a `pricing` entry in `config.json` for that model ID so the spend guard can operate; add the current rates from Anthropic's pricing page before running.
+
 Live API behavior must be verified with a configured key and model. Mocked adapter tests verify request construction and protocol handling; they do not establish model quality or account access.
 
 ## Architecture and review order
@@ -81,7 +92,7 @@ Read these files in order:
 1. `tool.py`, `schema.py`: tool definitions, compatibility conversion, JSON Schema validation.
 2. `registry.py`: registration and lookup; duplicate names are rejected.
 3. `runtime.py`: generic loop, validation, budgets, recoverable tool errors, final answers.
-4. `openai_model.py`: provider protocol, conversation history, usage, source instructions.
+4. `openai_model.py` / `anthropic_model.py`: provider adapters (wire format, conversation history, usage); shared source instructions.
 5. `integrations/crm.py`, `integrations/ticketing.py`, `integrations/hubspot.py`: local and live system adapters behind the same neutral tools.
 6. `app.py`, `config.json`: composition and configuration.
 7. `evaluations/cases.json`, `evaluations/runner.py`: gold cases, graders, report comparisons.
@@ -160,7 +171,7 @@ Model-specific entries under `pricing` contain `input_usd_per_million`, `output_
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-Tests use mocked OpenAI responses and temporary local files. HTTP tests bind a temporary loopback port. No paid API calls occur during the test suite.
+Tests use mocked OpenAI and Anthropic responses (including each real SDK over a mock HTTP transport) and temporary local files. HTTP tests bind a temporary loopback port. No paid API calls occur during the test suite.
 
 ## Data handling
 

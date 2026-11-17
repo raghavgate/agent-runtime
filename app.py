@@ -16,6 +16,9 @@ from tracing import TraceStore, RunRecord, utc_now
 from pricing import rates_for
 from conversations import ConversationStore, ConversationMismatch
 
+# Live model providers and the environment variable that names each one's model.
+LIVE_PROVIDERS = {"openai": "OPENAI_MODEL", "anthropic": "ANTHROPIC_MODEL"}
+
 ROOT = Path(__file__).resolve().parent
 
 
@@ -115,15 +118,19 @@ class Application:
     def model(self, provider="demo", model_name=None, max_output_tokens=None):
         if provider == "demo":
             return DemoModel()
-        if provider == "openai":
-            from openai_model import OpenAIModel, DEFAULT_INSTRUCTIONS
+        if provider in LIVE_PROVIDERS:
+            from openai_model import DEFAULT_INSTRUCTIONS
             instructions = self.config.get("instructions", DEFAULT_INSTRUCTIONS)
             if self.config.get("workflow_instructions"):
                 instructions += "\nWorkspace workflow requirements:\n" + self.config["workflow_instructions"]
-            return OpenAIModel(model_name or os.environ.get("OPENAI_MODEL"),
-                               instructions=instructions,
-                               max_output_tokens=max_output_tokens or self.config.get("max_output_tokens", 1200),
-                               max_history_bytes=self.config.get("conversation_max_history_bytes", 120000))
+            if provider == "openai":
+                from openai_model import OpenAIModel as Adapter
+            else:
+                from anthropic_model import AnthropicModel as Adapter
+            return Adapter(model_name or os.environ.get(LIVE_PROVIDERS[provider]),
+                           instructions=instructions,
+                           max_output_tokens=max_output_tokens or self.config.get("max_output_tokens", 1200),
+                           max_history_bytes=self.config.get("conversation_max_history_bytes", 120000))
         raise ValueError("Unknown provider: " + provider)
 
     def runtime(self, model_name=None, max_tool_calls=None, max_total_tokens=None, purpose="task"):
@@ -150,10 +157,10 @@ class Application:
     def resolved_model(provider, model_name=None):
         if provider == "demo":
             return DemoModel.model_name
-        if provider == "openai":
-            resolved = model_name or os.environ.get("OPENAI_MODEL")
+        if provider in LIVE_PROVIDERS:
+            resolved = model_name or os.environ.get(LIVE_PROVIDERS[provider])
             if not resolved:
-                raise ValueError("Set OPENAI_MODEL or pass --model")
+                raise ValueError(f"Set {LIVE_PROVIDERS[provider]} or pass --model")
             return resolved
         raise ValueError("Unknown provider")
 

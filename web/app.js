@@ -1,3 +1,4 @@
+const providerLabel = provider => ({ openai: 'OpenAI', anthropic: 'Anthropic' }[provider] || provider);
 const $ = id => document.getElementById(id);
 let evaluationReady = false;
 let evaluationCounts = null;
@@ -521,7 +522,7 @@ $('evaluate').addEventListener('click', async () => {
     }
     $('mode').textContent = status.provider === 'demo' ? 'Demo workspace' : 'Connected workspace';
     $('mode-help').textContent = status.provider === 'demo' ?
-      'Sample data · Scripted demo · No API usage' : 'Sample data · OpenAI connected · API usage billed';
+      'Sample data · Scripted demo · No API usage' : `Sample data · ${providerLabel(status.provider)} connected · API usage billed`;
     evaluationReady = Array.isArray(status.evaluation_profiles);
     evaluationCounts = status.evaluation_case_counts;
     if (status.evaluation_splits?.includes('heldout')) {
@@ -554,9 +555,9 @@ $('evaluate').addEventListener('click', async () => {
     if (status.connections) $('connections').textContent = status.connections.join(' & ');
     if (status.data_origin === 'synthetic') {
       $('mode-help').textContent = status.provider === 'demo' ?
-        'Fictional synthetic data · Scripted demo · No API usage' : 'Fictional synthetic data · OpenAI connected · API usage billed';
+        'Fictional synthetic data · Scripted demo · No API usage' : `Fictional synthetic data · ${providerLabel(status.provider)} connected · API usage billed`;
     } else if (status.sample_data === false) {
-      $('mode-help').textContent = status.provider === 'demo' ? 'Imported CRM data · Scripted demo' : 'Imported CRM data · OpenAI connected · API usage billed';
+      $('mode-help').textContent = status.provider === 'demo' ? 'Imported CRM data · Scripted demo' : `Imported CRM data · ${providerLabel(status.provider)} connected · API usage billed`;
     }
     $('tools').replaceChildren(...status.tools.map(tool => {
       const details = node('details');

@@ -26,8 +26,8 @@ def parser():
     serve = commands.add_parser("serve", help="Open a loopback-only browser workspace")
     serve.add_argument("--port", type=int, default=8765)
     for command in (run, ev, serve):
-        command.add_argument("--provider", choices=["demo", "openai"], default="demo")
-        command.add_argument("--model", help="OpenAI model ID; alternatively set OPENAI_MODEL")
+        command.add_argument("--provider", choices=["demo", "openai", "anthropic"], default="demo")
+        command.add_argument("--model", help="Model ID; alternatively set OPENAI_MODEL or ANTHROPIC_MODEL")
     trace = commands.add_parser("trace", help="Print a saved run")
     trace.add_argument("run_id")
     commands.add_parser("tools", help="List registered tools and schemas")
