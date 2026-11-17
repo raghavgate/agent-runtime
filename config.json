@@ -39,5 +39,19 @@
       "label": "Meeting preparation",
       "message": "Prepare a meeting brief for Acme using account details and open support tickets. Explain what other information is unavailable."
     }
-  ]
+  ],
+  "completion_checks": [
+    {
+      "id": "brief_includes_open_tickets",
+      "when_message": "\\b(brief|overview|summary|snapshot)\\b",
+      "when_single_value": "support_customer_id",
+      "require_any_tool": [
+        "support_get_open_tickets",
+        "support_get_open_tickets_batch"
+      ],
+      "feedback": "This is an account brief, exactly one account with a support mapping was retrieved, and open tickets were not checked. Call the support ticket tool for that account's support mapping now, then give the complete brief with ticket priorities and citations."
+    }
+  ],
+  "max_completion_retries": 1,
+  "completion_check_mode": "fail"
 }
