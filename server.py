@@ -133,7 +133,8 @@ def make_handler(app, port, provider="demo", model_name=None):
                 elif path == "/api/evaluate":
                     profile = payload.get("profile", "quick" if provider == "openai" else "full")
                     self.send_json(200, evaluate(app, provider, model_name, profile=profile,
-                                                 split=payload.get("split", "development")))
+                                                 split=payload.get("split", "development"),
+                                                 max_cost_usd=payload.get("max_cost", 0.05)))
                 else:
                     self.send_json(404, {"error": "Not found"})
             except RunError as error:

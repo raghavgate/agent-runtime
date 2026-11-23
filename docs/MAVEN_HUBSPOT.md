@@ -44,13 +44,15 @@ In a terminal with `HUBSPOT_SERVICE_KEY`, directly compare live company searches
 
 This check makes **zero model requests**. It covers Acme Corporation, Iselectrics, and Hottechi; Hottechi's 200 deals force the connector through multiple search pages. Reports are saved under `.runs/hubspot-maven-*-check.json`, outside the normal trace/evaluation listings.
 
-The model evaluation cases compare retrieved deal names to original opportunity IDs, so expected results do not need hardcoded HubSpot-generated record IDs. Run a small paid model suite only after connector validation passes:
+The model evaluation cases compare retrieved deal names to original opportunity IDs, so expected results do not need hardcoded HubSpot-generated record IDs. They also check each returned deal's amount and original close date against the source, including explicit nulls. A successful retrieval is required even when the expected record set is empty; a tool error cannot count as evidence of no records. Duplicated records and missing identifier fields fail grading. Run a small paid model suite only after connector validation passes:
 
 ```sh
 .venv/bin/python main.py --config config.hubspot.local.json eval --provider openai --model gpt-5.4-mini --profile quick --max-cost 0.03
 ```
 
 The source provides scale and exact reference facts; source checks and live connector checks do not establish model answer quality. Paid evaluations remain a separate step and are bounded by the existing spend guard.
+
+For programmatic evaluations through the local server, `POST /api/evaluate` accepts `{"profile": "quick", "split": "development", "max_cost": 0.03}`. The spend threshold stops starting further cases after estimated spend reaches the threshold; it is not an exact billing cap. Invalid limits are rejected before model requests.
 
 ## Initial verification
 

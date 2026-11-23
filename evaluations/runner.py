@@ -52,11 +52,32 @@ def grade(record, case):
     checks["no_forbidden_tools"] = not any(call["tool_name"] in case.get("forbidden_tools", []) for call in calls)
     for index, expected in enumerate(case.get("expected_records", [])):
         observed = set()
+        result_seen, valid_rows = False, True
+        field_checks = []
+        expected_fields = expected.get("fields", {})
         for event in record.events:
             if event["type"] == "tool_result" and event["tool_name"] == expected["tool_name"] and isinstance(event["result"], dict):
-                for row in event["result"].get("data", []):
-                    observed.add(str(row.get(expected["id_field"])))
-        checks[f"retrieved_records_{index}"] = observed == {str(value) for value in expected["ids"]}
+                rows = event["result"].get("data")
+                if not isinstance(rows, list):
+                    valid_rows = False
+                    continue
+                result_seen = True
+                page_ids = set()
+                for row in rows:
+                    if not isinstance(row, dict) or expected["id_field"] not in row:
+                        valid_rows = False
+                        continue
+                    identifier = str(row[expected["id_field"]])
+                    valid_rows = valid_rows and identifier not in page_ids
+                    page_ids.add(identifier)
+                    observed.add(identifier)
+                    if identifier in expected_fields:
+                        field_checks.append(all(key in row and row[key] == value
+                                                for key, value in expected_fields[identifier].items()))
+        checks[f"retrieved_records_{index}"] = result_seen and valid_rows and observed == {str(value) for value in expected["ids"]}
+        if expected_fields:
+            checks[f"retrieved_fields_{index}"] = (result_seen and valid_rows and
+                set(expected_fields) <= observed and bool(field_checks) and all(field_checks))
     tickets = set()
     for event in record.events:
         if event["type"] == "tool_result" and event["tool_name"] in ("support_get_open_tickets", "support_get_open_tickets_batch"):

@@ -109,6 +109,7 @@ The renewal tool is registered only when `renewal_date` is mapped. A contact is 
 - All HubSpot operations are `GET` or search `POST` requests. The search body describes filters; it does not mutate records.
 - The adapter targets HubSpot's date-versioned `2026-09` APIs.
 - Search results follow `paging.next.after` until complete.
+- Missing or malformed search results, invalid paging cursors, repeated cursors, and duplicate record IDs terminate retrieval. They cannot be presented as an empty result or a complete partial page.
 - Each tool call stops if it would exceed `max_records` (500 in the example).
 - HTTP 429 and transient 5xx responses retry at most twice, honoring a bounded `Retry-After` value.
 - Batch tools accept 1–50 unique company IDs. Provider rate limits can still make a large batch slower.

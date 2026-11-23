@@ -102,6 +102,8 @@ class HubSpotClient:
                     retry_after = error.headers.get("Retry-After") if error.headers else None
                     try:
                         delay = min(max(float(retry_after or 1), 0), 5)
+                        if not math.isfinite(delay):
+                            delay = 1
                     except ValueError:
                         delay = 1
                     self.sleep(delay)
@@ -123,17 +125,32 @@ class HubSpotClient:
         body.setdefault("limit", 100)
         records = []
         seen_cursors = set()
+        seen_ids = set()
         while True:
             response = self.request("POST", f"/crm/objects/{self.api_version}/{object_type}/search", body=body)
-            page = response.get("results", [])
+            page = response.get("results")
             if not isinstance(page, list):
                 raise HubSpotAPIError("HubSpot search results were invalid")
             records.extend(page)
             if len(records) > self.max_records:
                 raise HubSpotAPIError("HubSpot search exceeded the configured record limit")
-            after = response.get("paging", {}).get("next", {}).get("after")
-            if after is None:
+            for record in page:
+                HubSpotIntegration._record_properties(record)
+                identifier = str(record["id"])
+                if identifier in seen_ids:
+                    raise HubSpotAPIError("HubSpot search returned duplicate record IDs")
+                seen_ids.add(identifier)
+            paging = response.get("paging", {})
+            if not isinstance(paging, dict):
+                raise HubSpotAPIError("HubSpot returned invalid pagination")
+            next_page = paging.get("next")
+            if next_page is None:
                 return records
+            if not isinstance(next_page, dict):
+                raise HubSpotAPIError("HubSpot returned invalid pagination")
+            after = next_page.get("after")
+            if isinstance(after, bool) or not isinstance(after, (str, int)) or not str(after).strip():
+                raise HubSpotAPIError("HubSpot returned an invalid paging cursor")
             if str(after) in seen_cursors:
                 raise HubSpotAPIError("HubSpot returned a repeated paging cursor")
             seen_cursors.add(str(after))
@@ -198,8 +215,12 @@ class HubSpotIntegration:
 
     @staticmethod
     def _record_properties(record):
+        if not isinstance(record, dict):
+            raise HubSpotAPIError("HubSpot returned a malformed CRM record")
         properties = record.get("properties", {})
-        if not isinstance(record.get("id"), (str, int)) or not isinstance(properties, dict):
+        identifier = record.get("id")
+        if (isinstance(identifier, bool) or not isinstance(identifier, (str, int))
+                or not str(identifier).strip() or "properties" not in record or not isinstance(properties, dict)):
             raise HubSpotAPIError("HubSpot returned a malformed CRM record")
         return properties
 
