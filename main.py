@@ -23,8 +23,10 @@ def parser():
     ev.add_argument("--max-cost", type=float, default=0.05, help="Stop starting cases after this estimated USD threshold")
     ev.add_argument("--replay", help="Grade a JSON case-ID/run-ID manifest without making model requests")
     ev.add_argument("--compare", help="Previous evaluation report JSON")
-    serve = commands.add_parser("serve", help="Open a loopback-only browser workspace")
-    serve.add_argument("--port", type=int, default=8765)
+    serve = commands.add_parser("serve", help="Open the browser workspace (loopback-only unless --public)")
+    serve.add_argument("--port", type=int, default=None, help="Default 8765, or $PORT with --public")
+    serve.add_argument("--public", action="store_true",
+                       help="Shared demo: session-scoped data, rate limits and a daily spend ceiling (see docs/PUBLIC_DEMO.md)")
     for command in (run, ev, serve):
         command.add_argument("--provider", choices=["demo", "openai"], default="demo")
         command.add_argument("--model", help="OpenAI model ID; alternatively set OPENAI_MODEL")
@@ -80,7 +82,15 @@ def main(argv=None):
             return 0 if report["summary"]["complete"] and report["summary"]["passed"] == report["summary"]["total"] else 1
         elif arguments.command == "serve":
             from server import serve
-            serve(app, arguments.port, arguments.provider, arguments.model)
+            public = None
+            port = arguments.port
+            if arguments.public:
+                import os
+                from pathlib import Path
+                from public_demo import PublicSettings
+                public = PublicSettings.from_environment(Path(__file__).resolve().parent)
+                port = port or int(os.environ.get("PORT", "8765"))
+            serve(app, port or 8765, arguments.provider, arguments.model, public)
         return 0
     except RunError as error:
         print(f"Run failed: {error}. Trace: {error.record.run_id}", file=sys.stderr)

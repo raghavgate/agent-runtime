@@ -1,0 +1,219 @@
+{
+  "evaluation_id": "a89d76bf701a42628d5b6bc9ed07947b",
+  "created_at": "2026-11-23T02:31:02.140687+00:00",
+  "provider": "openai",
+  "model": "gpt-5.4-mini",
+  "kind": "live_model",
+  "profile": "full",
+  "split": "heldout",
+  "dataset_hash": "9df491bf3ebe63c553ed03191b25071fc2fee5f78f8933d94fe135cb5623872b",
+  "config_hash": "34b8f3a170d535c3724cc8225a4fb407dc907e4ec35e5f5f2caa1cc96cd3d99b",
+  "code_hash": "db1681ba05baefc2bac1d54ee17b5598977b013148d6e704865258770eb7316b",
+  "suite_hash": "09a6f39b3b679800722d0642232ed694c8e449d38bdca7e61f685d044dd948e2",
+  "grader_hash": "d64ee204888af6ac8de4d7f0fd50369ea5f6d36d48f30833a1cd7ca21426c14d",
+  "limits": {
+    "max_tool_calls": 6,
+    "max_output_tokens": 1200,
+    "max_total_tokens": 20000,
+    "max_estimated_cost_usd": 0.1
+  },
+  "pricing": {
+    "input_usd_per_million": 0.75,
+    "output_usd_per_million": 4.5,
+    "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+    "checked_at": "2026-10-28",
+    "basis": "standard uncached input/output; estimate, not invoice"
+  },
+  "stopped_reason": null,
+  "summary": {
+    "passed": 5,
+    "total": 6,
+    "planned": 6,
+    "complete": true,
+    "pass_rate": 0.8333333333333334,
+    "mean_duration_ms": 3523.19,
+    "total_tool_calls": 14,
+    "usage": {
+      "input_tokens": 29033,
+      "output_tokens": 779
+    },
+    "estimated_cost_usd": 0.025280249999999997,
+    "cases_with_efficiency_notes": 0
+  },
+  "limitations": "Rule-based checks of expected facts, calls, retrieved IDs and citation membership; not a semantic grounding judge. Demo results are not LLM accuracy. Human review is still required. Cost uses standard input rates without cache discounts; spending/token guards are checked between requests or cases, not billing caps.",
+  "results": [
+    {
+      "case_id": "heldout-primary-contact",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "50e2f27a977c47f4a4b093faec73ff1f",
+      "answer": "Primary contact for Northstar Retail: Morgan Brooks, morgan.brooks@northstar-retail.example [crm:contacts/contact-003-1]",
+      "error": null,
+      "duration_ms": 3606.15,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4321,
+        "output_tokens": 79
+      },
+      "estimated_cost_usd": 0.00359625,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "heldout-open-pipeline",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "bacbd2b01e4c47d4a64dbe0bca060179",
+      "answer": "Juniper Logistics has **$105,000 in OPEN deal value** across 2 deals [crm:deal-search/acct-008_OPEN].\n\nDeals supporting the total:\n- **Juniper Logistics Renewal** \u2014 **$84,000** \u2014 **NEGOTIATION** [crm:deals/deal-008-1]\n- **Juniper Logistics Expansion** \u2014 **$21,000** \u2014 **PROPOSAL** [crm:deals/deal-008-2]\n\nIf you want, I can also summarize the account\u2019s renewal, owner, and support status.",
+      "error": null,
+      "duration_ms": 3405.58,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4271,
+        "output_tokens": 171
+      },
+      "estimated_cost_usd": 0.00397275,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "heldout-closed-tickets-excluded",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_ticket_ids": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "e1cf5232376144ae82c8c4bd790ce861",
+      "answer": "Cobalt Works has no OPEN support tickets at the moment. [support:organizations/org-1007]",
+      "error": null,
+      "duration_ms": 3146.86,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4052,
+        "output_tokens": 72
+      },
+      "estimated_cost_usd": 0.003363,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "heldout-open-status-only",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_ticket_ids": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "81648d9068af412aa5afe645d18c8ea8",
+      "answer": "Northstar Labs has 2 OPEN support tickets:\n\n- Invoice export blocked \u2014 LOW [support:tickets/10021]\n- Account sync delays \u2014 MEDIUM [support:tickets/10022]\n\nI excluded non-open tickets as requested.",
+      "error": null,
+      "duration_ms": 3028.84,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4183,
+        "output_tokens": 98
+      },
+      "estimated_cost_usd": 0.00357825,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "heldout-exact-account-across-systems",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "tool_call_1": true,
+        "tool_call_2": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "retrieved_ticket_ids": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "7aac32b0b7e0460884330283265f424f",
+      "answer": "Northstar Labs\u2019 primary contact is **Jordan Patel, Operations Director**; email: **jordan.patel@northstar-labs.example** [crm:contacts/contact-002-1].\n\nOPEN support tickets:\n- **Invoice export blocked** \u2014 LOW priority [support:tickets/10021]\n- **Account sync delays** \u2014 MEDIUM priority [support:tickets/10022]\n\nIf you want, I can also summarize the account\u2019s owner, renewal date, and annual value.",
+      "error": null,
+      "duration_ms": 3824.35,
+      "tool_calls": 3,
+      "usage": {
+        "input_tokens": 6241,
+        "output_tokens": 171
+      },
+      "estimated_cost_usd": 0.00545025,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "heldout-compare-pipelines",
+      "iteration": 1,
+      "passed": false,
+      "checks": {
+        "completed": true,
+        "tool_call_0": false,
+        "tool_call_1": false,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": false,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "answer_fact_2": true,
+        "answer_fact_3": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "7e770cc28e9a462ea51ce0e563628674",
+      "answer": "Cedar & Finch has **$90,000** in OPEN pipeline: two deals at **$72,000** and **$18,000** [crm:deals/deal-001-1] [crm:deals/deal-001-2].\n\nCobalt Works has **$0** in OPEN pipeline based on the OPEN deal search returned here [crm:deal-search/acct-007_OPEN].\n\nSo, **Cedar & Finch has $90,000 more OPEN pipeline than Cobalt Works**.",
+      "error": null,
+      "duration_ms": 4127.35,
+      "tool_calls": 3,
+      "usage": {
+        "input_tokens": 5965,
+        "output_tokens": 188
+      },
+      "estimated_cost_usd": 0.00531975,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    }
+  ],
+  "baseline_id": "a89d76bf701a42628d5b6bc9ed07947b",
+  "comparison": null
+}
