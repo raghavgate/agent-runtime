@@ -101,6 +101,36 @@ class HubSpotClientTests(unittest.TestCase):
         with self.assertRaisesRegex(HubSpotAPIError, "paging cursor"):
             client.search("companies", {})
 
+    def test_malformed_search_is_not_reported_as_empty(self):
+        payloads = [{}, {"error": "provider failure"}, {"results": None},
+                    {"results": [None]}, {"results": [{"id": "1"}]},
+                    {"results": [{"id": True, "properties": {}}]},
+                    {"results": [{"id": "", "properties": {}}]}]
+        for payload in payloads:
+            with self.subTest(payload=payload), self.assertRaises(HubSpotAPIError):
+                HubSpotClient("test", transport=lambda *args: payload).search("companies", {})
+        client = HubSpotClient("test", transport=lambda *args: {"results": []})
+        self.assertEqual(client.search("companies", {}), [])
+
+    def test_malformed_paging_cannot_silently_truncate_results(self):
+        for paging in ([], {"next": []}, {"next": {}}, {"next": {"after": True}},
+                       {"next": {"after": ""}}):
+            with self.subTest(paging=paging), self.assertRaises(HubSpotAPIError):
+                HubSpotClient("test", transport=lambda *args: {"results": [], "paging": paging}).search("deals", {})
+
+    def test_failed_later_page_discards_partial_search(self):
+        pages = iter([{"results": [{"id": "1", "properties": {}}],
+                       "paging": {"next": {"after": "1"}}}, {}])
+        with self.assertRaises(HubSpotAPIError):
+            HubSpotClient("test", transport=lambda *args: next(pages)).search("deals", {})
+
+    def test_duplicate_ids_across_pages_are_rejected(self):
+        pages = iter([{"results": [{"id": "1", "properties": {}}],
+                       "paging": {"next": {"after": "1"}}},
+                      {"results": [{"id": "1", "properties": {}}]}])
+        with self.assertRaisesRegex(HubSpotAPIError, "duplicate"):
+            HubSpotClient("test", transport=lambda *args: next(pages)).search("deals", {})
+
 
 class HubSpotIntegrationTests(unittest.TestCase):
     def setUp(self):

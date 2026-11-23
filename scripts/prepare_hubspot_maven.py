@@ -94,7 +94,11 @@ def main():
                 {"tool_name": "crm_search_accounts", "arguments": {"company_name": name}},
                 {"tool_name": "crm_get_deals", "arguments": {"stage": stage}}],
             "expected_records": [{"tool_name": "crm_get_deals", "id_field": "name",
-                                  "ids": [f"Maven {row['opportunity_id']} - {row['product']}" for row in selected]}],
+                                  "ids": [f"Maven {row['opportunity_id']} - {row['product']}" for row in selected],
+                                  "fields": {f"Maven {row['opportunity_id']} - {row['product']}": {
+                                      "amount": int(row["close_value"]) if row["close_value"] else None,
+                                      "expected_close_date": row["close_date"] or None}
+                                      for row in selected}}],
             "answer_patterns": [rf"\b{count}\b", "unavailable|missing|not .*record|not .*provided"] if stage == "OPEN" else [rf"\b{count}\b"],
             "forbidden_tools": ["crm_get_deals_batch"],
         }

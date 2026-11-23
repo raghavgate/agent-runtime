@@ -6,6 +6,7 @@ from uuid import uuid4
 from http.client import HTTPConnection
 from http.server import ThreadingHTTPServer
 from pathlib import Path
+from unittest.mock import patch
 from app import Application
 from server import make_handler
 
@@ -59,6 +60,14 @@ class WorkspaceTests(unittest.TestCase):
             self.assertEqual(status, 400)
         status, _ = self.request("POST", "/api/run", {"message": "hi"}, {"Content-Type": "application/json", "Origin": "https://other.example"})
         self.assertEqual(status, 403)
+
+    def test_evaluation_spend_limit_is_forwarded(self):
+        with patch("server.evaluate", return_value={"summary": {"total": 0}}) as evaluate:
+            status, _ = self.request("POST", "/api/evaluate", {"profile": "quick", "max_cost": 0.01})
+        self.assertEqual(status, 200)
+        self.assertEqual(evaluate.call_args.kwargs["max_cost_usd"], 0.01)
+        status, _ = self.request("POST", "/api/evaluate", {"max_cost": -1})
+        self.assertEqual(status, 400)
 
     def test_quick_profile_and_saved_reports(self):
         status, body = self.request("GET", "/api/status")
