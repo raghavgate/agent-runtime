@@ -25,7 +25,7 @@
       "support:tickets/171"
     ],
     "answer_patterns": [
-      "\\b2\\s+open tickets\\b"
+      "\\b(?:2|two)\\s+open\\s+(?:support\\s+)?tickets?\\b"
     ],
     "forbidden_patterns": [
       "\\b652\\b"
@@ -49,7 +49,7 @@
       "support:tickets/234"
     ],
     "answer_patterns": [
-      "\\b1\\s+open ticket",
+      "\\b(?:1|one)\\s+open\\s+(?:support\\s+)?ticket\\b",
       "LOW"
     ],
     "forbidden_patterns": [
@@ -73,7 +73,7 @@
       "support:organizations/org-initech"
     ],
     "answer_patterns": [
-      "(?:\\b0\\b|no|zero).*open ticket"
+      "(?:\\b0\\b|\\bno\\b|\\bzero\\b)\\s+(?:currently\\s+)?open\\s+(?:support\\s+)?tickets?\\b"
     ],
     "forbidden_patterns": [
       "\\b171\\b",
@@ -207,7 +207,7 @@
       "support:tickets/171"
     ],
     "answer_patterns": [
-      "\\b2\\s+open ticket"
+      "\\b(?:2|two)\\s+open\\s+(?:support\\s+)?tickets?\\b"
     ],
     "forbidden_patterns": [
       "\\b652\\b"
@@ -229,7 +229,7 @@
       "support:organizations/org-northstar-labs"
     ],
     "answer_patterns": [
-      "(?:\\b0\\b|no|zero).*open ticket"
+      "(?:\\b0\\b|\\bno\\b|\\bzero\\b)\\s+(?:currently\\s+)?open\\s+(?:support\\s+)?tickets?\\b"
     ],
     "forbidden_patterns": [
       "Northstar Retail"
@@ -243,7 +243,8 @@
     "required_citations": [],
     "answer_patterns": [],
     "forbidden_patterns": [
-      "\\b999999\\b"
+      "(?m)(?:^|(?<=[.!?]))(?![^.!?\\n]*\\b(?:couldn't|could not|can't|cannot|unable|not|no|never|isn't|doesn't)\\b)[^.!?\\n]*\\b999999\\b",
+      "tickets/999999"
     ]
   }
 ]

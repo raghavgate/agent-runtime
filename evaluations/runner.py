@@ -38,17 +38,51 @@ def load_cases(cases_path=None, profile="full"):
     return cases
 
 
+# A bounded batch read that covers the required ID is an equivalent retrieval path
+# for the single-record tool. Cases that must not use a batch tool list it in
+# forbidden_tools, which is still checked separately.
+BATCH_EQUIVALENTS = {
+    "crm_get_deals": ("crm_get_deals_batch", "customer_id", "customer_ids"),
+    "crm_get_contacts": ("crm_get_contacts_batch", "customer_id", "customer_ids"),
+    "support_get_open_tickets": ("support_get_open_tickets_batch", "organization_id", "organization_ids"),
+}
+
+
+def _same(left, right):
+    return str(left).casefold() == str(right).casefold()
+
+
+def retrieval_tools(tool_name):
+    batch = BATCH_EQUIVALENTS.get(tool_name)
+    return (tool_name, batch[0]) if batch else (tool_name,)
+
+
+def call_satisfies(call, expected):
+    arguments = call["arguments"]
+    if call["tool_name"] == expected["tool_name"]:
+        return all(_same(arguments.get(key, ""), value) for key, value in expected["arguments"].items())
+    batch = BATCH_EQUIVALENTS.get(expected["tool_name"])
+    if not batch or call["tool_name"] != batch[0]:
+        return False
+    _, id_key, ids_key = batch
+    ids = arguments.get(ids_key)
+    if not isinstance(ids, list):
+        return False
+    for key, value in expected["arguments"].items():
+        if key == id_key:
+            if not any(_same(item, value) for item in ids):
+                return False
+        elif not _same(arguments.get(key, ""), value):
+            return False
+    return True
+
+
 def grade(record, case):
     answer = record.answer.translate(str.maketrans({"’": "'", "‘": "'", "“": '"', "”": '"', "\u00a0": " "}))
     calls = [event for event in record.events if event["type"] == "tool_call"]
     checks = {"completed": record.status == "completed"}
     for index, expected in enumerate(case.get("required_calls", [])):
-        checks[f"tool_call_{index}"] = any(
-            call["tool_name"] == expected["tool_name"] and all(
-                str(call["arguments"].get(key, "")).casefold() == str(value).casefold()
-                for key, value in expected["arguments"].items()
-            ) for call in calls
-        )
+        checks[f"tool_call_{index}"] = any(call_satisfies(call, expected) for call in calls)
     checks["no_forbidden_tools"] = not any(call["tool_name"] in case.get("forbidden_tools", []) for call in calls)
     for index, expected in enumerate(case.get("expected_records", [])):
         observed = set()
@@ -56,7 +90,8 @@ def grade(record, case):
         field_checks = []
         expected_fields = expected.get("fields", {})
         for event in record.events:
-            if event["type"] == "tool_result" and event["tool_name"] == expected["tool_name"] and isinstance(event["result"], dict):
+            if (event["type"] == "tool_result" and event["tool_name"] in retrieval_tools(expected["tool_name"])
+                    and isinstance(event["result"], dict)):
                 rows = event["result"].get("data")
                 if not isinstance(rows, list):
                     valid_rows = False
