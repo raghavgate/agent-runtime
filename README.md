@@ -1,6 +1,8 @@
 # Agent Runtime
 
-A local, read-only prototype of a system-agnostic Python agent harness. A shared runtime coordinates models and tools; integrations provide system-specific data. Workflows include account research, renewal review, and customer-meeting preparation across CRM and support records.
+**Live demo:** https://agent-runtime-68mh.onrender.com. Ask the synthetic CRM a question, open *View technical details* under an answer to see each tool call, or open *Quality checks* for recorded test runs. It runs on fictional data with per-visitor limits and a daily spend ceiling ([how](docs/PUBLIC_DEMO.md)). The free instance sleeps when idle, so the first load can take about a minute.
+
+A read-only prototype of a system-agnostic Python agent harness. A shared runtime coordinates models and tools; integrations provide system-specific data. Workflows include account research, renewal review, and customer-meeting preparation across CRM and support records.
 
 **Implemented:** OpenAI Responses adapter, deterministic offline demo, two JSON-export integrations, a live read-only HubSpot CRM connector, input/output validation, execution limits, source references, saved run traces, repeatable workflow evaluations, CLI, a local browser workspace, and a public demo mode with session isolation, rate limits and a daily spend ceiling ([docs/PUBLIC_DEMO.md](docs/PUBLIC_DEMO.md)).
 
