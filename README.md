@@ -2,9 +2,9 @@
 
 A local, read-only prototype of a system-agnostic Python agent harness. A shared runtime coordinates models and tools; integrations provide system-specific data. Workflows include account research, renewal review, and customer-meeting preparation across CRM and support records.
 
-**Implemented:** OpenAI Responses adapter, deterministic offline demo, two JSON-export integrations, a live read-only HubSpot CRM connector, input/output validation, execution limits, source references, saved run traces, repeatable workflow evaluations, CLI, and a local browser workspace.
+**Implemented:** OpenAI Responses adapter, deterministic offline demo, two JSON-export integrations, a live read-only HubSpot CRM connector, input/output validation, execution limits, source references, saved run traces, repeatable workflow evaluations, CLI, a local browser workspace, and a public demo mode with session isolation, rate limits and a daily spend ceiling ([docs/PUBLIC_DEMO.md](docs/PUBLIC_DEMO.md)).
 
-**Prototype boundaries:** bundled data is synthetic. HubSpot can be connected explicitly with a scoped Service Key; other bundled integrations still read local exports. There is no hosted deployment, end-user authentication, multi-user isolation, background scheduling, webhook ingestion, or record mutation. The browser starts in demo mode unless you explicitly choose OpenAI.
+**Prototype boundaries:** bundled data is synthetic. HubSpot can be connected explicitly with a scoped Service Key; other bundled integrations still read local exports. The public demo mode serves only synthetic data; it scopes each visitor's conversations by session cookie but has no accounts. There is no end-user authentication, per-tenant data isolation, background scheduling, webhook ingestion, or record mutation. The browser starts in demo mode unless you explicitly choose OpenAI.
 
 ## Start here
 

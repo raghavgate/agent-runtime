@@ -1,0 +1,1598 @@
+{
+  "user_message": "Build a prioritized renewal-attention brief for every account renewing from 2026-11-05 through 2026-11-12 inclusive. For each account include owner, renewal date, annual value, designated primary-contact availability, total OPEN pipeline and deal stages, and OPEN support status. Rank attention using explicit evidence only, distinguish unavailable data from confirmed empty results, and label next actions as recommendations.",
+  "provider": "openai",
+  "model": "gpt-5.4-mini",
+  "run_id": "ff89b26e2620465b920576e32240fad7",
+  "started_at": "2026-11-23T02:30:32.516339+00:00",
+  "status": "completed",
+  "answer": "Here’s the prioritized renewal-attention brief for accounts renewing 2026-11-05 through 2026-11-12, ranked by explicit evidence: open support severity first, then total open pipeline, then renewal timing.\n\n## 1) Cedar & Finch [crm:accounts/acct-001]\n- **Owner:** Maya Chen [crm:accounts/acct-001]\n- **Renewal date:** 2026-11-05 [crm:accounts/acct-001]\n- **Annual value:** $72,000 [crm:accounts/acct-001]\n- **Primary contact available:** Yes — Avery Chen, Operations Director, is designated primary; email available [crm:contacts/contact-001-1]\n- **OPEN pipeline:** $90,000 total across 2 deals\n  - NEGOTIATION: $72,000\n  - PROPOSAL: $18,000 [crm:deals/deal-001-1] [crm:deals/deal-001-2]\n- **OPEN support status:** 2 open tickets\n  - CRITICAL: “Invoice export blocked”\n  - HIGH: “Account sync delays” [support:tickets/10011] [support:tickets/10012]\n- **Recommendation:** Prioritize immediately; the critical support issue plus active renewal-stage pipeline suggests the most urgent attention.\n\n## 2) Bluewater Systems [crm:accounts/acct-004]\n- **Owner:** Maya Chen [crm:accounts/acct-004]\n- **Renewal date:** 2026-11-10 [crm:accounts/acct-004]\n- **Annual value:** $24,000 [crm:accounts/acct-004]\n- **Primary contact available:** Yes — Riley Santos, Operations Director, is designated primary; email available [crm:contacts/contact-004-1]\n- **OPEN pipeline:** $30,000 total across 2 deals\n  - NEGOTIATION: $24,000\n  - PROPOSAL: $6,000 [crm:deals/deal-004-1] [crm:deals/deal-004-2]\n- **OPEN support status:** Confirmed empty result for open tickets returned by support search (no open tickets listed) [support:organizations/org-1004]\n- **Recommendation:** Moderate priority; renewal is soon and pipeline is active, but there are no confirmed open support issues in the returned support record.\n\n## 3) Meridian Health [crm:accounts/acct-006]\n- **Owner:** Priya Shah [crm:accounts/acct-006]\n- **Renewal date:** 2026-11-12 [crm:accounts/acct-006]\n- **Annual value:** $54,000 [crm:accounts/acct-006]\n- **Primary contact available:** Yes — Casey Reed is designated primary, but email is unavailable (null) [crm:contacts/contact-006-1]\n- **OPEN pipeline:** $67,500 total across 2 deals\n  - NEGOTIATION: $54,000\n  - PROPOSAL: $13,500 [crm:deals/deal-006-1] [crm:deals/deal-006-2]\n- **OPEN support status:** Unavailable — no support lookup was possible because the account has no support organization mapping [crm:accounts/acct-006]\n- **Recommendation:** Monitor closely; renewal value and open pipeline are material, but support status cannot be checked from the available mapping.\n\n### Priority summary\n1. **Cedar & Finch** — highest urgency due to **CRITICAL + HIGH open support tickets** and imminent renewal.\n2. **Bluewater Systems** — next due to near-term renewal and active open pipeline, with **confirmed empty support result**.\n3. **Meridian Health** — open pipeline and renewal value are strong, but **support status is unavailable**, so evidence is incomplete.\n\nIf you want, I can also turn this into a one-line executive summary per account.",
+  "sources": [
+    {
+      "id": "crm:renewals/2026-11-05_2026-11-12",
+      "label": "Renewal date search",
+      "system": "crm"
+    },
+    {
+      "id": "crm:accounts/acct-001",
+      "label": "Cedar & Finch",
+      "system": "crm"
+    },
+    {
+      "id": "crm:accounts/acct-004",
+      "label": "Bluewater Systems",
+      "system": "crm"
+    },
+    {
+      "id": "crm:accounts/acct-006",
+      "label": "Meridian Health",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contact-search/acct-001",
+      "label": "Account contact search",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contacts/contact-001-1",
+      "label": "Avery Chen",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contacts/contact-001-2",
+      "label": "Jordan Patel",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contacts/contact-001-3",
+      "label": "Morgan Brooks",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contact-search/acct-004",
+      "label": "Account contact search",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contacts/contact-004-1",
+      "label": "Riley Santos",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contacts/contact-004-2",
+      "label": "Quinn Taylor",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contacts/contact-004-3",
+      "label": "Casey Reed",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contact-search/acct-006",
+      "label": "Account contact search",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contacts/contact-006-1",
+      "label": "Casey Reed",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contacts/contact-006-2",
+      "label": "Avery Chen",
+      "system": "crm"
+    },
+    {
+      "id": "crm:contacts/contact-006-3",
+      "label": "Jordan Patel",
+      "system": "crm"
+    },
+    {
+      "id": "crm:deal-search/acct-001_OPEN",
+      "label": "Account deal search",
+      "system": "crm"
+    },
+    {
+      "id": "crm:deals/deal-001-1",
+      "label": "Cedar & Finch Renewal",
+      "system": "crm"
+    },
+    {
+      "id": "crm:deals/deal-001-2",
+      "label": "Cedar & Finch Expansion",
+      "system": "crm"
+    },
+    {
+      "id": "crm:deal-search/acct-004_OPEN",
+      "label": "Account deal search",
+      "system": "crm"
+    },
+    {
+      "id": "crm:deals/deal-004-1",
+      "label": "Bluewater Systems Renewal",
+      "system": "crm"
+    },
+    {
+      "id": "crm:deals/deal-004-2",
+      "label": "Bluewater Systems Expansion",
+      "system": "crm"
+    },
+    {
+      "id": "crm:deal-search/acct-006_OPEN",
+      "label": "Account deal search",
+      "system": "crm"
+    },
+    {
+      "id": "crm:deals/deal-006-1",
+      "label": "Meridian Health Renewal",
+      "system": "crm"
+    },
+    {
+      "id": "crm:deals/deal-006-2",
+      "label": "Meridian Health Expansion",
+      "system": "crm"
+    },
+    {
+      "id": "support:organizations/org-1001",
+      "label": "Open tickets for org-1001",
+      "system": "support"
+    },
+    {
+      "id": "support:tickets/10011",
+      "label": "Invoice export blocked",
+      "system": "support"
+    },
+    {
+      "id": "support:tickets/10012",
+      "label": "Account sync delays",
+      "system": "support"
+    },
+    {
+      "id": "support:organizations/org-1004",
+      "label": "Open tickets for org-1004",
+      "system": "support"
+    }
+  ],
+  "events": [
+    {
+      "type": "run_started",
+      "timestamp": "2026-11-23T02:30:32.516376+00:00",
+      "max_tool_calls": 6,
+      "max_total_tokens": 20000,
+      "tools": [
+        {
+          "name": "crm_search_accounts",
+          "description": "Find CRM accounts by company name. Returns full account details, owner, renewal, annual value and support mapping; reuse these without another lookup. Multiple matches require clarification.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "company_name": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "required": [
+              "company_name"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "company_name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "renewal_date": {
+                      "type": "string"
+                    },
+                    "annual_value": {
+                      "type": "number"
+                    },
+                    "support_customer_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "customer_id",
+                    "company_name",
+                    "owner",
+                    "renewal_date",
+                    "annual_value",
+                    "support_customer_id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_account",
+          "description": "Look up a known CRM customer_id when details are not already available from search. Search already returns the full account.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_id": {
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "minLength": 1
+              }
+            },
+            "required": [
+              "customer_id"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "company_name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "renewal_date": {
+                      "type": "string"
+                    },
+                    "annual_value": {
+                      "type": "number"
+                    },
+                    "support_customer_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "customer_id",
+                    "company_name",
+                    "owner",
+                    "renewal_date",
+                    "annual_value",
+                    "support_customer_id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_contacts",
+          "description": "List contacts for a known account, including primary designation and nullable email. Never infer a primary contact or missing email.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_id": {
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "minLength": 1
+              }
+            },
+            "required": [
+              "customer_id"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "string"
+                    },
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "full_name": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "is_primary": {
+                      "type": "boolean"
+                    },
+                    "last_contacted_date": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "contact_id",
+                    "customer_id",
+                    "full_name",
+                    "role",
+                    "email",
+                    "is_primary",
+                    "last_contacted_date"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_deals",
+          "description": "List account deals. OPEN excludes CLOSED_WON and CLOSED_LOST; ALL includes all stages. Amounts are in USD. Use stage explicitly.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_id": {
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "minLength": 1
+              },
+              "stage": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "OPEN",
+                  "PROSPECTING",
+                  "QUALIFICATION",
+                  "PROPOSAL",
+                  "NEGOTIATION",
+                  "CLOSED_WON",
+                  "CLOSED_LOST"
+                ]
+              }
+            },
+            "required": [
+              "customer_id",
+              "stage"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "deal_id": {
+                      "type": "string"
+                    },
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "USD"
+                      ]
+                    },
+                    "stage": {
+                      "type": "string",
+                      "enum": [
+                        "PROSPECTING",
+                        "QUALIFICATION",
+                        "PROPOSAL",
+                        "NEGOTIATION",
+                        "CLOSED_WON",
+                        "CLOSED_LOST"
+                      ]
+                    },
+                    "expected_close_date": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "deal_id",
+                    "customer_id",
+                    "name",
+                    "amount",
+                    "currency",
+                    "stage",
+                    "expected_close_date",
+                    "owner",
+                    "updated_at"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_contacts_batch",
+          "description": "List contacts for multiple known accounts in one read. Use this after a multi-account search instead of calling crm_get_contacts repeatedly. Primary designations and nullable emails retain their original meaning.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_ids": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "customer_ids"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "string"
+                    },
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "full_name": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "is_primary": {
+                      "type": "boolean"
+                    },
+                    "last_contacted_date": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "contact_id",
+                    "customer_id",
+                    "full_name",
+                    "role",
+                    "email",
+                    "is_primary",
+                    "last_contacted_date"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_deals_batch",
+          "description": "List deals for multiple known accounts in one read. Use OPEN to exclude CLOSED_WON and CLOSED_LOST. Results retain customer_id for grouping.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_ids": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "minLength": 1
+                }
+              },
+              "stage": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "OPEN",
+                  "PROSPECTING",
+                  "QUALIFICATION",
+                  "PROPOSAL",
+                  "NEGOTIATION",
+                  "CLOSED_WON",
+                  "CLOSED_LOST"
+                ]
+              }
+            },
+            "required": [
+              "customer_ids",
+              "stage"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "deal_id": {
+                      "type": "string"
+                    },
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "USD"
+                      ]
+                    },
+                    "stage": {
+                      "type": "string",
+                      "enum": [
+                        "PROSPECTING",
+                        "QUALIFICATION",
+                        "PROPOSAL",
+                        "NEGOTIATION",
+                        "CLOSED_WON",
+                        "CLOSED_LOST"
+                      ]
+                    },
+                    "expected_close_date": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "deal_id",
+                    "customer_id",
+                    "name",
+                    "amount",
+                    "currency",
+                    "stage",
+                    "expected_close_date",
+                    "owner",
+                    "updated_at"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_list_renewals",
+          "description": "List accounts renewing within an inclusive date range. Use explicit YYYY-MM-DD start and end dates; does not infer risk or support status.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "start_date": {
+                "type": "string"
+              },
+              "end_date": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "start_date",
+              "end_date"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "company_name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "renewal_date": {
+                      "type": "string"
+                    },
+                    "annual_value": {
+                      "type": "number"
+                    },
+                    "support_customer_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "customer_id",
+                    "company_name",
+                    "owner",
+                    "renewal_date",
+                    "annual_value",
+                    "support_customer_id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "support_get_open_tickets",
+          "description": "Get OPEN tickets using an organization_id from a CRM account's support_customer_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "organization_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "organization_id"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "ticket_id": {
+                      "type": "integer"
+                    },
+                    "organization_id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": "string"
+                    },
+                    "subject": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ticket_id",
+                    "organization_id",
+                    "status",
+                    "priority",
+                    "subject"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "support_get_open_tickets_batch",
+          "description": "Get OPEN tickets for multiple known support organizations in one read. Use CRM support_customer_id mappings and omit accounts whose mapping is empty.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "organization_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "organization_ids"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "ticket_id": {
+                      "type": "integer"
+                    },
+                    "organization_id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": "string"
+                    },
+                    "subject": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ticket_id",
+                    "organization_id",
+                    "status",
+                    "priority",
+                    "subject"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "type": "model_response",
+      "timestamp": "2026-11-23T02:30:33.516175+00:00",
+      "response": {
+        "type": "tool_call",
+        "tool_name": "crm_list_renewals",
+        "arguments": {
+          "start_date": "2026-11-05",
+          "end_date": "2026-11-12"
+        }
+      },
+      "duration_ms": 999.78
+    },
+    {
+      "type": "tool_call",
+      "timestamp": "2026-11-23T02:30:33.516214+00:00",
+      "tool_name": "crm_list_renewals",
+      "arguments": {
+        "start_date": "2026-11-05",
+        "end_date": "2026-11-12"
+      }
+    },
+    {
+      "type": "tool_result",
+      "timestamp": "2026-11-23T02:30:33.517436+00:00",
+      "tool_name": "crm_list_renewals",
+      "result": {
+        "data": [
+          {
+            "customer_id": "acct-001",
+            "company_name": "Cedar & Finch",
+            "owner": "Maya Chen",
+            "renewal_date": "2026-11-05",
+            "annual_value": 72000,
+            "support_customer_id": "org-1001"
+          },
+          {
+            "customer_id": "acct-004",
+            "company_name": "Bluewater Systems",
+            "owner": "Maya Chen",
+            "renewal_date": "2026-11-10",
+            "annual_value": 24000,
+            "support_customer_id": "org-1004"
+          },
+          {
+            "customer_id": "acct-006",
+            "company_name": "Meridian Health",
+            "owner": "Priya Shah",
+            "renewal_date": "2026-11-12",
+            "annual_value": 54000,
+            "support_customer_id": ""
+          }
+        ],
+        "sources": [
+          {
+            "id": "crm:renewals/2026-11-05_2026-11-12",
+            "label": "Renewal date search",
+            "system": "crm"
+          },
+          {
+            "id": "crm:accounts/acct-001",
+            "label": "Cedar & Finch",
+            "system": "crm"
+          },
+          {
+            "id": "crm:accounts/acct-004",
+            "label": "Bluewater Systems",
+            "system": "crm"
+          },
+          {
+            "id": "crm:accounts/acct-006",
+            "label": "Meridian Health",
+            "system": "crm"
+          }
+        ]
+      },
+      "duration_ms": 1.22
+    },
+    {
+      "type": "model_response",
+      "timestamp": "2026-11-23T02:30:34.697903+00:00",
+      "response": {
+        "type": "tool_call",
+        "tool_name": "crm_get_contacts_batch",
+        "arguments": {
+          "customer_ids": [
+            "acct-001",
+            "acct-004",
+            "acct-006"
+          ]
+        }
+      },
+      "duration_ms": 1180.45
+    },
+    {
+      "type": "tool_call",
+      "timestamp": "2026-11-23T02:30:34.697942+00:00",
+      "tool_name": "crm_get_contacts_batch",
+      "arguments": {
+        "customer_ids": [
+          "acct-001",
+          "acct-004",
+          "acct-006"
+        ]
+      }
+    },
+    {
+      "type": "tool_result",
+      "timestamp": "2026-11-23T02:30:34.700642+00:00",
+      "tool_name": "crm_get_contacts_batch",
+      "result": {
+        "data": [
+          {
+            "contact_id": "contact-001-1",
+            "customer_id": "acct-001",
+            "full_name": "Avery Chen",
+            "role": "Operations Director",
+            "email": "avery.chen@cedar-finch.example",
+            "is_primary": true,
+            "last_contacted_date": "2026-10-23"
+          },
+          {
+            "contact_id": "contact-001-2",
+            "customer_id": "acct-001",
+            "full_name": "Jordan Patel",
+            "role": "Finance Lead",
+            "email": "jordan.patel@cedar-finch.example",
+            "is_primary": false,
+            "last_contacted_date": "2026-10-22"
+          },
+          {
+            "contact_id": "contact-001-3",
+            "customer_id": "acct-001",
+            "full_name": "Morgan Brooks",
+            "role": "IT Manager",
+            "email": "morgan.brooks@cedar-finch.example",
+            "is_primary": false,
+            "last_contacted_date": null
+          },
+          {
+            "contact_id": "contact-004-1",
+            "customer_id": "acct-004",
+            "full_name": "Riley Santos",
+            "role": "Operations Director",
+            "email": "riley.santos@bluewater-systems.example",
+            "is_primary": true,
+            "last_contacted_date": "2026-10-23"
+          },
+          {
+            "contact_id": "contact-004-2",
+            "customer_id": "acct-004",
+            "full_name": "Quinn Taylor",
+            "role": "Finance Lead",
+            "email": "quinn.taylor@bluewater-systems.example",
+            "is_primary": false,
+            "last_contacted_date": "2026-10-22"
+          },
+          {
+            "contact_id": "contact-004-3",
+            "customer_id": "acct-004",
+            "full_name": "Casey Reed",
+            "role": "IT Manager",
+            "email": "casey.reed@bluewater-systems.example",
+            "is_primary": false,
+            "last_contacted_date": null
+          },
+          {
+            "contact_id": "contact-006-1",
+            "customer_id": "acct-006",
+            "full_name": "Casey Reed",
+            "role": "Operations Director",
+            "email": null,
+            "is_primary": true,
+            "last_contacted_date": "2026-10-23"
+          },
+          {
+            "contact_id": "contact-006-2",
+            "customer_id": "acct-006",
+            "full_name": "Avery Chen",
+            "role": "Finance Lead",
+            "email": "avery.chen@meridian-health.example",
+            "is_primary": false,
+            "last_contacted_date": "2026-10-22"
+          },
+          {
+            "contact_id": "contact-006-3",
+            "customer_id": "acct-006",
+            "full_name": "Jordan Patel",
+            "role": "IT Manager",
+            "email": "jordan.patel@meridian-health.example",
+            "is_primary": false,
+            "last_contacted_date": null
+          }
+        ],
+        "sources": [
+          {
+            "id": "crm:contact-search/acct-001",
+            "label": "Account contact search",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contacts/contact-001-1",
+            "label": "Avery Chen",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contacts/contact-001-2",
+            "label": "Jordan Patel",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contacts/contact-001-3",
+            "label": "Morgan Brooks",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contact-search/acct-004",
+            "label": "Account contact search",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contacts/contact-004-1",
+            "label": "Riley Santos",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contacts/contact-004-2",
+            "label": "Quinn Taylor",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contacts/contact-004-3",
+            "label": "Casey Reed",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contact-search/acct-006",
+            "label": "Account contact search",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contacts/contact-006-1",
+            "label": "Casey Reed",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contacts/contact-006-2",
+            "label": "Avery Chen",
+            "system": "crm"
+          },
+          {
+            "id": "crm:contacts/contact-006-3",
+            "label": "Jordan Patel",
+            "system": "crm"
+          }
+        ]
+      },
+      "duration_ms": 2.69
+    },
+    {
+      "type": "model_response",
+      "timestamp": "2026-11-23T02:30:35.722349+00:00",
+      "response": {
+        "type": "tool_call",
+        "tool_name": "crm_get_deals_batch",
+        "arguments": {
+          "customer_ids": [
+            "acct-001",
+            "acct-004",
+            "acct-006"
+          ],
+          "stage": "OPEN"
+        }
+      },
+      "duration_ms": 1021.68
+    },
+    {
+      "type": "tool_call",
+      "timestamp": "2026-11-23T02:30:35.722384+00:00",
+      "tool_name": "crm_get_deals_batch",
+      "arguments": {
+        "customer_ids": [
+          "acct-001",
+          "acct-004",
+          "acct-006"
+        ],
+        "stage": "OPEN"
+      }
+    },
+    {
+      "type": "tool_result",
+      "timestamp": "2026-11-23T02:30:35.724896+00:00",
+      "tool_name": "crm_get_deals_batch",
+      "result": {
+        "data": [
+          {
+            "deal_id": "deal-001-1",
+            "customer_id": "acct-001",
+            "name": "Cedar & Finch Renewal",
+            "amount": 72000,
+            "currency": "USD",
+            "stage": "NEGOTIATION",
+            "expected_close_date": "2026-11-05",
+            "owner": "Maya Chen",
+            "updated_at": "2026-10-20"
+          },
+          {
+            "deal_id": "deal-001-2",
+            "customer_id": "acct-001",
+            "name": "Cedar & Finch Expansion",
+            "amount": 18000,
+            "currency": "USD",
+            "stage": "PROPOSAL",
+            "expected_close_date": "2026-12-15",
+            "owner": "Maya Chen",
+            "updated_at": "2026-10-20"
+          },
+          {
+            "deal_id": "deal-004-1",
+            "customer_id": "acct-004",
+            "name": "Bluewater Systems Renewal",
+            "amount": 24000,
+            "currency": "USD",
+            "stage": "NEGOTIATION",
+            "expected_close_date": "2026-11-10",
+            "owner": "Maya Chen",
+            "updated_at": "2026-10-20"
+          },
+          {
+            "deal_id": "deal-004-2",
+            "customer_id": "acct-004",
+            "name": "Bluewater Systems Expansion",
+            "amount": 6000,
+            "currency": "USD",
+            "stage": "PROPOSAL",
+            "expected_close_date": "2026-12-15",
+            "owner": "Maya Chen",
+            "updated_at": "2026-10-20"
+          },
+          {
+            "deal_id": "deal-006-1",
+            "customer_id": "acct-006",
+            "name": "Meridian Health Renewal",
+            "amount": 54000,
+            "currency": "USD",
+            "stage": "NEGOTIATION",
+            "expected_close_date": "2026-11-12",
+            "owner": "Priya Shah",
+            "updated_at": "2026-10-20"
+          },
+          {
+            "deal_id": "deal-006-2",
+            "customer_id": "acct-006",
+            "name": "Meridian Health Expansion",
+            "amount": 13500,
+            "currency": "USD",
+            "stage": "PROPOSAL",
+            "expected_close_date": "2026-12-15",
+            "owner": "Priya Shah",
+            "updated_at": "2026-10-20"
+          }
+        ],
+        "sources": [
+          {
+            "id": "crm:deal-search/acct-001_OPEN",
+            "label": "Account deal search",
+            "system": "crm"
+          },
+          {
+            "id": "crm:deals/deal-001-1",
+            "label": "Cedar & Finch Renewal",
+            "system": "crm"
+          },
+          {
+            "id": "crm:deals/deal-001-2",
+            "label": "Cedar & Finch Expansion",
+            "system": "crm"
+          },
+          {
+            "id": "crm:deal-search/acct-004_OPEN",
+            "label": "Account deal search",
+            "system": "crm"
+          },
+          {
+            "id": "crm:deals/deal-004-1",
+            "label": "Bluewater Systems Renewal",
+            "system": "crm"
+          },
+          {
+            "id": "crm:deals/deal-004-2",
+            "label": "Bluewater Systems Expansion",
+            "system": "crm"
+          },
+          {
+            "id": "crm:deal-search/acct-006_OPEN",
+            "label": "Account deal search",
+            "system": "crm"
+          },
+          {
+            "id": "crm:deals/deal-006-1",
+            "label": "Meridian Health Renewal",
+            "system": "crm"
+          },
+          {
+            "id": "crm:deals/deal-006-2",
+            "label": "Meridian Health Expansion",
+            "system": "crm"
+          }
+        ]
+      },
+      "duration_ms": 2.5
+    },
+    {
+      "type": "model_response",
+      "timestamp": "2026-11-23T02:30:36.640836+00:00",
+      "response": {
+        "type": "tool_call",
+        "tool_name": "support_get_open_tickets_batch",
+        "arguments": {
+          "organization_ids": [
+            "org-1001",
+            "org-1004"
+          ]
+        }
+      },
+      "duration_ms": 915.92
+    },
+    {
+      "type": "tool_call",
+      "timestamp": "2026-11-23T02:30:36.640870+00:00",
+      "tool_name": "support_get_open_tickets_batch",
+      "arguments": {
+        "organization_ids": [
+          "org-1001",
+          "org-1004"
+        ]
+      }
+    },
+    {
+      "type": "tool_result",
+      "timestamp": "2026-11-23T02:30:36.641877+00:00",
+      "tool_name": "support_get_open_tickets_batch",
+      "result": {
+        "data": [
+          {
+            "ticket_id": 10011,
+            "organization_id": "org-1001",
+            "status": "OPEN",
+            "priority": "CRITICAL",
+            "subject": "Invoice export blocked"
+          },
+          {
+            "ticket_id": 10012,
+            "organization_id": "org-1001",
+            "status": "OPEN",
+            "priority": "HIGH",
+            "subject": "Account sync delays"
+          }
+        ],
+        "sources": [
+          {
+            "id": "support:organizations/org-1001",
+            "label": "Open tickets for org-1001",
+            "system": "support"
+          },
+          {
+            "id": "support:tickets/10011",
+            "label": "Invoice export blocked",
+            "system": "support"
+          },
+          {
+            "id": "support:tickets/10012",
+            "label": "Account sync delays",
+            "system": "support"
+          },
+          {
+            "id": "support:organizations/org-1004",
+            "label": "Open tickets for org-1004",
+            "system": "support"
+          }
+        ]
+      },
+      "duration_ms": 1.0
+    },
+    {
+      "type": "model_response",
+      "timestamp": "2026-11-23T02:30:40.124938+00:00",
+      "response": {
+        "type": "final_answer",
+        "content": "Here’s the prioritized renewal-attention brief for accounts renewing 2026-11-05 through 2026-11-12, ranked by explicit evidence: open support severity first, then total open pipeline, then renewal timing.\n\n## 1) Cedar & Finch [crm:accounts/acct-001]\n- **Owner:** Maya Chen [crm:accounts/acct-001]\n- **Renewal date:** 2026-11-05 [crm:accounts/acct-001]\n- **Annual value:** $72,000 [crm:accounts/acct-001]\n- **Primary contact available:** Yes — Avery Chen, Operations Director, is designated primary; email available [crm:contacts/contact-001-1]\n- **OPEN pipeline:** $90,000 total across 2 deals\n  - NEGOTIATION: $72,000\n  - PROPOSAL: $18,000 [crm:deals/deal-001-1] [crm:deals/deal-001-2]\n- **OPEN support status:** 2 open tickets\n  - CRITICAL: “Invoice export blocked”\n  - HIGH: “Account sync delays” [support:tickets/10011] [support:tickets/10012]\n- **Recommendation:** Prioritize immediately; the critical support issue plus active renewal-stage pipeline suggests the most urgent attention.\n\n## 2) Bluewater Systems [crm:accounts/acct-004]\n- **Owner:** Maya Chen [crm:accounts/acct-004]\n- **Renewal date:** 2026-11-10 [crm:accounts/acct-004]\n- **Annual value:** $24,000 [crm:accounts/acct-004]\n- **Primary contact available:** Yes — Riley Santos, Operations Director, is designated primary; email available [crm:contacts/contact-004-1]\n- **OPEN pipeline:** $30,000 total across 2 deals\n  - NEGOTIATION: $24,000\n  - PROPOSAL: $6,000 [crm:deals/deal-004-1] [crm:deals/deal-004-2]\n- **OPEN support status:** Confirmed empty result for open tickets returned by support search (no open tickets listed) [support:organizations/org-1004]\n- **Recommendation:** Moderate priority; renewal is soon and pipeline is active, but there are no confirmed open support issues in the returned support record.\n\n## 3) Meridian Health [crm:accounts/acct-006]\n- **Owner:** Priya Shah [crm:accounts/acct-006]\n- **Renewal date:** 2026-11-12 [crm:accounts/acct-006]\n- **Annual value:** $54,000 [crm:accounts/acct-006]\n- **Primary contact available:** Yes — Casey Reed is designated primary, but email is unavailable (null) [crm:contacts/contact-006-1]\n- **OPEN pipeline:** $67,500 total across 2 deals\n  - NEGOTIATION: $54,000\n  - PROPOSAL: $13,500 [crm:deals/deal-006-1] [crm:deals/deal-006-2]\n- **OPEN support status:** Unavailable — no support lookup was possible because the account has no support organization mapping [crm:accounts/acct-006]\n- **Recommendation:** Monitor closely; renewal value and open pipeline are material, but support status cannot be checked from the available mapping.\n\n### Priority summary\n1. **Cedar & Finch** — highest urgency due to **CRITICAL + HIGH open support tickets** and imminent renewal.\n2. **Bluewater Systems** — next due to near-term renewal and active open pipeline, with **confirmed empty support result**.\n3. **Meridian Health** — open pipeline and renewal value are strong, but **support status is unavailable**, so evidence is incomplete.\n\nIf you want, I can also turn this into a one-line executive summary per account."
+      },
+      "duration_ms": 3483.06
+    }
+  ],
+  "usage": {
+    "input_tokens": 12736,
+    "output_tokens": 965
+  },
+  "usage_available": true,
+  "estimated_cost_usd": 0.0138945,
+  "duration_ms": 7608.86,
+  "tool_calls": 4,
+  "error": null,
+  "metadata": {
+    "dataset_hash": "9df491bf3ebe63c553ed03191b25071fc2fee5f78f8933d94fe135cb5623872b",
+    "config_hash": "34b8f3a170d535c3724cc8225a4fb407dc907e4ec35e5f5f2caa1cc96cd3d99b",
+    "code_hash": "db1681ba05baefc2bac1d54ee17b5598977b013148d6e704865258770eb7316b",
+    "purpose": "evaluation",
+    "pricing": {
+      "input_usd_per_million": 0.75,
+      "output_usd_per_million": 4.5,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+      "checked_at": "2026-10-28",
+      "basis": "standard uncached input/output; estimate, not invoice"
+    }
+  }
+}

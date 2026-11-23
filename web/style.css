@@ -144,3 +144,5 @@ footer { margin-top: 36px; color: var(--muted); font-size: 11px; }
 .legacy-history > summary { padding: 10px 0; }
 #workflow-shortcuts:empty { display: none; }
 @media (max-width: 640px) { .user-message { max-width: 94%; } .chat-heading { flex-wrap: wrap; gap: 8px; } #conversation-cost { width: 100%; } }
+.intro > .public-note { margin-top: 14px; max-width: 640px; font-size: 13px; line-height: 1.55; color: var(--muted); }
+.public-note a { color: var(--accent); }

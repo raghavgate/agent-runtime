@@ -1,0 +1,21 @@
+# Render Blueprint for the public demo. See docs/PUBLIC_DEMO.md.
+services:
+  - type: web
+    name: agent-runtime
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false          # Entered in the Render dashboard; never committed.
+      - key: OPENAI_MODEL
+        value: gpt-5.4-mini
+      - key: DEMO_DAILY_BUDGET_USD
+        value: "1.00"        # Estimated spend ceiling across all visitors, per UTC day.
+      - key: DEMO_PER_DAY
+        value: "30"          # Questions per visitor per UTC day.
+      - key: DEMO_PER_MINUTE
+        value: "5"
+      - key: DEMO_GLOBAL_PER_DAY
+        value: "400"

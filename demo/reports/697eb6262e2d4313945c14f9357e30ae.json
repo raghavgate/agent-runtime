@@ -1,0 +1,466 @@
+{
+  "evaluation_id": "697eb6262e2d4313945c14f9357e30ae",
+  "created_at": "2026-11-23T02:34:14.595151+00:00",
+  "provider": "openai",
+  "model": "gpt-5.4-mini",
+  "kind": "live_model",
+  "profile": "full",
+  "split": "development",
+  "dataset_hash": "9df491bf3ebe63c553ed03191b25071fc2fee5f78f8933d94fe135cb5623872b",
+  "config_hash": "34b8f3a170d535c3724cc8225a4fb407dc907e4ec35e5f5f2caa1cc96cd3d99b",
+  "code_hash": "db1681ba05baefc2bac1d54ee17b5598977b013148d6e704865258770eb7316b",
+  "suite_hash": "2c17e57e7fa3bf8213e4633abc344d6b941fe91a843687df37f6058d19df66fb",
+  "grader_hash": "7801bcb05ef7a46daa2c40d699c9ede460646343d8be032c6977c9cfa0e28f3f",
+  "limits": {
+    "recorded_max_tool_calls": [
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6,
+      6
+    ],
+    "execution": "replay; new quick-profile limits were not applied retroactively"
+  },
+  "pricing": {
+    "input_usd_per_million": 0.75,
+    "output_usd_per_million": 4.5,
+    "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+    "checked_at": "2026-10-28",
+    "basis": "standard uncached input/output; estimate, not invoice"
+  },
+  "stopped_reason": null,
+  "summary": {
+    "passed": 13,
+    "total": 13,
+    "planned": 13,
+    "complete": true,
+    "pass_rate": 1.0,
+    "mean_duration_ms": 3369.83,
+    "total_tool_calls": 26,
+    "usage": {
+      "input_tokens": 61830,
+      "output_tokens": 2772
+    },
+    "estimated_cost_usd": 0.058846499999999996,
+    "cases_with_efficiency_notes": 0
+  },
+  "limitations": "Rule-based checks of expected facts, calls, retrieved IDs and citation membership; not a semantic grounding judge. Demo results are not LLM accuracy. Human review is still required. Cost uses standard input rates without cache discounts; spending/token guards are checked between requests or cases, not billing caps.",
+  "results": [
+    {
+      "case_id": "synthetic-account-brief",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "tool_call_1": true,
+        "no_forbidden_tools": true,
+        "retrieved_ticket_ids": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "answer_fact_2": true,
+        "answer_fact_3": true,
+        "answer_fact_4": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "4ff8f11997fb41afbee81d37103c91c1",
+      "answer": "Account brief for Cedar & Finch [crm:accounts/acct-001]\n\n- Owner: Maya Chen [crm:accounts/acct-001]\n- Renewal date: 2026-11-05 [crm:accounts/acct-001]\n- Annual value: $72,000 [crm:accounts/acct-001]\n\nOPEN support tickets:\n1. Invoice export blocked \u2014 Priority: CRITICAL [support:tickets/10011]\n2. Account sync delays \u2014 Priority: HIGH [support:tickets/10012]\n\nIf you want, I can also pull contacts, open deals, and a fuller meeting-prep snapshot.",
+      "error": null,
+      "duration_ms": 3451.17,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4212,
+        "output_tokens": 178
+      },
+      "estimated_cost_usd": 0.00396,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-meeting-preparation",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "tool_call_1": true,
+        "tool_call_2": true,
+        "tool_call_3": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "retrieved_records_1": true,
+        "retrieved_ticket_ids": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "answer_fact_2": true,
+        "answer_fact_3": true,
+        "answer_fact_4": true,
+        "answer_fact_5": true,
+        "answer_fact_6": true,
+        "answer_fact_7": true,
+        "answer_fact_8": true,
+        "answer_fact_9": true,
+        "answer_fact_10": true,
+        "answer_fact_11": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "b8312736393541618d8313b6d037b889",
+      "answer": "Here\u2019s a concise meeting brief for Cedar & Finch.\n\n## Executive account snapshot\n- **Owner:** Maya Chen [crm:accounts/acct-001]\n- **Renewal date:** 2026-11-05 [crm:accounts/acct-001]\n- **Annual value:** $72,000 [crm:accounts/acct-001]\n\n## Primary contact\n- **Designated primary contact:** Avery Chen, Operations Director [crm:contacts/contact-001-1]\n- **Latest contact date:** 2026-10-23 [crm:contacts/contact-001-1]\n- **Email:** avery.chen@cedar-finch.example [crm:contacts/contact-001-1]\n\n## OPEN deals\n1. **Cedar & Finch Renewal** \u2014 $72,000 USD, **NEGOTIATION**, expected close 2026-11-05 [crm:deals/deal-001-1]\n2. **Cedar & Finch Expansion** \u2014 $18,000 USD, **PROPOSAL**, expected close 2026-12-15 [crm:deals/deal-001-2]\n\n**Total OPEN pipeline value:** **$90,000 USD** [crm:deals/deal-001-1] [crm:deals/deal-001-2]\n\n## OPEN support issues\n1. **Invoice export blocked** \u2014 **CRITICAL** [support:tickets/10011]\n2. **Account sync delays** \u2014 **HIGH** [support:tickets/10012]\n\n## Evidence-backed talking points\n- The renewal is close, with the account renewal date on **2026-11-05** and an open renewal deal currently in **NEGOTIATION** for the same amount as annual value. [crm:accounts/acct-001] [crm:deals/deal-001-1]\n- There is additional expansion upside in a separate **PROPOSAL** stage deal worth **$18,000 USD**. [crm:deals/deal-001-2]\n- Support load is active and includes a **CRITICAL** issue tied to invoice exports plus a **HIGH** priority sync issue, which may affect operational confidence. [support:tickets/10011] [support:tickets/10012]\n- The primary contact, Avery Chen, was last contacted on **2026-10-23**, so a recent touchpoint exists. [crm:contacts/contact-001-1]\n\n## Missing information\n- No missing required fields for this brief were returned from the available systems.",
+      "error": null,
+      "duration_ms": 6253.39,
+      "tool_calls": 4,
+      "usage": {
+        "input_tokens": 8795,
+        "output_tokens": 624
+      },
+      "estimated_cost_usd": 0.00940425,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-unknown-account",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_ticket_ids": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "f2e1cbdc5e434705a3a3cc540fbf3bd8",
+      "answer": "I couldn\u2019t find an account named **Orion Mechanics** in the CRM snapshot.\n\nIf you want, I can try a different company name or a close variant.",
+      "error": null,
+      "duration_ms": 2006.81,
+      "tool_calls": 1,
+      "usage": {
+        "input_tokens": 2507,
+        "output_tokens": 59
+      },
+      "estimated_cost_usd": 0.00214575,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-ambiguous-name",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_ticket_ids": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "answer_fact_2": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "dffa9327e19b4365be632a958674d94e",
+      "answer": "I found two matching accounts for \u201cNorthstar\u201d:\n\n- Northstar Labs [crm:accounts/acct-002]\n- Northstar Retail [crm:accounts/acct-003]\n\nWhich one would you like me to check for OPEN support tickets?",
+      "error": null,
+      "duration_ms": 2136.12,
+      "tool_calls": 1,
+      "usage": {
+        "input_tokens": 2672,
+        "output_tokens": 75
+      },
+      "estimated_cost_usd": 0.0023415,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-primary-contact",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "c054e34b3cef4db8b52ae2454f5a4948",
+      "answer": "The designated primary contact for Cedar & Finch is Avery Chen, Operations Director, and their email is avery.chen@cedar-finch.example [crm:contacts/contact-001-1].",
+      "error": null,
+      "duration_ms": 3570.79,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4336,
+        "output_tokens": 88
+      },
+      "estimated_cost_usd": 0.003648,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-open-pipeline",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "answer_fact_2": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "439313174215429caca5d93acabab8e3",
+      "answer": "Cedar & Finch has 2 OPEN deals totaling **$90,000 USD** in pipeline value [crm:deal-search/acct-001_OPEN].\n\n- **Cedar & Finch Renewal** \u2014 **$72,000 USD**, **NEGOTIATION** [crm:deals/deal-001-1]\n- **Cedar & Finch Expansion** \u2014 **$18,000 USD**, **PROPOSAL** [crm:deals/deal-001-2]\n\nClosed won and closed lost deals are excluded from this total as requested.",
+      "error": null,
+      "duration_ms": 2702.38,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4330,
+        "output_tokens": 166
+      },
+      "estimated_cost_usd": 0.0039945,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-no-contacts",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "b99ecc0dce58449cabca6c1c4e99c0f7",
+      "answer": "Orchard Supply has no contacts listed in the CRM right now. [crm:contact-search/acct-005]",
+      "error": null,
+      "duration_ms": 2951.31,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4060,
+        "output_tokens": 73
+      },
+      "estimated_cost_usd": 0.0033735,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-missing-email",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "272613ae259d40b5b1ad69c890477feb",
+      "answer": "The primary contact for Meridian Health is Casey Reed, Operations Director. The email address is unavailable. [crm:contacts/contact-006-1]",
+      "error": null,
+      "duration_ms": 2780.18,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4321,
+        "output_tokens": 77
+      },
+      "estimated_cost_usd": 0.00358725,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-no-primary-designation",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "84b50f24ab5f43798656110cc8f5007c",
+      "answer": "Juniper Logistics has no designated primary contact listed. None of the contacts are marked `is_primary=true`, so I can\u2019t choose one based on role alone. [crm:contact-search/acct-008]",
+      "error": null,
+      "duration_ms": 2763.41,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4338,
+        "output_tokens": 90
+      },
+      "estimated_cost_usd": 0.0036585,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-missing-support-mapping",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_ticket_ids": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "answer_fact_2": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "7884a3616f9144dbbd27760378cc403e",
+      "answer": "**Meridian Health account brief** [crm:accounts/acct-006]\n\n- **Owner:** Priya Shah  \n- **Renewal date:** 2026-11-12  \n- **Annual value:** $54,000  \n- **Support tickets check:** Support tickets could **not** be checked because the account has no support organization mapping available. That means support status is unavailable, not necessarily zero tickets. [crm:accounts/acct-006]\n\nIf you\u2019d like, I can also check contacts and open deals for this account.",
+      "error": null,
+      "duration_ms": 2278.07,
+      "tool_calls": 1,
+      "usage": {
+        "input_tokens": 2601,
+        "output_tokens": 136
+      },
+      "estimated_cost_usd": 0.00256275,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-closed-deals-excluded",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "e41cc6492fd140a1bb3f7ff5eb0cea7f",
+      "answer": "Cobalt Works has **$0 OPEN pipeline**; there are no OPEN deals after excluding CLOSED_WON and CLOSED_LOST. [crm:accounts/acct-007] [crm:deal-search/acct-007_OPEN]",
+      "error": null,
+      "duration_ms": 2877.49,
+      "tool_calls": 2,
+      "usage": {
+        "input_tokens": 4066,
+        "output_tokens": 99
+      },
+      "estimated_cost_usd": 0.003495,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-inclusive-renewal-window",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "answer_fact_2": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "b993335088d04869b9e47ad20a17d236",
+      "answer": "Here are the accounts renewing from 2026-11-05 through 2026-11-12, inclusive:\n\n- Cedar & Finch \u2014 2026-11-05 [crm:accounts/acct-001]\n- Bluewater Systems \u2014 2026-11-10 [crm:accounts/acct-004]\n- Meridian Health \u2014 2026-11-12 [crm:accounts/acct-006]\n\nIf you want, I can also provide owner and annual value for each.",
+      "error": null,
+      "duration_ms": 2427.86,
+      "tool_calls": 1,
+      "usage": {
+        "input_tokens": 2856,
+        "output_tokens": 142
+      },
+      "estimated_cost_usd": 0.002781,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    },
+    {
+      "case_id": "synthetic-critical-renewal-review",
+      "iteration": 1,
+      "passed": true,
+      "checks": {
+        "completed": true,
+        "tool_call_0": true,
+        "tool_call_1": true,
+        "tool_call_2": true,
+        "tool_call_3": true,
+        "no_forbidden_tools": true,
+        "retrieved_records_0": true,
+        "retrieved_records_1": true,
+        "retrieved_records_2": true,
+        "retrieved_ticket_ids": true,
+        "required_citations": true,
+        "citation_validity": true,
+        "answer_fact_0": true,
+        "answer_fact_1": true,
+        "answer_fact_2": true,
+        "answer_fact_3": true,
+        "answer_fact_4": true,
+        "answer_fact_5": true,
+        "answer_fact_6": true,
+        "answer_fact_7": true,
+        "answer_fact_8": true,
+        "answer_fact_9": true,
+        "answer_fact_10": true,
+        "answer_fact_11": true,
+        "answer_fact_12": true,
+        "answer_fact_13": true,
+        "answer_fact_14": true,
+        "answer_fact_15": true,
+        "answer_fact_16": true,
+        "answer_fact_17": true,
+        "no_forbidden_claims": true
+      },
+      "run_id": "ff89b26e2620465b920576e32240fad7",
+      "answer": "Here\u2019s the prioritized renewal-attention brief for accounts renewing 2026-11-05 through 2026-11-12, ranked by explicit evidence: open support severity first, then total open pipeline, then renewal timing.\n\n## 1) Cedar & Finch [crm:accounts/acct-001]\n- **Owner:** Maya Chen [crm:accounts/acct-001]\n- **Renewal date:** 2026-11-05 [crm:accounts/acct-001]\n- **Annual value:** $72,000 [crm:accounts/acct-001]\n- **Primary contact available:** Yes \u2014 Avery Chen, Operations Director, is designated primary; email available [crm:contacts/contact-001-1]\n- **OPEN pipeline:** $90,000 total across 2 deals\n  - NEGOTIATION: $72,000\n  - PROPOSAL: $18,000 [crm:deals/deal-001-1] [crm:deals/deal-001-2]\n- **OPEN support status:** 2 open tickets\n  - CRITICAL: \u201cInvoice export blocked\u201d\n  - HIGH: \u201cAccount sync delays\u201d [support:tickets/10011] [support:tickets/10012]\n- **Recommendation:** Prioritize immediately; the critical support issue plus active renewal-stage pipeline suggests the most urgent attention.\n\n## 2) Bluewater Systems [crm:accounts/acct-004]\n- **Owner:** Maya Chen [crm:accounts/acct-004]\n- **Renewal date:** 2026-11-10 [crm:accounts/acct-004]\n- **Annual value:** $24,000 [crm:accounts/acct-004]\n- **Primary contact available:** Yes \u2014 Riley Santos, Operations Director, is designated primary; email available [crm:contacts/contact-004-1]\n- **OPEN pipeline:** $30,000 total across 2 deals\n  - NEGOTIATION: $24,000\n  - PROPOSAL: $6,000 [crm:deals/deal-004-1] [crm:deals/deal-004-2]\n- **OPEN support status:** Confirmed empty result for open tickets returned by support search (no open tickets listed) [support:organizations/org-1004]\n- **Recommendation:** Moderate priority; renewal is soon and pipeline is active, but there are no confirmed open support issues in the returned support record.\n\n## 3) Meridian Health [crm:accounts/acct-006]\n- **Owner:** Priya Shah [crm:accounts/acct-006]\n- **Renewal date:** 2026-11-12 [crm:accounts/acct-006]\n- **Annual value:** $54,000 [crm:accounts/acct-006]\n- **Primary contact available:** Yes \u2014 Casey Reed is designated primary, but email is unavailable (null) [crm:contacts/contact-006-1]\n- **OPEN pipeline:** $67,500 total across 2 deals\n  - NEGOTIATION: $54,000\n  - PROPOSAL: $13,500 [crm:deals/deal-006-1] [crm:deals/deal-006-2]\n- **OPEN support status:** Unavailable \u2014 no support lookup was possible because the account has no support organization mapping [crm:accounts/acct-006]\n- **Recommendation:** Monitor closely; renewal value and open pipeline are material, but support status cannot be checked from the available mapping.\n\n### Priority summary\n1. **Cedar & Finch** \u2014 highest urgency due to **CRITICAL + HIGH open support tickets** and imminent renewal.\n2. **Bluewater Systems** \u2014 next due to near-term renewal and active open pipeline, with **confirmed empty support result**.\n3. **Meridian Health** \u2014 open pipeline and renewal value are strong, but **support status is unavailable**, so evidence is incomplete.\n\nIf you want, I can also turn this into a one-line executive summary per account.",
+      "error": null,
+      "duration_ms": 7608.86,
+      "tool_calls": 4,
+      "usage": {
+        "input_tokens": 12736,
+        "output_tokens": 965
+      },
+      "estimated_cost_usd": 0.0138945,
+      "efficiency_notes": [],
+      "human_review": "pending"
+    }
+  ],
+  "baseline_id": "697eb6262e2d4313945c14f9357e30ae",
+  "comparison": null,
+  "replayed": true
+}

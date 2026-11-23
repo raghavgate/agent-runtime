@@ -1,0 +1,1037 @@
+{
+  "user_message": "Find OPEN support tickets for Northstar.",
+  "provider": "openai",
+  "model": "gpt-5.4-mini",
+  "run_id": "dffa9327e19b4365be632a958674d94e",
+  "started_at": "2026-11-23T02:30:07.884193+00:00",
+  "status": "completed",
+  "answer": "I found two matching accounts for “Northstar”:\n\n- Northstar Labs [crm:accounts/acct-002]\n- Northstar Retail [crm:accounts/acct-003]\n\nWhich one would you like me to check for OPEN support tickets?",
+  "sources": [
+    {
+      "id": "crm:accounts/acct-002",
+      "label": "Northstar Labs",
+      "system": "crm"
+    },
+    {
+      "id": "crm:accounts/acct-003",
+      "label": "Northstar Retail",
+      "system": "crm"
+    }
+  ],
+  "events": [
+    {
+      "type": "run_started",
+      "timestamp": "2026-11-23T02:30:07.884233+00:00",
+      "max_tool_calls": 6,
+      "max_total_tokens": 20000,
+      "tools": [
+        {
+          "name": "crm_search_accounts",
+          "description": "Find CRM accounts by company name. Returns full account details, owner, renewal, annual value and support mapping; reuse these without another lookup. Multiple matches require clarification.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "company_name": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            },
+            "required": [
+              "company_name"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "company_name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "renewal_date": {
+                      "type": "string"
+                    },
+                    "annual_value": {
+                      "type": "number"
+                    },
+                    "support_customer_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "customer_id",
+                    "company_name",
+                    "owner",
+                    "renewal_date",
+                    "annual_value",
+                    "support_customer_id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_account",
+          "description": "Look up a known CRM customer_id when details are not already available from search. Search already returns the full account.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_id": {
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "minLength": 1
+              }
+            },
+            "required": [
+              "customer_id"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "company_name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "renewal_date": {
+                      "type": "string"
+                    },
+                    "annual_value": {
+                      "type": "number"
+                    },
+                    "support_customer_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "customer_id",
+                    "company_name",
+                    "owner",
+                    "renewal_date",
+                    "annual_value",
+                    "support_customer_id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_contacts",
+          "description": "List contacts for a known account, including primary designation and nullable email. Never infer a primary contact or missing email.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_id": {
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "minLength": 1
+              }
+            },
+            "required": [
+              "customer_id"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "string"
+                    },
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "full_name": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "is_primary": {
+                      "type": "boolean"
+                    },
+                    "last_contacted_date": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "contact_id",
+                    "customer_id",
+                    "full_name",
+                    "role",
+                    "email",
+                    "is_primary",
+                    "last_contacted_date"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_deals",
+          "description": "List account deals. OPEN excludes CLOSED_WON and CLOSED_LOST; ALL includes all stages. Amounts are in USD. Use stage explicitly.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_id": {
+                "type": [
+                  "integer",
+                  "string"
+                ],
+                "minLength": 1
+              },
+              "stage": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "OPEN",
+                  "PROSPECTING",
+                  "QUALIFICATION",
+                  "PROPOSAL",
+                  "NEGOTIATION",
+                  "CLOSED_WON",
+                  "CLOSED_LOST"
+                ]
+              }
+            },
+            "required": [
+              "customer_id",
+              "stage"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "deal_id": {
+                      "type": "string"
+                    },
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "USD"
+                      ]
+                    },
+                    "stage": {
+                      "type": "string",
+                      "enum": [
+                        "PROSPECTING",
+                        "QUALIFICATION",
+                        "PROPOSAL",
+                        "NEGOTIATION",
+                        "CLOSED_WON",
+                        "CLOSED_LOST"
+                      ]
+                    },
+                    "expected_close_date": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "deal_id",
+                    "customer_id",
+                    "name",
+                    "amount",
+                    "currency",
+                    "stage",
+                    "expected_close_date",
+                    "owner",
+                    "updated_at"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_contacts_batch",
+          "description": "List contacts for multiple known accounts in one read. Use this after a multi-account search instead of calling crm_get_contacts repeatedly. Primary designations and nullable emails retain their original meaning.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_ids": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "customer_ids"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "string"
+                    },
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "full_name": {
+                      "type": "string"
+                    },
+                    "role": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "is_primary": {
+                      "type": "boolean"
+                    },
+                    "last_contacted_date": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "contact_id",
+                    "customer_id",
+                    "full_name",
+                    "role",
+                    "email",
+                    "is_primary",
+                    "last_contacted_date"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_get_deals_batch",
+          "description": "List deals for multiple known accounts in one read. Use OPEN to exclude CLOSED_WON and CLOSED_LOST. Results retain customer_id for grouping.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "customer_ids": {
+                "type": "array",
+                "items": {
+                  "type": [
+                    "integer",
+                    "string"
+                  ],
+                  "minLength": 1
+                }
+              },
+              "stage": {
+                "type": "string",
+                "enum": [
+                  "ALL",
+                  "OPEN",
+                  "PROSPECTING",
+                  "QUALIFICATION",
+                  "PROPOSAL",
+                  "NEGOTIATION",
+                  "CLOSED_WON",
+                  "CLOSED_LOST"
+                ]
+              }
+            },
+            "required": [
+              "customer_ids",
+              "stage"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "deal_id": {
+                      "type": "string"
+                    },
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "currency": {
+                      "type": "string",
+                      "enum": [
+                        "USD"
+                      ]
+                    },
+                    "stage": {
+                      "type": "string",
+                      "enum": [
+                        "PROSPECTING",
+                        "QUALIFICATION",
+                        "PROPOSAL",
+                        "NEGOTIATION",
+                        "CLOSED_WON",
+                        "CLOSED_LOST"
+                      ]
+                    },
+                    "expected_close_date": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "updated_at": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "deal_id",
+                    "customer_id",
+                    "name",
+                    "amount",
+                    "currency",
+                    "stage",
+                    "expected_close_date",
+                    "owner",
+                    "updated_at"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "crm_list_renewals",
+          "description": "List accounts renewing within an inclusive date range. Use explicit YYYY-MM-DD start and end dates; does not infer risk or support status.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "start_date": {
+                "type": "string"
+              },
+              "end_date": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "start_date",
+              "end_date"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "customer_id": {
+                      "type": [
+                        "integer",
+                        "string"
+                      ],
+                      "minLength": 1
+                    },
+                    "company_name": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "renewal_date": {
+                      "type": "string"
+                    },
+                    "annual_value": {
+                      "type": "number"
+                    },
+                    "support_customer_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "customer_id",
+                    "company_name",
+                    "owner",
+                    "renewal_date",
+                    "annual_value",
+                    "support_customer_id"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "support_get_open_tickets",
+          "description": "Get OPEN tickets using an organization_id from a CRM account's support_customer_id.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "organization_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "organization_id"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "ticket_id": {
+                      "type": "integer"
+                    },
+                    "organization_id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": "string"
+                    },
+                    "subject": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ticket_id",
+                    "organization_id",
+                    "status",
+                    "priority",
+                    "subject"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        },
+        {
+          "name": "support_get_open_tickets_batch",
+          "description": "Get OPEN tickets for multiple known support organizations in one read. Use CRM support_customer_id mappings and omit accounts whose mapping is empty.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "organization_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            },
+            "required": [
+              "organization_ids"
+            ],
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "ticket_id": {
+                      "type": "integer"
+                    },
+                    "organization_id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "priority": {
+                      "type": "string"
+                    },
+                    "subject": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ticket_id",
+                    "organization_id",
+                    "status",
+                    "priority",
+                    "subject"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "sources": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "system": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "label",
+                    "system"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "data",
+              "sources"
+            ],
+            "additionalProperties": false
+          },
+          "read_only": true
+        }
+      ]
+    },
+    {
+      "type": "model_response",
+      "timestamp": "2026-11-23T02:30:09.077867+00:00",
+      "response": {
+        "type": "tool_call",
+        "tool_name": "crm_search_accounts",
+        "arguments": {
+          "company_name": "Northstar"
+        }
+      },
+      "duration_ms": 1193.61
+    },
+    {
+      "type": "tool_call",
+      "timestamp": "2026-11-23T02:30:09.077932+00:00",
+      "tool_name": "crm_search_accounts",
+      "arguments": {
+        "company_name": "Northstar"
+      }
+    },
+    {
+      "type": "tool_result",
+      "timestamp": "2026-11-23T02:30:09.079008+00:00",
+      "tool_name": "crm_search_accounts",
+      "result": {
+        "data": [
+          {
+            "customer_id": "acct-002",
+            "company_name": "Northstar Labs",
+            "owner": "Sam Rivera",
+            "renewal_date": "2026-11-20",
+            "annual_value": 36000,
+            "support_customer_id": "org-1002"
+          },
+          {
+            "customer_id": "acct-003",
+            "company_name": "Northstar Retail",
+            "owner": "Priya Shah",
+            "renewal_date": "2026-12-18",
+            "annual_value": 28000,
+            "support_customer_id": "org-1003"
+          }
+        ],
+        "sources": [
+          {
+            "id": "crm:accounts/acct-002",
+            "label": "Northstar Labs",
+            "system": "crm"
+          },
+          {
+            "id": "crm:accounts/acct-003",
+            "label": "Northstar Retail",
+            "system": "crm"
+          }
+        ]
+      },
+      "duration_ms": 1.07
+    },
+    {
+      "type": "model_response",
+      "timestamp": "2026-11-23T02:30:10.020186+00:00",
+      "response": {
+        "type": "final_answer",
+        "content": "I found two matching accounts for “Northstar”:\n\n- Northstar Labs [crm:accounts/acct-002]\n- Northstar Retail [crm:accounts/acct-003]\n\nWhich one would you like me to check for OPEN support tickets?"
+      },
+      "duration_ms": 941.14
+    }
+  ],
+  "usage": {
+    "input_tokens": 2672,
+    "output_tokens": 75
+  },
+  "usage_available": true,
+  "estimated_cost_usd": 0.0023415,
+  "duration_ms": 2136.12,
+  "tool_calls": 1,
+  "error": null,
+  "metadata": {
+    "dataset_hash": "9df491bf3ebe63c553ed03191b25071fc2fee5f78f8933d94fe135cb5623872b",
+    "config_hash": "34b8f3a170d535c3724cc8225a4fb407dc907e4ec35e5f5f2caa1cc96cd3d99b",
+    "code_hash": "db1681ba05baefc2bac1d54ee17b5598977b013148d6e704865258770eb7316b",
+    "purpose": "evaluation",
+    "pricing": {
+      "input_usd_per_million": 0.75,
+      "output_usd_per_million": 4.5,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
+      "checked_at": "2026-10-28",
+      "basis": "standard uncached input/output; estimate, not invoice"
+    }
+  }
+}

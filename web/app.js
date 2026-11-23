@@ -7,6 +7,7 @@ let conversationStorageKey = null;
 let currentConversation = null;
 let chatBusy = false;
 let pendingMessage = null;
+let publicDemo = false;
 
 function money(value) {
   if (value === null || value === undefined) return 'Estimate unavailable';
@@ -379,10 +380,11 @@ $('task-form').addEventListener('submit', async event => {
     } else {
       document.querySelector('.pending-turn')?.remove();
     }
-    notice(error.status === 409 ? error.message : 'The answer could not be completed. Your previous context is safe. You can retry this message.', true);
+    notice([400, 409, 429, 503].includes(error.status) ? error.message : 'The answer could not be completed. Your previous context is safe. You can retry this message.', true);
     $('message').value = message;
   } finally {
     chatBusy = false;
+    refreshPublicStatus();
     $('run-button').disabled = false;
     $('new-conversation').disabled = false;
     $('message').disabled = false;
@@ -409,6 +411,7 @@ const caseLabels = {
   'exact-account': 'Resolve an exact company name',
   'fabricated-ticket-request': 'Avoid inventing a requested ticket',
   'synthetic-account-brief': 'Combine account context and open issues',
+  'synthetic-meeting-preparation': 'Prepare a cited meeting brief',
   'synthetic-unknown-account': 'Recognize an unknown account',
   'synthetic-ambiguous-name': 'Clarify similar company names',
   'synthetic-primary-contact': 'Find the designated primary contact',
@@ -437,7 +440,7 @@ function showEvaluation(report) {
   const caption = report.replayed ? 'Recorded run cost' : 'Estimated cost';
   $('eval-results').replaceChildren(score, node('p', `${context} · ${caption}: ${money(cost)} · ${(report.summary.mean_duration_ms / 1000).toFixed(1)} seconds per question`, 'quality-note'));
   if (report.summary.complete === false) $('eval-results').append(node('p', `${planned - total} scenarios were not run. ${report.stopped_reason || ''}`, 'failed'));
-  if (report.baseline_id === report.evaluation_id) $('eval-results').append(node('p', 'Baseline saved. Future checks with the same data and grading rules can be compared with this result.', 'baseline-note'));
+  if (report.baseline_id === report.evaluation_id && !publicDemo) $('eval-results').append(node('p', 'Baseline saved. Future checks with the same data and grading rules can be compared with this result.', 'baseline-note'));
   if (report.comparison?.comparable) {
     const delta = Math.round(report.comparison.pass_rate_delta * 100);
     $('eval-results').append(node('p', delta === 0 ? 'Success rate is unchanged from the baseline.' : `Success rate changed by ${delta > 0 ? '+' : ''}${delta} percentage points from the baseline.`, 'quality-note'));
@@ -505,6 +508,26 @@ $('evaluate').addEventListener('click', async () => {
   finally { $('evaluate').disabled = false; }
 });
 
+function renderPublicStatus(status) {
+  const demo = status.public_demo;
+  if (!demo) return;
+  publicDemo = true;
+  $('mode').textContent = 'Public demo';
+  $('public-note').hidden = false;
+  $('message').maxLength = demo.max_message_chars;
+  const model = status.provider === 'demo' ? 'Scripted demo, not a model' : `Real model (${status.model})`;
+  const left = demo.daily_budget_reached ? 'Daily demo limit reached; try again tomorrow' :
+    `${demo.questions_left_today} of ${demo.questions_per_day} questions left today`;
+  const data = status.data_origin === 'synthetic' ? 'Fictional synthetic data' : 'Sample data';
+  $('mode-help').textContent = `${data} · ${model} · ${left}`;
+  $('evaluate').hidden = true;
+  document.querySelector('.evaluation-controls').hidden = true;
+}
+async function refreshPublicStatus() {
+  if (!publicDemo) return;
+  try { renderPublicStatus(await api('/api/status')); } catch { /* Keep the last known status. */ }
+}
+
 (async () => {
   try {
     const status = await api('/api/status');
@@ -558,6 +581,7 @@ $('evaluate').addEventListener('click', async () => {
     } else if (status.sample_data === false) {
       $('mode-help').textContent = status.provider === 'demo' ? 'Imported CRM data · Scripted demo' : 'Imported CRM data · OpenAI connected · API usage billed';
     }
+    renderPublicStatus(status);
     $('tools').replaceChildren(...status.tools.map(tool => {
       const details = node('details');
       details.append(node('summary', tool.name), node('p', tool.description), node('pre', JSON.stringify(tool.inputSchema, null, 2)));
