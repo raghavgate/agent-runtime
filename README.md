@@ -179,7 +179,7 @@ Run records contain prompts, tool arguments/results, and customer data. They are
 
 `workflow_instructions` in a workspace configuration defines domain-specific completion requirements and is appended to the model instructions. The synthetic workspace defines account briefs, renewal review, and meeting preparation while the runtime remains domain-neutral. Meeting preparation retrieves the account, designated primary contact, OPEN deals, and OPEN support tickets, then produces a cited brief with talking points. Changing these instructions requires a server restart.
 
-The first three-case live baseline is documented in [docs/BASELINE.md](docs/BASELINE.md). All three saved answers pass after a punctuation-only grading fix; replay incurred no additional API charges. A redundant account retrieval was identified. The prompt/tool guidance change addressing it still needs a later live measurement.
+The first three-case live baseline is documented in [docs/BASELINE.md](docs/BASELINE.md). All three saved answers pass after a punctuation-only grading fix; replay incurred no additional API charges. A redundant account retrieval was identified. A live quick check on 2026-11-22, run with runtime completion checks, passed all three cases (Acme brief with both open tickets in 2 tool calls, no repeated retrieval) for an estimated $0.0051; see the same document.
 
 Regrade saved runs without constructing a model or making API calls:
 
