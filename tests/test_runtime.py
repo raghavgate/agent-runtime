@@ -55,8 +55,8 @@ class RuntimeTests(unittest.TestCase):
 
     def test_limit_prevents_extra_execution(self):
         with self.assertRaises(RunError) as raised:
-            Runtime(self.registry, max_tool_calls=2).run(ScriptedModel([call(text="hello")]), "hi")
-        self.assertEqual(len(self.executed), 2)
+            Runtime(self.registry, max_tool_calls=2).run(ScriptedModel([call(text="a"), call(text="b"), call(text="c")]), "hi")
+        self.assertEqual(self.executed, ["a", "b"])
         self.assertEqual(raised.exception.record.tool_calls, 2)
 
     def test_zero_budget_allows_final_only(self):

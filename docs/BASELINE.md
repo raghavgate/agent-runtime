@@ -36,6 +36,26 @@ The first post-optimization live quick check passed two of three cases (estimate
 
 The workspace configuration now explicitly defines an account brief as including open tickets when support access and a mapping exist. This clarification is appended at the application boundary, leaving the runtime generic. Its live effect has not yet been verified.
 
+**Harness fix (2026-11-16).** The runtime now enforces this, rather than relying on instructions alone. A completion check rejects an account brief for a single mapped account if it skips the ticket lookup, and asks the model once to finish it. If the brief is still incomplete, the run fails instead of returning a partial brief. Identical repeated tool calls in a turn reuse the earlier result. `tests/test_completion_checks.py` reproduces the recorded failure and its correction offline.
+
+## Live quick check with completion checks (2026-11-22)
+
+Run on the `fix/completion-checks` branch with `gpt-5.4-mini`, the quick profile (4 tool calls, 700 output tokens per response) and a $0.03 spend threshold. Evaluation `71d2d1f8`.
+
+| Scenario | Result | Tool calls | Duration |
+| --- | --- | --- | --- |
+| Acme account brief | Passed (11/11 checks) | 2 | 6.64 s |
+| Unknown customer (Umbrella) | Passed | 1 | 3.85 s |
+| Ambiguous company (Northstar) | Passed | 1 | 2.26 s |
+
+Total usage: **5,174 input tokens and 280 output tokens**. Estimated standard-rate cost: **$0.0051405**. Mean task duration: **4.25 seconds**. No efficiency notes.
+
+The Acme brief now includes the owner, renewal date, annual value and both open tickets (critical and high), each cited. The trace shows `crm_search_accounts` followed directly by `support_get_open_tickets`. The model did not repeat the account retrieval recorded in the October baseline (2 calls, previously 3).
+
+The completion check did not need to intervene in this run: the model fetched tickets on its first attempt. This single run shows the full brief is reachable under the quick limits. It does not measure how often the model would skip the ticket lookup without the check. The check is the guarantee for those cases, and its behavior is covered offline. Three cases on one run do not establish general accuracy; human review of these answers is still pending.
+
+The runner recorded this report as a new baseline rather than comparing it automatically with October's, because its dataset, suite, model and grader fingerprints don't all match that report's.
+
 ## Pricing reference
 
 Rates checked October 28, 2026: $0.75 per million input tokens and $4.50 per million output tokens. See the [official model page](https://developers.openai.com/api/docs/models/gpt-5.4-mini). They are model-scoped, editable estimates in `config.json`, not a billing statement.

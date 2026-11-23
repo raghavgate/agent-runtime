@@ -133,6 +133,9 @@ class Application:
                        input_rate=rates["input_usd_per_million"] if rates else None,
                        output_rate=rates["output_usd_per_million"] if rates else None,
                        max_total_tokens=max_total_tokens,
+                       completion_checks=self.config.get("completion_checks", []),
+                       max_completion_retries=self.config.get("max_completion_retries", 1),
+                       completion_check_mode=self.config.get("completion_check_mode", "fail"),
                        metadata={"dataset_hash": self.dataset_hash, "config_hash": self.config_hash,
                                  "code_hash": self.code_hash, "purpose": purpose, "pricing": rates})
 
